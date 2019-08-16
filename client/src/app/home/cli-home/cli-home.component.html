@@ -1,0 +1,90 @@
+<app-cli-appbar></app-cli-appbar>
+
+<h3><b>Web developers</b></h3>
+
+<div *ngFor="let skill of webDeveloper">
+    
+        <div class="col-md-6 mx-left">
+            <img src="http://localhost:3000/{{ skill?.user?.image.image_name }}" 
+            alt="http://localhost:3000/{{ skill?.user?.image.image_name }}" width="10%" heigt="10%">
+          <table>
+            <tr>
+              <td>{{ skill?.user.first_name }} {{ skill?.user.last_name }}</td>
+            </tr>
+            <tr>
+              <td>Skills: {{ skill?.web_skill }}</td> 
+            <td><button (click)="viewDeveloper( skill.id, skill.user_ID, 1 )">
+              View more
+            </button></td>
+          </tr>
+          </table><br><br>
+        </div>
+        
+</div>
+
+<h3><b>Designers</b></h3>
+
+    <div *ngFor="let skill of designer">
+        
+            <div class="col-md-6 mx-left">
+                <img src="http://localhost:3000/{{ skill?.user?.image.image_name }}" 
+            alt="http://localhost:3000/{{ skill?.user?.image.image_name }}" width="10%" heigt="10%">
+              <table>
+                <tr>
+                  <td>{{ skill?.user.first_name }} {{ skill?.user.last_name }}</td>
+                </tr>
+                <tr>
+                  <td>Skills: {{ skill?.design_skill }}</td> 
+                <td><button (click)="viewDeveloper( skill.id, skill.user_ID, 2 )">
+                  View more
+                </button></td>
+              </tr>
+              </table><br><br>
+            </div>
+            
+    </div>
+
+<h3><b>Writers</b></h3>
+
+    <div *ngFor="let skill of writer">
+            
+        <div class="col-md-6 mx-left">
+            <img src="http://localhost:3000/{{ skill?.user?.image.image_name }}" 
+            alt="http://localhost:3000/{{ skill?.user?.image.image_name }}" width="10%" heigt="10%">
+             <table>
+            <tr>
+                <td>{{ skill?.user.first_name }} {{ skill?.user.last_name }}</td>
+            </tr>
+            <tr>
+                <td>Skills: {{ skill?.writing_skill }}</td> 
+            <td><button (click)="viewDeveloper( skill.id, skill.user_ID, 3 )">
+              View more
+             </button></td>
+          </tr>
+          </table><br><br>
+         </div>
+                
+    </div>
+
+
+<h3><b>Data enter</b></h3>
+
+ <div *ngFor="let skill of dataEnter">
+                
+     <div class="col-md-6 mx-left">
+        <img src="http://localhost:3000/{{ skill?.user?.image.image_name }}" 
+            alt="http://localhost:3000/{{ skill?.user?.image.image_name }}" width="10%" heigt="10%">
+         <table>
+         <tr>
+            <td>{{ skill?.user.first_name }} {{ skill?.user.last_name }}</td>
+          </tr>
+          <tr>
+            <td>Skills: {{ skill?.data_skill }}</td> 
+          <td><button (click)="viewDeveloper( skill.id, skill.user_ID, 4 )">
+            View more
+         </button></td>
+         </tr>
+        </table><br><br>
+       </div>
+                    
+ </div>
