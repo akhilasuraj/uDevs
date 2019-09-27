@@ -13,6 +13,7 @@ export interface UserDetails {
   password: string
   gender: string
   contact_no: string
+  profile_img: string
   isActivated: boolean
   exp: number
   iat: number
@@ -31,6 +32,7 @@ export interface TokenPayload {
   password: string
   gender: string
   contact_no: string
+  profile_img: string
   isActivated: boolean
 }
 
@@ -98,6 +100,7 @@ export interface developerID{
 
 export interface userID{
   user_ID: number,
+  image_name: string
 };
 
 @Injectable()
@@ -139,30 +142,32 @@ export class AuthenticationService {
     }
   }
 
+
   public dev_register(user: TokenPayload): Observable<any> {
-
-    const base = this.http.post(`/users/dev_register`, user)
-
-    const request = base.pipe(
-      map((data: TokenResponse) => {
-        if (data.token) {
-          this.saveToken(data.token)
-        }
-        return data
-      })
-    )
-
-    return request
-  }
-
-
-  public addSkill(skill:skillObject): Observable<any> {
-    return this.http.post(`/users/skill`, skill)
+      return this.http.post(`/users/dev_register`, user)
   }
 
 
   public cli_register(user: TokenPayload): Observable<any> {
     return this.http.post(`/users/cli_register`, user)
+  }
+
+
+  public SaveSkill(skill): Observable<any> {
+    return this.http.post(`/users/skill`, skill)
+  }
+
+  public SaveTechnology(techno): Observable<any> {
+    return this.http.post(`/users/techno`, techno)
+  }
+
+  public sendEmail(user: TokenPayload): Observable<any>{
+    return this.http.post(`/users/register/send`, user)
+  }
+
+
+  public verifyEmail(verify_details): Observable<any>{
+    return this.http.post(`/users/verify`,verify_details)
   }
 
 
@@ -194,6 +199,12 @@ export class AuthenticationService {
     })
   }
 
+  public technoprofile(): Observable<any> {
+    return this.http.get(`/users/technoprofile`, {
+      headers: { Authorization: ` ${this.getToken()}` }
+    })
+  }
+
 
   public editProf(user: TokenPayload): Observable<any> {
 
@@ -211,8 +222,12 @@ export class AuthenticationService {
     return request
   }
 
-  public updateSkill(skill:skillObject): Observable<any> {
+  public updateSkill(skill): Observable<any> {
     return this.http.post(`/users/updateSkill`, skill)
+  }
+
+  public updateTechnology(techno): Observable<any> {
+    return this.http.post(`/users/updateTechnology`, techno)
   }
   
   public logout(): void {
@@ -220,7 +235,6 @@ export class AuthenticationService {
     if(window.confirm("Do you want to logout")){
     this.token = ''
     window.localStorage.removeItem('usertoken')
-    this.router.navigateByUrl('/')
     }
   }
 
@@ -257,11 +271,7 @@ export class AuthenticationService {
   }
 
   public uploadProfileImage(fd):Observable<any>{
-    return  this.http.post(`/users/proImage`,fd)
-  }
-
-  public checkProfile(userData:userID):Observable<any>{
-    return this.http.post(`/users/checkProfile`,userData)
+    return this.http.post(`/users/proImage`,fd)
   }
 
 

@@ -1,7 +1,6 @@
 const Request_developer = require("../models/Request_developer")
 const Project = require("../models/Project")
 const User = require("../models/User")
-const Image = require("../models/Image")
 const Conirmed_project = require("../models/Confirmed_project")
 
 exports.send_request = (req,res)=>{
@@ -94,16 +93,13 @@ exports.new_all_request = (req,res)=>{
     Project.hasMany(Request_developer,{foreignKey: 'project_ID'})
     Request_developer.belongsTo(Project,{foreignKey: 'project_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Request_developer.findAll({
         where:{
             isViewed:false,
             developer_ID: req.body.developer_ID
           },
           include:[{
-              model:User,include:[Image]
+              model:User
          },{model:Project}
         ]
     })
@@ -125,16 +121,13 @@ exports.old_all_request = (req,res)=>{
     Project.hasMany(Request_developer,{foreignKey: 'project_ID'})
     Request_developer.belongsTo(Project,{foreignKey: 'project_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Request_developer.findAll({
         where:{
             isViewed:true,
             developer_ID: req.body.developer_ID
           },
           include:[{
-              model:User,include:[Image]
+              model:User
          },{model:Project}
         ]
     })
@@ -155,16 +148,13 @@ exports.view_request = (req,res)=>{
     Project.hasMany(Request_developer,{foreignKey: 'project_ID'})
     Request_developer.belongsTo(Project,{foreignKey: 'project_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Request_developer.findOne({
         where:{
           id: req.body.notification_ID,
           developer_ID: req.body.developer_ID
         },
         include:[{
-            model:User,include:[Image]
+            model:User
        },{model:Project}
       ]
       })
@@ -225,9 +215,6 @@ exports.new_all_acception = (req,res)=>{
     Project.hasMany(Request_developer,{foreignKey: 'project_ID'})
     Request_developer.belongsTo(Project,{foreignKey: 'project_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Request_developer.findAll({
         where:{
             isAccepted: true,
@@ -235,7 +222,7 @@ exports.new_all_acception = (req,res)=>{
             client_ID: req.body.client_ID
           },
           include:[{
-              model:User,include:[Image]
+              model:User
          },{model:Project}
         ]
     })
@@ -256,9 +243,6 @@ exports.old_all_acception = (req,res)=>{
     Project.hasMany(Request_developer,{foreignKey: 'project_ID'})
     Request_developer.belongsTo(Project,{foreignKey: 'project_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Request_developer.findAll({
         where:{
             isAccepted: true,
@@ -266,7 +250,7 @@ exports.old_all_acception = (req,res)=>{
             client_ID: req.body.client_ID
           },
           include:[{
-              model:User,include:[Image]
+              model:User
          },{model:Project}
         ]
     })
@@ -305,16 +289,13 @@ exports.view_dev_accept = (req,res)=>{
     Project.hasMany(Request_developer,{foreignKey: 'project_ID'})
     Request_developer.belongsTo(Project,{foreignKey: 'project_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Request_developer.findOne({
         where:{
           id: req.body.notification_ID,
           client_ID: req.body.client_ID
         },
         include:[{
-            model:User,include:[Image]
+            model:User
        },{model:Project}
       ]
       })

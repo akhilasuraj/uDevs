@@ -1,6 +1,9 @@
 var express = require("express")
 var cors = require("cors")
 var bodyParser = require("body-parser")
+var http = require("http")
+var socketIo = require('socket.io');
+
 var app = express()
 var port = process.env.PORT || 3000
 
@@ -52,6 +55,28 @@ app.use("/users",Conf_pro)
 var Competition = require("./routes/Competition")
 app.use("/users",Competition)
 
-app.listen(port, function(){
+const server = http.Server(app)
+
+server.listen(port, function(){
     console.log("Server is running on port"+port)
 })
+
+const io = socketIo(server)
+
+
+const req_pro_cont = require("./controllers/Request_projects")
+
+io.on('connection', (socket)=>{
+    socket.emit('hello', {
+        req_pro_cont
+    })
+
+    socket.emit('hello1', {
+        greeting: 'Hello uDevs1'
+    })
+})
+
+
+
+
+

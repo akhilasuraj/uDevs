@@ -29,6 +29,10 @@ export class CliNotificationComponent implements OnInit {
 
   marked1:boolean = false
   marked2:boolean = false
+  view:boolean = true
+  view1:boolean = false
+  view2:boolean = false
+  view3:boolean = false
 
   
   ngOnInit() {
@@ -37,6 +41,7 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.newAllRequest(this.client_data).subscribe(
       request=>{
+        console.log(request)
         if(request!=''){
           this.requestNotificationNew = request
           this.marked1=true
@@ -49,6 +54,7 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.newAllBid(this.client_data).subscribe(
       request=>{
+        console.log(request)
         if(request!=''){
           this.bidNotificationNew = request
           this.marked1=true
@@ -61,6 +67,7 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.newAllAcception(this.client_data).subscribe(
       request=>{
+        console.log(request)
         if(request!=''){
           this.developerAcceptNew = request
           this.marked1=true
@@ -74,6 +81,7 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.oldAllRequest(this.client_data).subscribe(
       request=>{
+        console.log(request)
         if(request!=''){
           this.requestNotificationOld = request
           this.marked2=true
@@ -87,6 +95,7 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.oldAllBid(this.client_data).subscribe(
       request=>{
+        console.log(request)
         if(request!=''){
           this.bidNotificationOld = request
           this.marked2=true
@@ -99,6 +108,7 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.oldAllAcception(this.client_data).subscribe(
       request=>{
+        console.log(request)
         if(request!=''){
           this.developerAcceptOld = request
           this.marked2=true
@@ -113,21 +123,33 @@ export class CliNotificationComponent implements OnInit {
   }
 
 
+  proNot_ID: number;
+  bidNot_ID: number;
+  accNot_ID: number;
+
   viewProjectRequest(not_ID:number){
-    this.route.navigate(['/cli_home/notification/projectRequest'],{queryParams:{not_id:not_ID}})
+    this.proNot_ID = not_ID
+    this.view = false
+    this.view1 = true
+    this.view2 = false
+    this.view3 = false
   }
 
   viewBidResponse(not_ID:number){
-    this.route.navigate(['/cli_home/notification/bidRequest'], { queryParams: { not_id:not_ID  } })
+    this.bidNot_ID = not_ID
+    this.view = false
+    this.view1 = false
+    this.view2 = true
+    this.view3 = false
   }
 
   viewDevAccept(not_ID:number){
-    this.route.navigate(['/cli_home/notification/devAccept'], { queryParams: { not_id:not_ID  } })
+    this.accNot_ID = not_ID
+    this.view = false
+    this.view1 = false
+    this.view2 = false
+    this.view3 = true
   }
-
-  logout(){
-    this.auth.logout()
-    }
 
 
 }

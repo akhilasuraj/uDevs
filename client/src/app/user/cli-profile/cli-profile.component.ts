@@ -20,7 +20,8 @@ export class CliProfileComponent implements OnInit {
   fileUrl: Url
 
   userData:userID={
-    user_ID:0
+    user_ID:0,
+    image_name: ''
   }
 
   constructor(private auth: AuthenticationService, private router: Router) {}
@@ -36,18 +37,9 @@ export class CliProfileComponent implements OnInit {
         err => {
           console.error(err)
         })
-
-        this.userData.user_ID = this.auth.getUserDetails().id;
-        this.auth.checkProfile(this.userData).subscribe(
-         res=>{
-          this.fileUrl=res
-          },
-          err =>{
-           
-          }
-        )
+        
     }else{
-      this.router.navigateByUrl("/");
+      this.router.navigateByUrl("/home/login");
     }
   }
 
@@ -63,10 +55,10 @@ export class CliProfileComponent implements OnInit {
 
   onFileSelected(event){
     this.profileImage=<File>event.target.files[0]
-  }
 
-  Upload(){
     this.userData.user_ID = this.auth.getUserDetails().id;
+    this.userData.image_name = this.details.profile_img
+    console.log(this.userData)
     const fd = new FormData()
     fd.append('profileImage', this.profileImage,this.profileImage.name)
     
@@ -77,13 +69,11 @@ export class CliProfileComponent implements OnInit {
     )
 
     this.auth.uploadProfileImage(fd).subscribe(
-      res=>{
-        this.fileUrl=res
-        console.log(this.fileUrl)
+      user=>{
+        window.location.reload()
       }
     )
-
-    window.location.reload();
   }
+
 
 }

@@ -27,6 +27,10 @@ export class DevNotificationComponent implements OnInit {
 
   marked1:boolean = false
   marked2:boolean = false
+  view:boolean = true
+  view1:boolean = false
+  view2:boolean = false
+  view3:boolean = false
 
   ngOnInit() {
 
@@ -104,31 +108,37 @@ export class DevNotificationComponent implements OnInit {
         console.log(err)
       }
     )
-
-
-
-
   }
 
 
-  viewClientRequest(not_ID:number){
-    this.router.navigate(['/dev_home/notification/clientRequest'], { queryParams: { not_id:not_ID  } })
+  accNot_ID: number;
+  bidNot_ID: number;
+  cliNot_ID: number;
+
+
+  viewAccProReq(not_ID:number){
+    this.accNot_ID = not_ID
+    this.view = false
+    this.view1 = true
+    this.view2 = false
+    this.view3 = false
   }
 
   viewAccBidReq(not_ID:number){
-    this.router.navigate(['/dev_home/notification/acceptedBidReq'], { queryParams: { not_id:not_ID  } })
+    this.bidNot_ID = not_ID
+    this.view = false
+    this.view1 = false
+    this.view2 = true
+    this.view3 = false
   }
 
-  viewAccProReq(not_ID:number){
-    this.router.navigate(['/dev_home/notification/acceptedProReq'], { queryParams: { not_id:not_ID  } })
+  viewClientRequest(not_ID:number){
+    this.cliNot_ID = not_ID
+    this.view = false
+    this.view1 = false
+    this.view2 = false
+    this.view3 = true
   }
-
-
-
-
-  logout(){
-    this.auth.logout()
-    }
 
 
 }

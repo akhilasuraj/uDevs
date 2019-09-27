@@ -1,61 +1,151 @@
+<div class="container">
 
-
-<div class="background">
-    <div class="container">
-        <div class="row">
-          <div class="col-md-20 mt-5 mx-left">
-                <h3>What skills that you have?</h3>
-                <br><br>
-                <form (submit)= "Skill()">
-    
-                <input type="checkbox" name="web" (change)="toggleVisibility1($event)">Web development,IT & Software Skills
-                <div style="margin-left:30%;" *ngIf="marked1">
-                <input type="checkbox" name="web_skill1" value="HTML" [(ngModel)]="credentials.web_skill1"> HTML <br>
-                <input type="checkbox" name="web_skill2" [(ngModel)]="credentials.web_skill2"> PHP  <br>
-                <input type="checkbox" name="web_skill3" [(ngModel)]="credentials.web_skill3"> javascript <br>
-                <input type="checkbox" name="web_skill4" [(ngModel)]="credentials.web_skill4"> Angular <br>
-                <input type="checkbox" name="web_skill5" [(ngModel)]="credentials.web_skill5"> nodejs <br>
-                <input type="checkbox" name="web_skill6" [(ngModel)]="credentials.web_skill6"> Java  <br>
-                </div>
-                <br><br>
-                <input type="checkbox" name="design" (change)="toggleVisibility2($event)">Designing , Photo editing and Video editing
-                <div style="margin-left:30%;" *ngIf="marked2">
-                <input type="checkbox" name="design_skill1" [(ngModel)]="credentials.design_skill1"> Photoshop <br>
-                <input type="checkbox" name="design_skill2" [(ngModel)]="credentials.design_skill2"> Illustrator  <br>
-                <input type="checkbox" name="design_skill3" [(ngModel)]="credentials.design_skill3"> 3DMax <br>
-                <input type="checkbox" name="design_skill4" [(ngModel)]="credentials.design_skill4"> Maya <br>
-                <input type="checkbox" name="design_skill5" [(ngModel)]="credentials.design_skill5"> Coreldraw <br>
-                <input type="checkbox" name="design_skill6" [(ngModel)]="credentials.design_skill6"> AfterEffect  <br>
-                </div>
-                <br><br>
-                <input type="checkbox" name="writing" (change)="toggleVisibility3($event)">Content writing
-                <div style="margin-left:30%;" *ngIf="marked3">
-                <input type="checkbox" name="writing_skill1" [(ngModel)]="credentials.writing_skill1"> English <br>
-                <input type="checkbox" name="writing_skill2" [(ngModel)]="credentials.writing_skill2"> Tamil  <br>
-                <input type="checkbox" name="writing_skill3" [(ngModel)]="credentials.writing_skill3"> Sinhala <br>
-                <input type="checkbox" name="writing_skill4" [(ngModel)]="credentials.writing_skill4"> Spanish <br>
-                <input type="checkbox" name="writing_skill5" [(ngModel)]="credentials.writing_skill5"> Korean <br>
-                <input type="checkbox" name="writing_skill6" [(ngModel)]="credentials.writing_skill6"> Japaneese  <br>
-                </div>
-                <br><br>
-                <input type="checkbox" name="data" (change)="toggleVisibility4($event)">Data Entry
-                <div style="margin-left:30%;" *ngIf="marked4">
-                <input type="checkbox"  name="data_skill1" [(ngModel)]="credentials.data_skill1"> Excel <br>
-                <input type="checkbox"  name="data_skill2" [(ngModel)]="credentials.data_skill2"> Mysql  <br>
-                <input type="checkbox"  name="data_skill3" [(ngModel)]="credentials.data_skill3"> MongoDB <br>
-                <input type="checkbox"  name="data_skill4" [(ngModel)]="credentials.data_skill4"> MicrosoftSQL <br>
-                </div>
-                <br><br>
-    
-                Brief description about your other skills<br>
-                <textarea rows="8" cols="50" name="other_skill" [(ngModel)]="credentials.other_skill"></textarea>
-    
-                <br><br><br><br><button type="submit" class="btn btn-lg btn-primary btn-block">Confirm</button>
-                <br><br>
-            </form>
-            </div>
+        <h4>Skills</h4>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked1" (change)="AddSkill($event,'Web development')">
+            <label class="custom-control-label" for="defaultUnchecked1">Web development</label>
         </div>
-    </div>
-    </div>
-            
-    
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked2" (change)="AddSkill($event,'Mobile development')">
+            <label class="custom-control-label" for="defaultUnchecked2">Mobile development</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked3" (change)="AddSkill($event,'Data science')">
+            <label class="custom-control-label" for="defaultUnchecked3">Data science</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked4" (change)="AddSkill($event,'Software development')">
+            <label class="custom-control-label" for="defaultUnchecked4">Software development</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked5" (change)="AddSkill($event,'Block chain')">
+            <label class="custom-control-label" for="defaultUnchecked5">Block chain</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked6" (change)="AddSkill($event,'Machine learning')">
+            <label class="custom-control-label" for="defaultUnchecked6">Machine learning</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked7" (change)="AddSkill($event,'Natural language processing')">
+            <label class="custom-control-label" for="defaultUnchecked7">Natural language processing</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked8" (change)="AddSkill($event,'Digital marketing')">
+            <label class="custom-control-label" for="defaultUnchecked8">Digital marketing</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked9" (change)="AddSkill($event,'Multimedia designing')">
+            <label class="custom-control-label" for="defaultUnchecked9">Multimedia designing</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked10" (change)="AddSkill($event,'Robotics')">
+            <label class="custom-control-label" for="defaultUnchecked10">Robotics</label>
+        </div>
+
+        <label>Other Skills</label><br>
+        <textarea cols="50" rows="5" [(ngModel)]="skills.other_skills"></textarea>
+        
+        <br>
+        
+        <h4>Technologies</h4>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked11" (change)="AddTechnology($event,'C')">
+            <label class="custom-control-label" for="defaultUnchecked11">C</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked12" (change)="AddTechnology($event,'Java')">
+            <label class="custom-control-label" for="defaultUnchecked12">Java</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked13" (change)="AddTechnology($event,'Python')">
+            <label class="custom-control-label" for="defaultUnchecked13">Python</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked14" (change)="AddTechnology($event,'C++')">
+            <label class="custom-control-label" for="defaultUnchecked14">C++</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked15" (change)="AddTechnology($event,'JavaScript')">
+            <label class="custom-control-label" for="defaultUnchecked15">JavaScript</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked16" (change)="AddTechnology($event,'Ruby')">
+            <label class="custom-control-label" for="defaultUnchecked16">Ruby</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked17" (change)="AddTechnology($event,'Swift')">
+            <label class="custom-control-label" for="defaultUnchecked17">Swift</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked18" (change)="AddTechnology($event,'React/React native')">
+            <label class="custom-control-label" for="defaultUnchecked18">React/React native</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked19" (change)="AddTechnology($event,'C#')">
+            <label class="custom-control-label" for="defaultUnchecked19">C#</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked20" (change)="AddTechnology($event,'Spring/Struts/JHipster - Java Track')">
+            <label class="custom-control-label" for="defaultUnchecked20">Spring/Struts/JHipster - Java Track</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked21" (change)="AddTechnology($event,'DotNet/DotNet Core - Microsoft Track')">
+            <label class="custom-control-label" for="defaultUnchecked21">DotNet/DotNet Core - Microsoft Track</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked22" (change)="AddTechnology($event,'Laravel/Slim/YII - PHP Track')">
+            <label class="custom-control-label" for="defaultUnchecked22">Laravel/Slim/YII - PHP Track</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked23" (change)="AddTechnology($event,'Mean Stack - JS Track')">
+            <label class="custom-control-label" for="defaultUnchecked23">Mean Stack - JS Track</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked24" (change)="AddTechnology($event,'Firebase')">
+            <label class="custom-control-label" for="defaultUnchecked24">Firebase</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked25" (change)="AddTechnology($event,'Android')">
+            <label class="custom-control-label" for="defaultUnchecked25">Android</label>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked26" (change)="AddTechnology($event,'iOS')">
+            <label class="custom-control-label" for="defaultUnchecked26">iOS</label>
+        </div>
+
+        <label>Other Technologies</label><br>
+        <textarea cols="50" rows="5" [(ngModel)]="technologies.other_technologies"></textarea>
+        
+        <br>
+
+<button type="button" class="btn btn-secondary" (click)="SaveSkills()">Save skills and technologies</button>
+</div>
+
+
+

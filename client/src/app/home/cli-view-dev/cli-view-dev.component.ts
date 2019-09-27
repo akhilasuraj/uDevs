@@ -3,15 +3,22 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthHomeService, ViewDeveloperObject , requestDeveloperDetails} from '../auth-home.service'
 import { AuthenticationService,UserDetails, skillDetails } from '../../user/authentication.service';
 import { AuthProjectService, ProjectDetails } from '../../project/auth-project.service';
+import { CliHomeComponent } from '../cli-home/cli-home.component';
 
 @Component({
   selector: 'app-cli-view-dev',
   templateUrl: './cli-view-dev.component.html',
   styleUrls: ['./cli-view-dev.component.css']
 })
+
 export class CliViewDevComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private authHome: AuthHomeService, private auth: AuthenticationService, private authPro: AuthProjectService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private authHome: AuthHomeService, 
+    private auth: AuthenticationService, 
+    private authPro: AuthProjectService,
+    private cliHome: CliHomeComponent) { }
 
   viewdetails: ViewDeveloperObject={
     user_ID: 0,
@@ -19,7 +26,7 @@ export class CliViewDevComponent implements OnInit {
   }
 
   developer:UserDetails
-  skills: skillDetails
+  technos
   projects: ProjectDetails
   requested_developers: requestDeveloperDetails
 
@@ -42,67 +49,40 @@ export class CliViewDevComponent implements OnInit {
   marked1 = true
   marked2 = false
 
+  details={
+    user_ID: 0
+  }
+
   ngOnInit() {
 
-    this.route.queryParams.subscribe(params => {
-      this.viewdetails.user_ID = params['user_id'];
-      this.viewdetails.skill_ID = params['skill_id'];
-      this.type = params['type_id'];
+    this.details.user_ID = this.cliHome.userID
+    console.log(this.cliHome.userID)
 
-      this.authHome.cli_getDeveloper(this.viewdetails).subscribe(
-        user=>{
-          this.developer=user
-        },
-        err => {
-          console.error(err)
-        }
-      )
-
-      this.authHome.cli_getSkill(this.viewdetails).subscribe(
-        skill=>{
-          this.skills=skill
-        },
-        err => {
-          console.error(err)
-        }
-      )
-    })
-
-
-    if(this.type=='1')
-      this.web = true
-    if(this.type=='2')
-      this.design = true
-    if(this.type=='3')
-      this.writing = true
-    if(this.type=='4')
-      this.data = true
-
-
-    this.authPro.viewAllProject().subscribe(
-      project=>{
-        this.projects = project
+    this.authHome.cli_getDeveloper(this.details).subscribe(
+      user=>{
+        this.developer=user
+        console.log(this.developer)
       },
-      err=>{
-        console.log(err)
+      err => {
+        console.error(err)
       }
     )
 
-
-    this.credentials.client_ID = this.auth.getUserDetails().id
-
-    this.route.queryParams.subscribe(params => {
-      this.credentials.developer_ID = params['user_id'];
-    })
-    
-    this.authHome.cli_getAllRequest(this.credentials).subscribe(
-      request=>{
-        this.requested_developers = request
-        this.marked1=false
-        this.marked2 = true
+    this.authHome.cli_getTechno(this.details).subscribe(
+      techno=>{
+        this.technos=techno
       },
-      err=>{
-        console.log(err)
+      err => {
+        console.error(err)
+      }
+    )
+
+    this.authPro.viewAllCurrentProject().subscribe(
+      project =>{
+        this.projects = project
+      },
+      err => {
+        console.error(err)
       }
     )
 
@@ -113,9 +93,9 @@ export class CliViewDevComponent implements OnInit {
 
     this.credentials.client_ID = this.auth.getUserDetails().id
 
-    this.route.queryParams.subscribe(params => {
-      this.credentials.developer_ID = params['user_id'];
-    })
+    
+      this.credentials.developer_ID = this.cliHome.userID
+    
 
 
     this.authHome.cli_sendRequest(this.credentials).subscribe(
@@ -127,17 +107,13 @@ export class CliViewDevComponent implements OnInit {
         console.log(err)
       }
     )
-
-    window.location.reload();
   }
 
   cancleRequest(project_ID:number){
 
     this.credentials.client_ID = this.auth.getUserDetails().id
 
-    this.route.queryParams.subscribe(params => {
-      this.credentials.developer_ID = params['user_id'];
-    })
+    this.credentials.developer_ID = this.cliHome.userID;
 
     this.credentials.project_ID = project_ID
     
@@ -150,7 +126,6 @@ export class CliViewDevComponent implements OnInit {
       }
     )
 
-    window.location.reload();
   }
 
 

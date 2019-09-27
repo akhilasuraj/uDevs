@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dev-register.component.css']
 })
 export class DevRegisterComponent implements OnInit {
-  
+  marked = true
 
   credentials: TokenPayload = {
     id: 0,
@@ -19,31 +19,26 @@ export class DevRegisterComponent implements OnInit {
     password: '',
     gender: '',
     contact_no:'',
+    profile_img: '',
     isActivated: true
   };
 
   confirm_password:string = ''
-  war1 = false
 
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit(){}
-
-  onCheck(){
-  if(this.credentials.password != this.confirm_password){
-    this.war1 = true
-  }
-  else{
-    this.war1 = false
-  }
-}
   
 
   register() {
           this.auth.dev_register(this.credentials).subscribe(
             () => {
-              window.alert("You have been registered successfully!")
-                this.router.navigateByUrl("/profile-image");
+              this.marked = false
+              this.auth.sendEmail(this.credentials).subscribe(
+                msg =>{
+                  console.log(msg)
+                }
+              )  
             },
             err => {
               console.error(err);

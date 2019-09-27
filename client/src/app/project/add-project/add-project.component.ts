@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {  AuthProjectService, ProjectPayload, BidPayload} from '../auth-project.service'
 import { Router } from '@angular/router';
 import { AuthenticationService, UserDetails } from 'src/app/user/authentication.service';
+import { ReplaySubject } from 'rxjs';
+import { ProjectHomeComponent } from '../project-home/project-home.component';
 
 @Component({
   selector: 'app-add-project',
@@ -12,12 +14,19 @@ export class AddProjectComponent implements OnInit {
 
   marked1 = false
   marked2 = false
+  marked3 = false
 
-  constructor(private authPro: AuthProjectService, private router: Router, private auth: AuthenticationService) { }
+  constructor(
+    private authPro: AuthProjectService, 
+    private router: Router, 
+    private auth: AuthenticationService,
+    private proHome: ProjectHomeComponent
+    ) { }
 
   details: UserDetails
   project_details: ProjectPayload
   bid_details: BidPayload
+  attach:File = null
 
   ngOnInit() {
   }
@@ -40,31 +49,46 @@ export class AddProjectComponent implements OnInit {
 
   }
 
+  onFileSelected(event){
+    this.attach=<File>event.target.files[0]
+  }
+
   AddProject(){
 
     this.credentials.client_ID = this.auth.getUserDetails().id
 
-    this.authPro.addProject(this.credentials).subscribe(
-      project=>{
-        this.project_details = project
+    const fd = new FormData()
+    fd.append('attachment', this.attach,this.attach.name)
 
-        if(this.credential.maximum_value!=''){
-
-          this.credential.project_ID= this.project_details.id
-          this.authPro.addBid(this.credential).subscribe(
-            bid =>{
-              this.bid_details = bid
+    this.authPro.uploadAttachment(fd).subscribe(
+      Reply=>{
+        this.authPro.addProject(this.credentials).subscribe(
+          project=>{
+            this.project_details = project
+    
+            if(this.project_details.payment==""){
+    
+              this.credential.project_ID= this.project_details.id
+              console.log(this.credential)
+              this.authPro.addBid(this.credential).subscribe(
+                bid =>{
+                  this.bid_details = bid
+                  window.location.reload()
+                }
+              )
+            }else{
+              window.location.reload()
             }
-          )
-        }
-        
-      },
-      err => {
-        console.error(err)
+            
+          },
+          err => {
+            console.error(err)
+          }
+        )
       }
     )
 
-    this.router.navigateByUrl('/project')
+    
 
   }
 
@@ -72,15 +96,18 @@ export class AddProjectComponent implements OnInit {
   fixedPrice(){
     this.marked1 = true
     this.marked2 = false
+    this.marked3 = true
   }
 
   startBid(){
     this.marked1 = false
     this.marked2 = true
+    this.marked3 = true
   }
 
-  logout(){
-    this.auth.logout()
-    }
+  backToProject(){
+    this.proHome.marked = true
+  }
+
 
 }

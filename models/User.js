@@ -25,10 +25,15 @@ module.exports = db.sequelize.define(
         contact_no:{
                 type:Sequelize.STRING
         },
+        profile_img:{
+            type:Sequelize.STRING
+        },
         isActivated:{
             type:Sequelize.BOOLEAN
+        },
+        verify_key:{
+            type:Sequelize.STRING
         }
-
     },
     {
         timestamp: false,

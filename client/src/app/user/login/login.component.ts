@@ -18,12 +18,14 @@ export class LoginComponent implements OnInit {
     password: '',
     gender: '',
     contact_no:'',
+    profile_img: '',
     isActivated: true
   }
 
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit() {
+    
     window.localStorage.removeItem('usertoken')
   }
 
@@ -32,9 +34,9 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.credentials).subscribe(
      user => {
         if(this.auth.getUserDetails().user_type == 'Developer')
-          this.router.navigateByUrl('/dev_profile')
+          this.router.navigateByUrl('/devCatagory/profile')
         else  if(this.auth.getUserDetails().user_type == 'Client')
-          this.router.navigateByUrl('/cli_profile')
+          this.router.navigateByUrl('/cliCatagory/profile')
         else  if(this.auth.getUserDetails().user_type == 'Admin')
           this.router.navigateByUrl('/admin')
         else

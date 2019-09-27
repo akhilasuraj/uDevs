@@ -135,12 +135,12 @@ export class AuthHomeService {
     }
 
 
-    public cli_getDeveloper(details: ViewDeveloperObject): Observable<any> {
+    public cli_getDeveloper(details): Observable<any> {
         return this.http.post(`/users/cli_home/cli_getDeveloper`,details)
     }
 
-    public cli_getSkill(details: ViewDeveloperObject): Observable<any> {
-        return this.http.post(`/users/cli_home/cli_getSkill`,details)
+    public cli_getTechno(details): Observable<any> {
+        return this.http.post(`/users/cli_home/cli_getTechno`,details)
     }
 
     public cli_sendRequest(request:requestDeveloperDetails):Observable<any>{

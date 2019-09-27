@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  AuthProjectService, ProjectPayload, ProjectDetails, BidPayload, BidDetails, ConfirmedPro} from '../auth-project.service'
 import { AuthenticationService } from '../../user/authentication.service';
+import { ProjectHomeComponent} from '../../project/project-home/project-home.component'
 
 @Component({
   selector: 'app-view-project',
@@ -22,7 +23,7 @@ export class ViewProjectComponent implements OnInit {
     id: 0,
     client_ID: 0,
     project_name:'',
-    project_category: '',
+    project_category: '', 
     project_description:'',
     payment:''
   }
@@ -47,25 +48,37 @@ export class ViewProjectComponent implements OnInit {
   projectRequest;
   bidRequest;
   requestDeveloper;
+  pdfSrc: string
 
-  constructor(private router: Router, private authpro: AuthProjectService, private route: ActivatedRoute, private auth: AuthenticationService) { }
+  constructor(
+    private router: Router, 
+    private authpro: AuthProjectService, 
+    private route: ActivatedRoute, 
+    private auth: AuthenticationService,
+    private proHome: ProjectHomeComponent
+  ) { }
 
   ngOnInit() { 
     if(window.localStorage.getItem('usertoken')){
 
-    this.route.queryParams.subscribe(params => {
-      this.pro_id = params['pro_id'];
-      this.credentials.id = this.pro_id
-      this.credential.project_ID = this.pro_id
-    })
+    // this.route.queryParams.subscribe(params => {
+    //   this.pro_id = params['pro_id'];
+    //   this.credentials.id = this.pro_id
+    //   this.credential.project_ID = this.pro_id
+    // })
 
-      
+    this.credentials.id = this.proHome.projectDetails.project_ID
+    this.credential.project_ID = this.proHome.projectDetails.project_ID
+
+       
       this.authpro.viewProject(this.credentials).subscribe(
         project=>{
           this.projects= project
           this.credentials.project_name = this.projects.project_name
           this.credentials.project_category = this.projects.project_category
           this.credentials.project_description = this.projects.project_description
+          //this.pdfSrc = "http://localhost:3000/".concat(project.attachment)
+          this.pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf"
 
           if(this.projects.payment==''){
             this.marked4 = true
@@ -194,9 +207,9 @@ export class ViewProjectComponent implements OnInit {
   }
 
 
-  logout(){
-    this.auth.logout()
-    }
+  backToProject(){
+    this.proHome.wholeMarked = true
+  }
 
 
 }

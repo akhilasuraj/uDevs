@@ -3,6 +3,7 @@ import { AuthNotificationService, viewCliReq } from '../auth-notification.servic
 import { AuthenticationService } from 'src/app/user/authentication.service';
 import { requestDeveloperDetails } from 'src/app/home/auth-home.service';
 import { ActivatedRoute } from '@angular/router';
+import { CliNotificationComponent } from 'src/app/notification/cli-notification/cli-notification.component'
 
 @Component({
   selector: 'app-view-dev-accept',
@@ -11,33 +12,36 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewDevAcceptComponent implements OnInit {
 
-  constructor(private authNot: AuthNotificationService, private auth: AuthenticationService, private route: ActivatedRoute) { }
+  constructor(
+    private authNot: AuthNotificationService,
+    private auth: AuthenticationService,
+    private route: ActivatedRoute,
+    private cliNot: CliNotificationComponent
+  ) { }
 
-  request_data:viewCliReq={
-    notification_ID:0,
-    client_ID:0
+  request_data: viewCliReq = {
+    notification_ID: 0,
+    client_ID: 0
   }
 
-  Not_details:requestDeveloperDetails
+  Not_details: requestDeveloperDetails
 
   ngOnInit() {
 
     this.request_data.client_ID = this.auth.getUserDetails().id
 
-    this.route.queryParams.subscribe(params => {
-      this.request_data.notification_ID = params['not_id'];
-    })
+    this.request_data.notification_ID = this.cliNot.accNot_ID
 
     this.authNot.viewDevAccept(this.request_data).subscribe(
-      res=>{
+      res => {
         this.Not_details = res
       }
     )
 
   }
 
-  logout(){
-    this.auth.logout()
-    }
+  BackToNotification(){
+    this.cliNot.view = true
+  }
 
 }

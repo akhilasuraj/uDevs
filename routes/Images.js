@@ -35,7 +35,6 @@ image.post('/sendID',image_cont.get_user_id)
 
 image.post('/proImage',upload.single('profileImage'),image_cont.profile_image)
 
-image.post('/checkProfile',image_cont.check_image)
 
 
 module.exports = image

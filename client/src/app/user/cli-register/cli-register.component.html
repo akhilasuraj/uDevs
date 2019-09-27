@@ -1,47 +1,78 @@
-
-<div class="background">
-    <div style="text-align: right;"><button class="btn-sign" routerLink="/">Sign in</button></div>
-    
-  <div class="container">
-    <div class="row" >
-        <div class="col-md-2"></div>
-    <div class="col-md-5">
-        <div class="row"  style="margin-top: 50px;box-shadow: -1px 1px 25px 10px rgb(77, 47, 47);">
-            <div class="col-md-12 ">
+<div *ngIf='marked'>
+  <div class="background">
              
-      <form (submit)="register()">
-        <h1 class="h3 mb-3 font-weight-normal" style="color:white;">Register</h1>
-        <div class="form-group">
-         <div class="label control-label">First name</div>
-          <input type="text" class="form-contro" name="first_name" placeholder="Enter your first name" [(ngModel)]="credentials.first_name">
+    <div class="container">
   
-          <div class="label control-label">Last name</div>
-          <input type="text" class="form-contro" name="last_name" placeholder="Enter your last name" [(ngModel)]="credentials.last_name">
+      <div class="row" >
+          <div class="col-md-2"></div>
+      <div class="col-md-5">
+          <div class="row"  style="margin-top: 50px;box-shadow: -1px 1px 25px 10px rgb(77, 47, 47);">
+              <div class="col-md-12 ">
+               
+        <form #userForm="ngForm" name="userForm" (submit)="register()">
+          <ul>
+            <a  routerLink="/home/login" >Sign in</a>
+            <a  routerLink="/home/userType"  style="border-bottom: 4px solid #f44c89;padding :10px;" >/ Sign up</a>
+          </ul>
+          <div class="form-group">
+           <div class="label control-label">First name</div>
+            <div class="form-contro"><input type="text" required #fname="ngModel" [class.is-invalid]="fname.invalid && fname.touched" class="form-control " name="first_name" placeholder="Enter your first name" [(ngModel)]="credentials.first_name"></div>
+           <div class="alert_msg" >
+             <small class="text-danger" *ngIf="fname.invalid && fname.touched">Frist name is required</small>
+           </div>
+          
+            <div class="label control-label">Last name</div>
+            <div class="form-contro"><input type="text"  required #lname="ngModel" [class.is-invalid]="lname.invalid && lname.touched" class="form-control" name="last_name" placeholder="Enter your last name" [(ngModel)]="credentials.last_name"></div>
+            <div class="alert_msg" >
+              <small class="text-danger" *ngIf="lname.invalid && lname.touched">Last name is required</small>
+            </div>
   
-          <div class="label control-label">Email address</div>
-          <input type="email" class="form-contro" name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
+            </div><div class="label control-label">Email address</div>
+            <div class="form-contro"> <input type="email" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="credentials.email"></div>
+            <div class="alert_msg" >
+              <small class="text-danger" *ngIf="email.invalid && email.touched">E-mail is required</small>
+            </div>
   
-          <div class="label control-label">Password</div>
-          <input type="password" class="form-contro" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+            <div class="label control-label">Password</div>
+            <div class="form-contro"><input type="password" required #pword="ngModel" [class.is-invalid]="pword.invalid && pword.touched" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password"></div>
+            <div class="alert_msg" >
+              <small class="text-danger" *ngIf="pword.invalid && pword.touched">Password is required</small>
+            </div>
   
-          <div class="label control-label">Confirm Password</div>
-          <input type="password" class="form-contro" name="password" placeholder="Password" [(ngModel)]="credentials.password">
-
-          <div class="label control-label">Gender</div>
-          <input type="radio"  class="form-contro"  name="gender"  value="Male" [(ngModel)]="credentials.gender"> Male
-          <input type="radio"   class="form-contro" name="gender" value="Female" [(ngModel)]="credentials.gender"> Female
-  
-          <div class="label control-label">Contact number</div>
-          <input type="text" class="form-contro" name="contact_no" placeholder="07########" [(ngModel)]="credentials.contact_no">
-        </div>
-        <button type="submit" class="btn-reg">Register</button><br><br>
-        
-      </form>
+            <div class="label control-label" >Confirm Password</div>
+            <div class="form-contro"><input type="password" required  class="form-control" name="cpassword" placeholder="Re-enter Password" [(ngModel)]="confirm_password"></div>
+            <div class="alert_msg" >
+              <small class="text-danger" *ngIf="checkMatch()">Passwords are not match</small>
+            </div>
+           
+            <div class="label control-label">Gender</div>
+            <input type="radio"  class="btn-radio"  name="gender" value="Male" [(ngModel)]="credentials.gender"> <span style="color:white; margin-right: 40%">Male</span>
+             <input type="radio"   class="btn-radio" name="gender" value="Female" [(ngModel)]="credentials.gender"> <span style="color:white">Female</span>
     
-      </div> </div></div>
-    
+            <div class="label control-label">Contact number</div>
+            <div class="form-contro"><input type="text" required #pnum="ngModel" pattern="^\d{10}$" [class.is-invalid]="pnum.invalid && pnum.touched" class="form-control" name="contact_no" placeholder="07########" [(ngModel)]="credentials.contact_no"></div>
+            <div *ngIf="pnum.errors && (pnum.invalid && pnum.touched)">
+                <div class="alert_msg" >
+               <small *ngIf="pnum.errors.required" class="text-danger">Contact number is required</small>
+               <small *ngIf="pnum.errors.pattern" class="text-danger">contact number must be 10 digits</small>
+                </div>
+            </div>
+  
+          <button *ngIf="!userForm.form.invalid" type="submit" [disabled]="userForm.form.invalid" class="btn-reg">Register</button>
+          <button *ngIf="userForm.form.invalid" type="submit" [disabled]="userForm.form.invalid" class="btn-reg-disable">Register</button><br><br>
+         
+        </form>
+      
+        </div> </div></div>
+      
+      </div>
     </div>
+  
   </div>
-  <br><br>
   </div>
   
+  
+    <div *ngIf="!marked">
+      You have to verify your email
+    </div>
+    

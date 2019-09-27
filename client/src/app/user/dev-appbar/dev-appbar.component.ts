@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService,developerID } from '../authentication.service';
+import { AuthenticationService, developerID } from '../authentication.service';
 import { Router } from '@angular/router';
+import * as socketIo from 'socket.io-client';
+
+import { Subscription, timer, pipe } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-dev-appbar',
@@ -9,52 +14,69 @@ import { Router } from '@angular/router';
 })
 export class DevAppbarComponent implements OnInit {
 
-  constructor(private auth: AuthenticationService, private router:Router) { }
+  constructor(private auth: AuthenticationService, private router: Router) { }
 
-  developer_data:developerID={
-    developer_ID: 0
+  developer_data: developerID = {
+    developer_ID: this.auth.getUserDetails().id
   }
-  
-  countRequestDeveloper:number=null
-  countAccBidReq:number=null
-  countAccProReq:number=null
+
+  countRequestDeveloper: number = null
+  countAccBidReq: number = null
+  countAccProReq: number = null
+  subscription1: Subscription;
+  subscription2: Subscription;
+  subscription3: Subscription;
+
 
   ngOnInit() {
 
-    this.developer_data.developer_ID=this.auth.getUserDetails().id
-      
-    this.auth.countRequestDeveloper(this.developer_data).subscribe(
-      result=>{
-        this.countRequestDeveloper = result
-      },
-      err=>{
-        console.log(err)
-      }
-    )
 
-    this.auth.countAcceptBidReq(this.developer_data).subscribe(
-      result=>{
-        this.countAccBidReq = result
-      },
-      err=>{
-        console.log(err)
-      }
-    )
+    // this.subscription1 = timer(0, 1000).pipe(
+    //   switchMap(() => this.auth.countRequestDeveloper(this.developer_data))
+    // ).subscribe(
+    //   result => {
+    //     this.countRequestDeveloper = result
+    //   },
+    //   err => {
+    //     console.log(err)
+    //   }
+    // )
 
 
-    this.auth.countAcceptProReq(this.developer_data).subscribe(
-      result=>{
-        this.countAccProReq = result
-      },
-      err=>{
-        console.log(err)
-      }
-    )
+    // this.subscription2 = timer(0, 1000).pipe(
+    //   switchMap(() => this.auth.countAcceptBidReq(this.developer_data))
+    // ).subscribe(
+    //   result => {
+    //     this.countAccBidReq = result
+    //   },
+    //   err => {
+    //     console.log(err)
+    //   }
+    // )
 
-    
+
+    // this.subscription3 = timer(0, 1000).pipe(
+    //   switchMap(() => this.auth.countAcceptProReq(this.developer_data))
+    // ).subscribe(
+    //   result => {
+    //     this.countAccProReq = result
+    //   },
+    //   err => {
+    //     console.log(err)
+    //   }
+    // )
+
+
   }
 
-  logout(){
+
+  ngOnDestroy() {
+    this.subscription1.unsubscribe();
+    this.subscription2.unsubscribe();
+    this.subscription3.unsubscribe();
+  }
+
+  logout() {
     this.auth.logout()
   }
 

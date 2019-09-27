@@ -1,17 +1,10 @@
 
 
-<ul>
-    <li><img src="assets/img/logo.png" width="20%"  ></li>
-</ul>
+<button (click)="BackToNotification()">&lt;&lt;&lt;Back to Notifications</button>
 
-<ul>
-    <li><a routerLink="/dev_home/notification">&lt;&lt;&lt;</a></li>
-    <li  style="float:right"><a class="active" (click)="logout()">Log Out</a></li>
-</ul>
-
-
-<img src="http://localhost:3000/{{ Not_details?.user?.image.image_name }}"
-alt="http://localhost:3000/{{ Not_details?.user?.image.image_name }}">
+<div class="container">
+<img src="http://localhost:3000/{{ Not_details?.user?.profile_img  }}"
+alt="http://localhost:3000/{{ Not_details?.user?.profile_img  }}">
 
 
 <br> {{ Not_details?.user.first_name }} &nbsp;
@@ -23,3 +16,4 @@ alt="http://localhost:3000/{{ Not_details?.user?.image.image_name }}">
 <div *ngIf="marked1"><button (click)="acceptRequest()">Accept the request</button></div>
 <div *ngIf="marked2"><button (click)="cancleAccept()">Cancle the acception</button></div>
 
+</div>

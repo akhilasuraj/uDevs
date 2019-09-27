@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthNotificationService, viewDevReq } from '../auth-notification.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/user/authentication.service';
-
+import { DevNotificationComponent } from 'src/app/notification/dev-notification/dev-notification.component'
 
 @Component({
   selector: 'app-view-acc-pro',
@@ -11,7 +11,13 @@ import { AuthenticationService } from 'src/app/user/authentication.service';
 })
 export class ViewAccProComponent implements OnInit {
 
-  constructor(private authNot: AuthNotificationService, private auth: AuthenticationService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private authNot: AuthNotificationService, 
+    private auth: AuthenticationService, 
+    private route: ActivatedRoute, 
+    private router: Router,
+    private devNot: DevNotificationComponent
+  ) { }
 
   request_data:viewDevReq={
     notification_ID:0,
@@ -24,15 +30,17 @@ export class ViewAccProComponent implements OnInit {
 
     this.request_data.developer_ID = this.auth.getUserDetails().id
 
-    this.route.queryParams.subscribe(params => {
-      this.request_data.notification_ID = params['not_id'];
-    })
+    this.request_data.notification_ID = this.devNot.accNot_ID
 
     this.authNot.viewAcceptProReq(this.request_data).subscribe(
       result =>{
         this.Not_details = result
       }
     )
+  }
+
+  BackToNotification(){
+    this.devNot.view = true
   }
 
 

@@ -1,8 +1,6 @@
 const Bid_response = require("../models/Bid_response")
 const Project= require("../models/Project")
 const User= require("../models/User")
-const Image= require("../models/Image")
-
 
 exports.send_bid = (req,res)=>{
     const bidResponseData = {
@@ -104,9 +102,6 @@ exports.new_bid_response = (req,res)=>{
     User.hasMany(Bid_response,{foreignKey: 'developer_ID'})
     Bid_response.belongsTo(User,{foreignKey: 'developer_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Bid_response.findAll({
       where:{
         isViewed: false,
@@ -116,7 +111,7 @@ exports.new_bid_response = (req,res)=>{
         where:{
             client_ID:req.body.client_ID
         }
-     },{model: User, include:[Image]}
+     },{model: User}
     ]
     })
     .then(request=>{
@@ -137,9 +132,6 @@ exports.old_bid_response = (req,res)=>{
     User.hasMany(Bid_response,{foreignKey: 'developer_ID'})
     Bid_response.belongsTo(User,{foreignKey: 'developer_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Bid_response.findAll({
       where:{
         isViewed: true,
@@ -149,7 +141,7 @@ exports.old_bid_response = (req,res)=>{
         where:{
             client_ID:req.body.client_ID
         }
-     },{model: User, include:[Image]}
+     },{model: User}
     ]
     })
     .then(request=>{
@@ -169,9 +161,6 @@ exports.view_bid_response = (req,res)=>{
     User.hasMany(Bid_response,{foreignKey: 'developer_ID'})
     Bid_response.belongsTo(User,{foreignKey: 'developer_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Bid_response.findOne({
       where:{
         id:req.body.notification_ID
@@ -181,7 +170,7 @@ exports.view_bid_response = (req,res)=>{
         where:{
             client_ID:req.body.client_ID
         }
-     },{model: User, include:[Image]}
+     },{model: User}
     ]
     })
     .then(request=>{
@@ -246,9 +235,6 @@ exports.new_all_acc_bid_req = (req,res)=>{
     User.hasMany(Project,{foreignKey: 'client_ID'})
     Project.belongsTo(User,{foreignKey: 'client_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Bid_response.findAll({
         where:{
             developer_ID: req.body.developer_ID,
@@ -258,7 +244,8 @@ exports.new_all_acc_bid_req = (req,res)=>{
         include:{
             model:Project, 
             include:{
-                model:User, include:[Image]}
+                model:User
+            }
         }
     })
     .then(result=>{
@@ -275,9 +262,6 @@ exports.old_all_acc_bid_req = (req,res)=>{
     User.hasMany(Project,{foreignKey: 'client_ID'})
     Project.belongsTo(User,{foreignKey: 'client_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Bid_response.findAll({
         where:{
             developer_ID: req.body.developer_ID,
@@ -285,9 +269,7 @@ exports.old_all_acc_bid_req = (req,res)=>{
             isViewedAccept: true
         },
         include:{
-            model:Project, 
-            include:{
-                model:User, include:[Image]}
+            model:Project
         }
     })
     .then(result=>{
@@ -304,8 +286,6 @@ exports.view_acc_bid_req = (req,res)=>{
     User.hasMany(Project,{foreignKey: 'client_ID'})
     Project.belongsTo(User,{foreignKey: 'client_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
 
     Bid_response.findOne({
         where:{
@@ -314,7 +294,8 @@ exports.view_acc_bid_req = (req,res)=>{
         include:{
             model:Project, 
             include:{
-                model:User, include:[Image]}
+                model:User
+            }
         }
     })
     .then(result=>{

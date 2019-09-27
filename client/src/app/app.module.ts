@@ -3,9 +3,13 @@ import { NgModule } from '@angular/core'
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router'
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 import { AppComponent } from './app.component'
 import { LoginComponent } from './user/login/login.component'
+import { CliRegisterComponent } from './user/cli-register/cli-register.component'
+import { DevRegisterComponent } from './user/dev-register/dev-register.component'
 import { SkillComponent } from './user/skill/skill.component'
 import { AuthenticationService } from './user/authentication.service'
 import { AuthGuardService } from './user/auth-guard.service'
@@ -14,8 +18,6 @@ import { CliAppbarComponent } from './user/cli-appbar/cli-appbar.component';
 import { DevAppbarComponent } from './user/dev-appbar/dev-appbar.component';
 import { CliProfileComponent } from './user/cli-profile/cli-profile.component';
 import { DevProfileComponent } from './user/dev-profile/dev-profile.component';
-import { CliRegisterComponent } from './user/cli-register/cli-register.component';
-import { DevRegisterComponent } from './user/dev-register/dev-register.component';
 import { UserTypeComponent } from './user/user-type/user-type.component';
 import { EditSkillComponent } from './user/edit-skill/edit-skill.component';
 import { ProjectHomeComponent } from './project/project-home/project-home.component';
@@ -47,51 +49,60 @@ import { AddAdsComponent } from './admin/add-ads/add-ads.component'
 import { AuthAdminService } from './admin/auth-admin.service';
 import { ViewAccBidComponent } from './notification/view-acc-bid/view-acc-bid.component';
 import { ViewAccProComponent } from './notification/view-acc-pro/view-acc-pro.component';
-import { ProfileImageComponent } from './user/profile-image/profile-image.component'
+import { ProfileImageComponent } from './user/profile-image/profile-image.component';
+import { VerifyEmailComponent } from './user/verify-email/verify-email.component';
+import { StartPageComponent } from './pages/start-page/start-page.component';
+import { CliCatagoryComponent } from './pages/cli-catagory/cli-catagory.component';
+import { DevCatagoryComponent } from './pages/dev-catagory/dev-catagory.component';
+import { AdminCatagoryComponent } from './pages/admin-catagory/admin-catagory.component';
+import { DevProjectComponent } from './project/dev-project/dev-project.component';
+import { FooterComponent } from './user/footer/footer.component'
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'dev_register', component: DevRegisterComponent },
-  { path: 'cli_register', component: CliRegisterComponent },
-  { path: 'skill', component: SkillComponent },
-  { path: 'userType', component: UserTypeComponent },
-  { path: 'dev_profile', component: DevProfileComponent, canActivate: [AuthGuardService]},
-  { path: 'cli_profile', component: CliProfileComponent, canActivate: [AuthGuardService]},
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService]},
-  { path: 'project' , component: ProjectHomeComponent },
-  { path: 'project/addProject' , component: AddProjectComponent },
-  { path: 'project/viewProject' , component: ViewProjectComponent },
-  { path: 'project/startBid' , component: AddBidComponent },
-  { path: 'dev_home' , component: DevHomeComponent },
-  { path: 'cli_home' , component: CliHomeComponent },
-  { path: 'dev_home/viewProject' , component: DevViewProjectComponent },
-  { path: 'dev_competition' , component: AddCompetitionComponent },
-  { path: 'cli_home/viewDeveloper' , component: CliViewDevComponent },
-  { path: 'dev_home/notification' , component: DevNotificationComponent },
-  { path: 'cli_home/notification' , component: CliNotificationComponent },
-  { path: 'cli_home/notification/bidRequest' , component: ViewBidRequestComponent },
-  { path: 'cli_home/notification/projectRequest' , component: ViewDevRequestComponent },
-  { path: 'dev_home/notification/clientRequest' , component: ViewClientRequestComponent },
-  { path: 'confirmed_project' , component: ConfirmedProjectComponent },
-  { path: 'cli_home/notification/devAccept' , component: ViewDevAcceptComponent },
-  { path: 'dev_home/notification/acceptedBidReq' , component: ViewAccBidComponent },
-  { path: 'dev_home/notification/acceptedProReq' , component: ViewAccProComponent },
-  { path: 'admin/baned_users', component: BanedUsersComponent},
-  { path: 'admin/add_ads', component: AddAdsComponent},
-]
+
+  {path: '' ,redirectTo:'/home/login',pathMatch:'full'},
+  {path: 'home/:type' , component: StartPageComponent},
+  {path: 'cliCatagory/:type' , component: CliCatagoryComponent},
+  {path: 'devCatagory/:type' , component: DevCatagoryComponent},
+  {path: 'adminCatagory/:type' , component: DevCatagoryComponent},
+  {path: 'verify', component: VerifyEmailComponent },
+  // { path: 'dev_profile', component: DevProfileComponent, canActivate: [AuthGuardService]},
+  // { path: 'cli_profile', component: CliProfileComponent, canActivate: [AuthGuardService]},
+  // { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService]},
+  // { path: 'project' , component: ProjectHomeComponent },
+  // { path: 'project/addProject' , component: AddProjectComponent },
+  // { path: 'project/viewProject' , component: ViewProjectComponent },
+  // { path: 'project/startBid' , component: AddBidComponent },
+  // { path: 'dev_home' , component: DevHomeComponent },
+  // { path: 'cli_home' , component: CliHomeComponent },
+  // { path: 'dev_home/viewProject' , component: DevViewProjectComponent },
+  // { path: 'dev_competition' , component: AddCompetitionComponent },
+  // { path: 'cli_home/viewDeveloper' , component: CliViewDevComponent },
+  // { path: 'dev_home/notification' , component: DevNotificationComponent },
+  // { path: 'cli_home/notification' , component: CliNotificationComponent },
+  // { path: 'cli_home/notification/bidRequest' , component: ViewBidRequestComponent },
+  // { path: 'cli_home/notification/projectRequest' , component: ViewDevRequestComponent },
+  // { path: 'dev_home/notification/clientRequest' , component: ViewClientRequestComponent },
+  // { path: 'confirmed_project' , component: ConfirmedProjectComponent },
+  // { path: 'cli_home/notification/devAccept' , component: ViewDevAcceptComponent },
+  // { path: 'dev_home/notification/acceptedBidReq' , component: ViewAccBidComponent },
+  // { path: 'dev_home/notification/acceptedProReq' , component: ViewAccProComponent },
+  // { path: 'admin/baned_users', component: BanedUsersComponent},
+  // { path: 'admin/add_ads', component: AddAdsComponent},
+    ]
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    CliRegisterComponent,
+    DevRegisterComponent,
     SkillComponent,
     AddProjectComponent,
     CliAppbarComponent,
     DevAppbarComponent,
     CliProfileComponent,
     DevProfileComponent,
-    CliRegisterComponent,
-    DevRegisterComponent,
     UserTypeComponent,
     EditSkillComponent,
     ProjectHomeComponent,
@@ -117,14 +128,23 @@ const routes: Routes = [
     AddAdsComponent,
     ViewAccBidComponent,
     ViewAccProComponent,
-    ProfileImageComponent
+    ProfileImageComponent,
+    VerifyEmailComponent,
+    StartPageComponent,
+    CliCatagoryComponent,
+    DevCatagoryComponent,
+    AdminCatagoryComponent,
+    DevProjectComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    PdfViewerModule
   ],
+  exports: [RouterModule],
   providers: [
     AuthenticationService,
     AuthGuardService,
@@ -133,7 +153,7 @@ const routes: Routes = [
     AuthNotificationService,
     AuthConfProService,
     AuthCompetitonService,
-    AuthAdminService
+    AuthAdminService,
   ],
   bootstrap: [AppComponent]
 })

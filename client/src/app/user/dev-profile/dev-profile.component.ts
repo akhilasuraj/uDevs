@@ -12,31 +12,31 @@ import { Url } from 'url';
 export class DevProfileComponent implements OnInit {
 
   details: UserDetails
-  skills: skillDetails
 
   marked1 = true
   marked2 = false
-  marked3 = true
-  marked4 = false
+  show = false
+  showSkill = true
 
-  web = false
-  design = false
-  writing = false
-  data = false
-  other =false
-
-  profileImage:File = null
+  profileImage: File = null
   id: number
   fileUrl: Url
 
-  userData:userID={
-    user_ID:0
+  userData: userID = {
+    user_ID: 0,
+    image_name: ''
   }
 
-  constructor(private auth: AuthenticationService, private router: Router,private http: HttpClient) {}
+  skills
+  technologies
+  count1:number
+  count2:number
+
+  constructor(private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-    if(localStorage.getItem('usertoken')){
+
+    if (localStorage.getItem('usertoken')) {
       this.marked1 = true
       this.marked2 = false
       this.auth.profile().subscribe(
@@ -50,80 +50,83 @@ export class DevProfileComponent implements OnInit {
       this.auth.skillprofile().subscribe(
         skill => {
           this.skills = skill
-          if(this.skills.web_skill!='')
-            this.web =true
-          if(this.skills.design_skill!='')
-            this.design =true
-          if(this.skills.writing_skill!='')
-            this.writing =true
-          if(this.skills.data_skill!='')
-            this.data =true
-          if(this.skills.other_skill!='')
-            this.other =true
+          if(skill.length==0){
+            this.show = true
+
+            if (window.localStorage) {
+              if (!localStorage.getItem('firstLoad')) {
+                localStorage['firstLoad'] = true;
+                window.location.reload();
+              }
+              else
+                localStorage.removeItem('firstLoad');
+            }
+          }
         },
         err => {
           console.error(err)
-        })
+        }
+      )
 
-
-        this.userData.user_ID = this.auth.getUserDetails().id;
-        this.auth.checkProfile(this.userData).subscribe(
-         res=>{
-            this.fileUrl=res
-          },
-          err =>{
-            
+      this.auth.technoprofile().subscribe(
+        techno => {
+          this.technologies = techno
+          if(techno.length==0){
+            this.show = true
           }
-        )
+        },
+        err => {
+          console.error(err)
+        }
+      )
 
-    }else{
-      this.router.navigateByUrl("/");
+
+    } else {
+      this.router.navigateByUrl("/home/login");
     }
   }
 
-  showEditProf(){
+  updateSkills(){
+    this.showSkill = false
+  }
+
+  cancleEditSkills(marked){
+    this.showSkill = marked
+  }
+
+
+
+  showEditProf() {
     this.marked1 = false
     this.marked2 = true
   }
 
-  showEditSkill(){
-    this.marked3 = false
-    this.marked4 = true
-  }
-
-  cancleEditProfile(marked1,marked2){
+  cancleEditProfile(marked1, marked2) {
     this.marked1 = marked1
     this.marked2 = marked2
   }
 
-  cancleEditSkill(marked3,marked4){
-    this.marked3 = marked3
-    this.marked4 = marked4
-  }
+  onFileSelected(event) {
+    this.profileImage = <File>event.target.files[0]
 
-  onFileSelected(event){
-    this.profileImage=<File>event.target.files[0]
-  }
-
-
-  Upload(){
     this.userData.user_ID = this.auth.getUserDetails().id;
+    this.userData.image_name = this.details.profile_img
+    console.log(this.userData)
     const fd = new FormData()
-    fd.append('profileImage', this.profileImage,this.profileImage.name)
-    
+    fd.append('profileImage', this.profileImage, this.profileImage.name)
+
     this.auth.sendUserID(this.userData).subscribe(
-      res=>{
+      res => {
 
       }
     )
 
     this.auth.uploadProfileImage(fd).subscribe(
-      res=>{
-        this.fileUrl=res
+      user => {
+        window.location.reload()
       }
     )
-
-    window.location.reload();
   }
+
 
 }

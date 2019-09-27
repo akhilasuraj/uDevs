@@ -1,18 +1,12 @@
-<ul>
-  <li><img src="assets/img/logo.png" width="20%"  ></li>
-</ul>
+<button (click)="BackToNotification()">&lt;&lt;&lt;Back to Notifications</button>
 
-<ul>
-  <li><a routerLink="/dev_home/notification">&lt;&lt;&lt;</a></li>
-  <li  style="float:right"><a class="active" (click)="logout()">Log Out</a></li>
-</ul>
+<div class="container">
+  <img src="http://localhost:3000/{{ Not_details?.project?.user?.profile_img }}"
+    alt="http://localhost:3000/{{ Not_details?.project?.user?.profile_img }}"><br>
 
 
-<img src="http://localhost:3000/{{ Not_details?.project?.user?.image.image_name }}"
-alt="http://localhost:3000/{{ Not_details?.project?.user?.image.image_name }}"><br>
+  {{ Not_details?.project?.user?.first_name }} &nbsp;
+  {{ Not_details?.project?.user?.last_name }}<br>
 
-
-{{ Not_details?.project?.user?.first_name }} &nbsp; 
-{{ Not_details?.project?.user?.last_name }}<br>
-
-{{ Not_details?.project?.project_name }}
+  {{ Not_details?.project?.project_name }}
+</div>

@@ -3,6 +3,7 @@ import { AuthNotificationService, viewDevReq } from '../auth-notification.servic
 import { AuthenticationService } from 'src/app/user/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { requestDeveloperDetails } from 'src/app/home/auth-home.service';
+import { DevNotificationComponent } from 'src/app/notification/dev-notification/dev-notification.component'
 
 @Component({
   selector: 'app-view-client-request',
@@ -11,7 +12,13 @@ import { requestDeveloperDetails } from 'src/app/home/auth-home.service';
 })
 export class ViewClientRequestComponent implements OnInit {
 
-  constructor(private authNot: AuthNotificationService, private auth: AuthenticationService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private authNot: AuthNotificationService, 
+    private auth: AuthenticationService, 
+    private route: ActivatedRoute, 
+    private router: Router,
+    private devNot: DevNotificationComponent
+    ) { }
 
   request_data:viewDevReq={
     notification_ID:0,
@@ -27,9 +34,8 @@ export class ViewClientRequestComponent implements OnInit {
 
     this.request_data.developer_ID = this.auth.getUserDetails().id
 
-    this.route.queryParams.subscribe(params => {
-      this.request_data.notification_ID = params['not_id'];
-    })
+    this.request_data.notification_ID = this.devNot.cliNot_ID
+
 
     this.authNot.viewRequestDeveloper(this.request_data).subscribe(
       res=>{
@@ -49,9 +55,8 @@ export class ViewClientRequestComponent implements OnInit {
 
     this.request_data.developer_ID = this.auth.getUserDetails().id
 
-    this.route.queryParams.subscribe(params => {
-      this.request_data.notification_ID = params['not_id'];
-    })
+    this.request_data.notification_ID = this.devNot.cliNot_ID
+
 
     this.authNot.acceptRequestDeveloper(this.request_data).subscribe()
 
@@ -63,18 +68,13 @@ export class ViewClientRequestComponent implements OnInit {
   cancleAccept(){
     this.request_data.developer_ID = this.auth.getUserDetails().id
 
-    this.route.queryParams.subscribe(params => {
-      this.request_data.notification_ID = params['not_id'];
-    })
+    this.request_data.notification_ID = this.devNot.cliNot_ID
 
     this.authNot.cancleAccept(this.request_data).subscribe()
 
     window.location.reload()
   }
 
-  logout(){
-    this.auth.logout()
-    }
 
 
 }

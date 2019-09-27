@@ -56,12 +56,28 @@ export class AuthProjectService {
 
   constructor(private http: HttpClient, private router: Router, private auth: AuthenticationService) {}
 
+  public uploadAttachment(fd):Observable<any>{
+    return this.http.post(`/users/project/attachment`, fd)
+  }
+  
   public addProject(project:ProjectPayload): Observable<any> {
     return this.http.post(`/users/project/addProject`, project)
   }
 
-  public viewAllProject(): Observable<any> {
-    return this.http.get(`/users/viewAllProject`, {
+  public viewAllCurrentProject(): Observable<any> {
+    return this.http.get(`/users/viewAllCurrentProject`, {
+        headers: { Authorization: ` ${this.auth.getToken()}` }
+      })
+  }
+
+  public viewAllConfiremedProject(): Observable<any> {
+    return this.http.get(`/users/viewAllConfirmedProject`, {
+        headers: { Authorization: ` ${this.auth.getToken()}` }
+      })
+  }
+
+  public viewAllCompletedProject(): Observable<any> {
+    return this.http.get(`/users/viewAllCompletedProject`, {
         headers: { Authorization: ` ${this.auth.getToken()}` }
       })
   }

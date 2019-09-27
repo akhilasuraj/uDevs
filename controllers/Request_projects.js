@@ -1,7 +1,6 @@
 const Request_project = require("../models/Request_project")
 const Project = require("../models/Project")
 const User = require("../models/User")
-const Image = require("../models/Image")
 
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
@@ -96,10 +95,6 @@ exports.new_all_req = (req,res)=>{
     User.hasMany(Request_project,{foreignKey: 'developer_ID'})
     Request_project.belongsTo(User,{foreignKey: 'developer_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
-
     Request_project.findAll({
       where:{
         isViewed: false,
@@ -110,7 +105,7 @@ exports.new_all_req = (req,res)=>{
         where:{
             client_ID:req.body.client_ID
         }
-     }, {model: User, include:[Image]} 
+     }, {model: User} 
     ] 
     })
     .then(request=>{
@@ -130,11 +125,6 @@ exports.old_all_req = (req,res)=>{
     User.hasMany(Request_project,{foreignKey: 'developer_ID'})
     Request_project.belongsTo(User,{foreignKey: 'developer_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
-
-
     Request_project.findAll({
       where:{
         isViewed: true,
@@ -145,7 +135,7 @@ exports.old_all_req = (req,res)=>{
         where:{
             client_ID:req.body.client_ID
         }
-     }, {model: User, include:[Image]} 
+     }, {model: User} 
     ] 
     })
     .then(request=>{
@@ -165,9 +155,6 @@ exports.view_request = (req,res)=>{
     User.hasMany(Request_project,{foreignKey: 'developer_ID'})
     Request_project.belongsTo(User,{foreignKey: 'developer_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Request_project.findOne({
       where:{
         id:req.body.notification_ID,
@@ -177,7 +164,7 @@ exports.view_request = (req,res)=>{
         where:{
             client_ID:req.body.client_ID
         }
-     }, {model: User, include:[Image]} 
+     }, {model: User} 
     ] 
     })
     .then(request=>{
@@ -259,9 +246,6 @@ exports.new_all_acc_pro_req = (req,res)=>{
     User.hasMany(Project,{foreignKey:'client_ID'})
     Project.belongsTo(User,{foreignKey: 'client_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Request_project.findAll({
         where:{
             developer_ID: req.body.developer_ID,
@@ -271,7 +255,7 @@ exports.new_all_acc_pro_req = (req,res)=>{
         include:{
             model:Project, 
             include:{
-                model:User, include:[Image]}
+                model:User}
         }
     }).then(result=>{
         res.json(result)
@@ -287,9 +271,6 @@ exports.old_all_acc_pro_req = (req,res)=>{
     User.hasMany(Project,{foreignKey:'client_ID'})
     Project.belongsTo(User,{foreignKey: 'client_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Request_project.findAll({
         where:{
             developer_ID: req.body.developer_ID,
@@ -299,7 +280,7 @@ exports.old_all_acc_pro_req = (req,res)=>{
         include:{
             model:Project, 
             include:{
-                model:User, include:[Image]}
+                model:User}
         }
     }).then(result=>{
         res.json(result)
@@ -316,9 +297,6 @@ exports.view_acc_pro_req = (req,res)=>{
     User.hasMany(Project,{foreignKey:'client_ID'})
     Project.belongsTo(User,{foreignKey: 'client_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Request_project.findOne({
         where:{
             id: req.body.notification_ID
@@ -326,7 +304,7 @@ exports.view_acc_pro_req = (req,res)=>{
         include:{
             model:Project, 
             include:{
-                model:User, include:[Image]}
+                model:User}
         }
     }).then(result=>{
         Request_project.update({

@@ -7,9 +7,6 @@ module.exports = db.sequelize.define(
         developer_ID:{
             type:Sequelize.INTEGER
         },
-        client_ID:{
-            type:Sequelize.INTEGER
-        },
         project_ID:{
             type:Sequelize.INTEGER
         },

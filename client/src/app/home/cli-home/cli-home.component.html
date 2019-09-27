@@ -1,90 +1,152 @@
-<app-cli-appbar></app-cli-appbar>
 
-<h3><b>Web developers</b></h3>
+<div *ngIf="marked">
 
-<div *ngFor="let skill of webDeveloper">
-    
-        <div class="col-md-6 mx-left">
-            <img src="http://localhost:3000/{{ skill?.user?.image.image_name }}" 
-            alt="http://localhost:3000/{{ skill?.user?.image.image_name }}" width="10%" heigt="10%">
-          <table>
-            <tr>
-              <td>{{ skill?.user.first_name }} {{ skill?.user.last_name }}</td>
-            </tr>
-            <tr>
-              <td>Skills: {{ skill?.web_skill }}</td> 
-            <td><button (click)="viewDeveloper( skill.id, skill.user_ID, 1 )">
-              View more
-            </button></td>
-          </tr>
-          </table><br><br>
+<div class="container">Web development</div>
+
+<div class="top-content">
+    <div class="container-fluid">
+        <div id="carousel-example1" class="carousel slide" data-ride="carousel">
+            <div class="container">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Web development</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        </div>
+                      </div>
+                </div>
+
+                
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of webDeveloper">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="http://localhost:3000/{{ item?.user.profile_img}}"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                          <p class="card-text"></p>
+                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div>
+                      </div>
+                </div>
+                
+            </div> 
+            </div>
+            <a class="carousel-control-prev" href="#carousel-example1" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example1" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-        
+    </div>
 </div>
 
-<h3><b>Designers</b></h3>
+<div class="container">Mobile development</div>
 
-    <div *ngFor="let skill of designer">
-        
-            <div class="col-md-6 mx-left">
-                <img src="http://localhost:3000/{{ skill?.user?.image.image_name }}" 
-            alt="http://localhost:3000/{{ skill?.user?.image.image_name }}" width="10%" heigt="10%">
-              <table>
-                <tr>
-                  <td>{{ skill?.user.first_name }} {{ skill?.user.last_name }}</td>
-                </tr>
-                <tr>
-                  <td>Skills: {{ skill?.design_skill }}</td> 
-                <td><button (click)="viewDeveloper( skill.id, skill.user_ID, 2 )">
-                  View more
-                </button></td>
-              </tr>
-              </table><br><br>
+<div class="top-content">
+    <div class="container-fluid">
+        <div id="carousel-example2" class="carousel slide" data-ride="carousel">
+          <div class="container">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Card title</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                          <a class="btn btn-primary">Button</a>
+                        </div>
+                      </div>
+                </div>
+
+                
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of HEROES">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Card title</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                          <a class="btn btn-primary">Button</a>
+                        </div>
+                      </div>
+                </div>
+              </div>  
+              
             </div>
-            
+            <a class="carousel-control-prev" href="#carousel-example2" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example2" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
+</div>
 
-<h3><b>Writers</b></h3>
+<div class="container">Software development</div>
 
-    <div *ngFor="let skill of writer">
-            
-        <div class="col-md-6 mx-left">
-            <img src="http://localhost:3000/{{ skill?.user?.image.image_name }}" 
-            alt="http://localhost:3000/{{ skill?.user?.image.image_name }}" width="10%" heigt="10%">
-             <table>
-            <tr>
-                <td>{{ skill?.user.first_name }} {{ skill?.user.last_name }}</td>
-            </tr>
-            <tr>
-                <td>Skills: {{ skill?.writing_skill }}</td> 
-            <td><button (click)="viewDeveloper( skill.id, skill.user_ID, 3 )">
-              View more
-             </button></td>
-          </tr>
-          </table><br><br>
-         </div>
+<div class="top-content">
+    <div class="container-fluid">
+        <div id="carousel-example3" class="carousel slide" data-ride="carousel">
+            <div class="container">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Card title</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                          <a class="btn btn-primary">Button</a>
+                        </div>
+                      </div>
+                </div>
+
                 
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of HEROES">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Card title</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                          <a class="btn btn-primary">Button</a>
+                        </div>
+                      </div>
+                </div>
+                
+            </div>
+            </div>
+            <a class="carousel-control-prev" href="#carousel-example3" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example3" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
+</div>
 
 
-<h3><b>Data enter</b></h3>
+</div>
 
- <div *ngFor="let skill of dataEnter">
-                
-     <div class="col-md-6 mx-left">
-        <img src="http://localhost:3000/{{ skill?.user?.image.image_name }}" 
-            alt="http://localhost:3000/{{ skill?.user?.image.image_name }}" width="10%" heigt="10%">
-         <table>
-         <tr>
-            <td>{{ skill?.user.first_name }} {{ skill?.user.last_name }}</td>
-          </tr>
-          <tr>
-            <td>Skills: {{ skill?.data_skill }}</td> 
-          <td><button (click)="viewDeveloper( skill.id, skill.user_ID, 4 )">
-            View more
-         </button></td>
-         </tr>
-        </table><br><br>
-       </div>
-                    
- </div>
+
+<div *ngIf="!marked">
+  <app-cli-view-dev></app-cli-view-dev>
+</div>

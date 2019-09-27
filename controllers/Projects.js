@@ -5,6 +5,19 @@ const User = require("../models/User")
 const Bid_response = require("../models/Bid_Response")
 const Request_developer = require("../models/Request_developer")
 const Request_project = require("../models/Request_project")
+const Confirmed_project = require("../models/Confirmed_project")
+
+const attachFile = '';
+
+exports.attachment = (req,res)=>{
+    if (!req.file) {
+        res.status(500);
+        return next(err);
+      } else {
+        this.attachFile = req.file.filename
+        res.send(req.file)
+    }
+}
 
 exports.add_project = (req,res)=>{
     const projectData = {
@@ -12,6 +25,7 @@ exports.add_project = (req,res)=>{
         project_name:req.body.project_name,
         project_category: req.body.project_category,
         project_description:req.body.project_description,
+        attachment: this.attachFile,
         payment:req.body.payment,
         isShowed: true
     }
@@ -26,14 +40,75 @@ exports.add_project = (req,res)=>{
 }
 
 
-exports.view_all_pro = (req,res)=>{
+exports.view_all_current_pro = (req,res)=>{
 
     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 
     Project.findAll({
         where: {
-            client_ID:decoded.id
+            client_ID:decoded.id,
+            isShowed:1
         }
+    })
+    .then(project=>{
+        if(project){
+            res.json(project)
+        }else{
+            res.send('Project does not exists')
+        }
+    })
+    .catch(err =>{
+        res.send('error:'+err)
+    })
+}
+
+
+exports.view_all_confirmed_pro = (req,res)=>{
+
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+
+    Project.hasOne(Confirmed_project,{foreignKey:'project_ID'})
+    Confirmed_project.belongsTo(Project,{foreignKey:'project_ID'})
+
+    Confirmed_project.findAll({
+        where: {
+            isCompleted:0
+        },include:[{
+            model:Project, 
+            where:{
+                client_ID:decoded.id
+            }
+        }]
+    })
+    .then(project=>{
+        if(project){
+            res.json(project)
+        }else{
+            res.send('Project does not exists')
+        }
+    })
+    .catch(err =>{
+        res.send('error:'+err)
+    })
+}
+
+
+exports.view_all_completed_pro = (req,res)=>{
+
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+
+    Project.hasOne(Confirmed_project,{foreignKey:'project_ID'})
+    Confirmed_project.belongsTo(Project,{foreignKey:'project_ID'})
+
+    Confirmed_project.findAll({
+        where: {
+            isCompleted:1
+        },include:[{
+            model:Project, 
+            where:{
+                client_ID:decoded.id,
+            }
+        }]
     })
     .then(project=>{
         if(project){

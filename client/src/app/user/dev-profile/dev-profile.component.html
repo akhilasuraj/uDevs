@@ -1,79 +1,85 @@
+<div class="container">
+  <div class="row">
 
-<app-dev-appbar></app-dev-appbar>
+    <div class="col mx-auto">
 
-<div class="col-md-6 mx-auto">
-<form  (submit)="Upload()" method="POST">
-  <img src="{{ fileUrl?.fileUrl }}" alt="{{ fileUrl?.fileUrl }}" width="20%" height="20%"><br> 
-  <input type="file" name="profile_image" accept="image/*" (change)="onFileSelected($event)">
-  <button type="submit" >Upload</button>
-</form>
-</div>
+      <img src="http://localhost:3000/{{ details?.profile_img}}" width="30%" height="30%" class="img1"><br>
+      <label><img src="assets/img/cam2.png" width="10%" height="10%" class="img2" />
+        <input type="file" name="profile_image" accept="image/*" (change)="onFileSelected($event)">
+      </label>
 
+      <div *ngIf="marked1">
 
-<br><div *ngIf="marked1">
-    <div class="col-md-6 mx-auto">
-      <h1 class="text-center">PROFILE</h1>
+        <table class="table ">
+          <tr>
+            <td>Fist Name</td>
+            <td>{{ details?.first_name }}</td>
+          </tr>
+          <tr>
+            <td>Last Name</td>
+            <td>{{ details?.last_name }}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{{ details?.email }}</td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td>{{ details?.gender }}</td>
+          </tr>
+          <tr>
+            <td>contact number</td>
+            <td>{{ details?.contact_no }}</td>
+          </tr>
+        </table>
+
+        <div style="text-align: center"><button (click)="showEditProf()" class="btn btn-lg btn-primary">Edit public
+            details</button></div>
+
+      </div>
+
+      <app-dev-edit-profile *ngIf="marked2"></app-dev-edit-profile>
     </div>
-    <table class="table col-md-6 mx-auto">
-      <tr>
-        <td>Fist Name</td>
-        <td>{{ details?.first_name }}</td>
-      </tr>
-      <tr>
-        <td>Last Name</td>
-        <td>{{ details?.last_name }}</td>
-      </tr>
-      <tr>
-        <td>Email</td>
-        <td>{{ details?.email }}</td>
-      </tr>
-      <tr>
-        <td>Gender</td>
-        <td>{{ details?.gender }}</td>
-      </tr>
-      <tr>
-        <td>contact number</td>
-        <td>{{ details?.contact_no }}</td>
-      </tr>
-    </table>
 
-    <div style="text-align: center"><button (click)="showEditProf()" class="btn btn-lg btn-primary">Edit public details</button></div>
+    <div class="col mx-auto">
 
-</div>
+      <div *ngIf="showSkill">
+        <h3>Skills</h3><br>
+        <div *ngFor="let skill of skills">
+          <h6>{{skill?.skill}}</h6>
+        </div>
 
-<app-dev-edit-profile *ngIf="marked2"></app-dev-edit-profile>
+        <br><br>
+        <h3>Technologies</h3><br>
+        <div *ngFor="let techno of technologies">
+          <h6>{{techno?.technology}}</h6>
+        </div>
 
-<br><br>
+        <button (click)="updateSkills()">Update skills and technologies</button>
+      </div>
+      <!-- Button trigger modal -->
+      <!-- <button type="button" class="btn btn-primary  example-1" data-toggle="modal" data-target="#exampleModalCenter">
+      Add Skills and Technologies
+    </button> -->
 
-<div *ngIf="marked3">
-    <div class="col-md-6 mx-auto">
-      <h1 class="text-center">Skills</h1>
+      <div *ngIf="!showSkill">
+        <app-edit-skill></app-edit-skill>
+      </div>
     </div>
-    <table class="table col-md-6 mx-auto">
-      <tr *ngIf="web">
-        <td>Web development,IT & Software Skills</td>
-        <td>{{ skills?.web_skill }}</td>
-      </tr>
-      <tr *ngIf="design">
-        <td>Designing , Photo editing and Video editing</td>
-        <td>{{ skills?.design_skill }}</td>
-      </tr>
-      <tr *ngIf="writing">
-        <td>Content writing</td>
-        <td>{{ skills?.writing_skill }}</td>
-      </tr>
-      <tr *ngIf="data">
-        <td>Data Entry</td>
-        <td>{{ skills?.data_skill }}</td>
-      </tr>
-      <tr *ngIf="other">
-        <td>Other skills</td>
-        <td>{{ skills?.other_skill }}</td>
-      </tr>
-    </table>
-
-    <div style="text-align: center"><button (click)="showEditSkill()" class="btn btn-lg btn-primary">Edit skills</button></div>
-
+  </div>
 </div>
 
-<app-edit-skill *ngIf="marked4"></app-edit-skill>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true" *ngIf="show">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <app-skill></app-skill>
+
+
+    </div>
+  </div>
+</div>

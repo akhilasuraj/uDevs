@@ -19,6 +19,7 @@ export class CliEditProfileComponent implements OnInit {
     password: '',
     gender: '',
     contact_no:'',
+    profile_img:'',
     isActivated: true
   }
 

@@ -11,269 +11,202 @@ import { e } from '@angular/core/src/render3';
 })
 export class EditSkillComponent implements OnInit {
 
-  credentials: SkillPayload = {
+  check1 = false
+  check2 = false
+  check3 = false
+  check4 = false
+  check5 = false
+  check6 = false
+  check7 = false
+  check8 = false
+  check9 = false
+  check10 = false
 
-    web_skill1: '',
-    web_skill2: '',
-    web_skill3: '',
-    web_skill4: '',
-    web_skill5: '',
-    web_skill6: '',
+  tcheck1 = false
+  tcheck2 = false
+  tcheck3 = false
+  tcheck4 = false
+  tcheck5 = false
+  tcheck6 = false
+  tcheck7 = false
+  tcheck8 = false
+  tcheck9 = false
+  tcheck10 = false
+  tcheck11 = false
+  tcheck12 = false
+  tcheck13 = false
+  tcheck14 = false
+  tcheck15 = false
+  tcheck16 = false
 
-    design_skill1: '',
-    design_skill2: '',
-    design_skill3: '',
-    design_skill4: '',
-    design_skill5: '',
-    design_skill6: '',
 
-    writing_skill1: '',
-    writing_skill2: '',
-    writing_skill3: '',
-    writing_skill4: '',
-    writing_skill5: '',
-    writing_skill6: '',
-
-    data_skill1: '',
-    data_skill2: '',
-    data_skill3: '',
-    data_skill4: '',
-    
-    other_skill: ''
-  }
-
-  credential={
-    web_skill: '',
-    design_skill: '',
-    writing_skill: '',
-    data_skill: ''
-  }
-
-  skillObject = {
-    id: 0,
-    user_ID: 0,
-    user_email: '',
-    web_skill: '',
-    design_skill: '',
-    writing_skill: '',
-    data_skill: '',
-    other_skill: ''
-
-  }
-
-  constructor(private auth: AuthenticationService, private router: Router, private devpro: DevProfileComponent) {}
-
-  details: UserDetails
-  skills: skillDetails
-
-  marked1 = false
-  marked2 = false
-  marked3 = false
-  marked4 = false
+  constructor(private auth: AuthenticationService, private router: Router, private devPro: DevProfileComponent) { }
 
   ngOnInit() {
-    if(localStorage.getItem('usertoken')){
-    this.auth.profile().subscribe(
-      user => {
-        this.details = user
-      },
-      err => {
-        console.error(err)
-      }
-    )
 
     this.auth.skillprofile().subscribe(
       skill => {
-        this.skills= skill
-        let str1 = this.skills.web_skill.split(' ')
-        let str2 = this.skills.design_skill.split(' ')
-        let str3 = this.skills.writing_skill.split(' ')
-        let str4 = this.skills.data_skill.split(' ')
 
-        if(this.skills.web_skill != ''){
-              this.marked1 = true
-              this.credential.web_skill = '1'
+
+        for (let skills of skill) {
+          this.skills.data.push(skills.skill)
+
+          if (skills.skill == "Web development") {
+            this.check1 = true
+          } else if (skills.skill == "Mobile development") {
+            this.check2 = true
+          } else if (skills.skill == "Data science") {
+            this.check3 = true
+          } else if (skills.skill == "Software development") {
+            this.check4 = true
+          } else if (skills.skill == "Block chain") {
+            this.check5 = true
+          } else if (skills.skill == "Machine learning") {
+            this.check6 = true
+          } else if (skills.skill == "Natural language processing") {
+            this.check7 = true
+          } else if (skills.skill == "Digital marketing") {
+            this.check8 = true
+          } else if (skills.skill == "Multimedia designing") {
+            this.check9 = true
+          } else if (skills.skill == "Robotics") {
+            this.check10 = true
+          } else {
+            this.skills.other_skills = skills.skill
+
+            const index: number = this.skills.data.indexOf(skills.skill);
+            if (index !== -1) {
+              this.skills.data.splice(index, 1);
+            }
+          }
+
         }
-        if(this.skills.design_skill != ''){
-              this.marked2 = true
-              this.credential.design_skill = '1'
-        }
-        if(this.skills.writing_skill != ''){
-              this.marked3 = true
-              this.credential.writing_skill = '1'
-        }
-        if(this.skills.data_skill != ''){
-              this.marked4 = true
-              this.credential.data_skill = '1'        
-        }
 
-
-        if(0<str1.indexOf("HTML"))
-            this.credentials.web_skill1 = '1'
-        if(0<str1.indexOf("PHP"))
-            this.credentials.web_skill2 = '1'
-        if(0<str1.indexOf("Javascript"))
-            this.credentials.web_skill3 = '1';
-        if(0<str1.indexOf("Angular"))
-            this.credentials.web_skill4 = '1';
-        if(0<str1.indexOf("Nodejs"))
-            this.credentials.web_skill5 = '1';
-        if(0<str1.indexOf("Java"))
-            this.credentials.web_skill6 = '1';
-
-        if(0<str2.indexOf('Photoshop'))
-            this.credentials.design_skill1 = '1';
-        if(0<str2.indexOf('Illustrator'))
-            this.credentials.design_skill2 = '1';
-        if(0<str2.indexOf("3DMax"))
-            this.credentials.design_skill3 = '1';
-        if(0<str2.indexOf("Maya"))
-            this.credentials.design_skill4 = '1';
-        if(0<str2.indexOf("Coreldraw"))
-            this.credentials.design_skill5 = '1';
-        if(0<str2.indexOf("AfetrEffect"))
-            this.credentials.design_skill6 = '1';
-
-        if(0<str3.indexOf('English'))
-            this.credentials.writing_skill1 = '1';
-        if(0<str3.indexOf('Tamil'))
-            this.credentials.writing_skill2 = '1';
-        if(0<str3.indexOf("Sinhala"))
-            this.credentials.writing_skill3 = '1';
-        if(0<str3.indexOf("Spanish"))
-            this.credentials.writing_skill4 = '1';
-        if(0<str3.indexOf("Korean"))
-            this.credentials.writing_skill5 = '1';
-        if(0<str3.indexOf("Japaneese"))
-            this.credentials.writing_skill6 = '1';
-
-        if(0<str4.indexOf('Excel'))
-            this.credentials.data_skill1 = '1';
-        if(0<str4.indexOf('Mysql'))
-            this.credentials.data_skill2 = '1';
-        if(0<str4.indexOf("MongoDB"))
-            this.credentials.data_skill3 = '1';
-        if(0<str4.indexOf("MicrosoftSQL"))
-            this.credentials.data_skill4 = '1';
-
-        this.credentials.other_skill = this.skills.other_skill
-      },
-      err => {
-        console.error(err)
       }
     )
-    }else{
-      window.alert('You should register as a developer before add skills')
-      this.router.navigateByUrl("/dev_register");
+
+
+
+    this.auth.technoprofile().subscribe(
+      techno => {
+
+
+        for (let tech of techno) {
+          this.technologies.data.push(tech.technology)
+
+          if (tech.technology == "C") {
+            this.tcheck1 = true
+          } else if (tech.technology == "Java") {
+            this.tcheck2 = true
+          } else if (tech.technology == "Python") {
+            this.tcheck3 = true
+          } else if (tech.technology == "C++") {
+            this.tcheck4 = true
+          } else if (tech.technology == "JavaScript") {
+            this.tcheck5 = true
+          } else if (tech.technology == "Ruby") {
+            this.tcheck6 = true
+          } else if (tech.technology == "Swift") {
+            this.tcheck7 = true
+          } else if (tech.technology == "React/React native") {
+            this.tcheck8 = true
+          } else if (tech.technology == "C#") {
+            this.tcheck9 = true
+          } else if (tech.technology == "Spring/Struts/JHipster - Java Track") {
+            this.tcheck10 = true
+          } else if (tech.technology == "DotNet/DotNet Core - Microsoft Track") {
+            this.tcheck11 = true
+          } else if (tech.technology == "Laravel/Slim/YII - PHP Track") {
+            this.tcheck12 = true
+          } else if (tech.technology == "Mean Stack - JS Track") {
+            this.tcheck13 = true
+          } else if (tech.technology == "Firebase") {
+            this.tcheck14 = true
+          } else if (tech.technology == "Android") {
+            this.tcheck15 = true
+          } else if (tech.technology == "iOS") {
+            this.tcheck16 = true
+          } else {
+            this.technologies.other_technologies = tech.technology
+
+            const index: number = this.technologies.data.indexOf(tech.technology);
+            if (index !== -1) {
+              this.technologies.data.splice(index, 1);
+            }
+          }
+        }
+      }
+    )
+  }
+
+  skills = {
+    user_ID: 0,
+    data: [],
+    other_skills: ''
+  }
+
+  technologies = {
+    user_ID: 0,
+    data: [],
+    other_technologies: ''
+  }
+
+
+  AddSkill(e, type) {
+    if (e.target.checked) {
+      this.skills.data.push(type);
+    } else {
+      const index: number = this.skills.data.indexOf(type);
+      if (index !== -1) {
+        this.skills.data.splice(index, 1);
+      }
+    }
+
+    console.log(this.skills.data)
+  }
+
+  AddTechnology(e, type) {
+    if (e.target.checked) {
+      this.technologies.data.push(type);
+    } else {
+      const index: number = this.technologies.data.indexOf(type);
+      if (index !== -1) {
+        this.technologies.data.splice(index, 1);
+      }
     }
   }
 
-  updateSkill(){ 
 
-        this.skillObject.user_email = this.details.email
-        this.skillObject.user_ID = this.details.id
+  UpdateSkills() {
 
-        this.skillObject.other_skill = this.credentials.other_skill
+    if(this.skills.data.length == 0 || this.technologies.data.length == 0){
+      window.alert("Skills and technologies must not be empty")
+    }else{
 
-        if(this.credentials.web_skill1=='1'){
-            this.skillObject.web_skill= this.skillObject.web_skill + ' ' +'HTML'
-        }
-        if(this.credentials.web_skill2=='1'){
-          this.skillObject.web_skill= this.skillObject.web_skill + ' ' +'PHP'
-        }
-        if(this.credentials.web_skill3=='1'){
-          this.skillObject.web_skill= this.skillObject.web_skill + ' ' +'Javascript'
-        }
-        if(this.credentials.web_skill4=='1'){
-          this.skillObject.web_skill= this.skillObject.web_skill + ' ' +'Angular'
-        }
-        if(this.credentials.web_skill5=='1'){
-          this.skillObject.web_skill= this.skillObject.web_skill + ' ' +'Nodejs'
-        }
-        if(this.credentials.web_skill6=='1'){
-          this.skillObject.web_skill= this.skillObject.web_skill + ' ' +'Java'
-        }
+    this.skills.user_ID = this.auth.getUserDetails().id;
+    this.technologies.user_ID = this.auth.getUserDetails().id;
 
-        if(this.credentials.design_skill1=='1'){
-          this.skillObject.design_skill= this.skillObject.design_skill + ' ' +'Photoshop'
-        }
-        if(this.credentials.design_skill2=='1'){
-          this.skillObject.design_skill= this.skillObject.design_skill + ' ' +'Illustrator'
-        }
-        if(this.credentials.design_skill3=='1'){
-          this.skillObject.design_skill= this.skillObject.design_skill + ' ' +'3DMax'
-        }
-        if(this.credentials.design_skill4=='1'){
-          this.skillObject.design_skill= this.skillObject.design_skill + ' ' +'Maya'
-        }
-        if(this.credentials.design_skill5=='1'){
-          this.skillObject.design_skill= this.skillObject.design_skill + ' ' +'Coreldraw'
-        }
-        if(this.credentials.design_skill6=='1'){
-          this.skillObject.design_skill= this.skillObject.design_skill + ' ' +'AfterEffect'
-        }
+    this.auth.updateSkill(this.skills).subscribe(
+      result => {
+        console.log(result)
+      }
+    )
 
-        if(this.credentials.writing_skill1=='1'){
-          this.skillObject.writing_skill= this.skillObject.writing_skill + ' ' +'English'
-        }
-        if(this.credentials.writing_skill2=='1'){
-          this.skillObject.writing_skill= this.skillObject.writing_skill + ' ' +'Tamil'
-        }
-        if(this.credentials.writing_skill3=='1'){
-          this.skillObject.writing_skill= this.skillObject.writing_skill + ' ' +'Sinhala'
-        }
-        if(this.credentials.writing_skill4=='1'){
-          this.skillObject.writing_skill= this.skillObject.writing_skill + ' ' +'Spanish'
-        }
-        if(this.credentials.writing_skill5=='1'){
-          this.skillObject.writing_skill= this.skillObject.writing_skill + ' ' +'Korean'
-        }
-        if(this.credentials.writing_skill6=='1'){
-          this.skillObject.writing_skill= this.skillObject.writing_skill + ' ' +'Japaneese'
-        }
+    this.auth.updateTechnology(this.technologies).subscribe(
+      result => {
+        console.log(result)
+        window.location.reload();
+      }
+    )
 
-        if(this.credentials.data_skill1=='1'){
-          this.skillObject.data_skill= this.skillObject.data_skill + ' ' +'Excel'
-        }
-        if(this.credentials.data_skill2=='1'){
-          this.skillObject.data_skill= this.skillObject.data_skill + ' ' +'Mysql'
-        }
-        if(this.credentials.data_skill3=='1'){
-          this.skillObject.data_skill= this.skillObject.data_skill + ' ' +'MongoDB'
-        }
-        if(this.credentials.data_skill4=='1'){
-          this.skillObject.data_skill= this.skillObject.data_skill + ' ' +'MicrosoftSQL'
-        }
-
-          this.auth.updateSkill(this.skillObject).subscribe(
-            () => {
-                
-            },
-            err => {
-              console.error(err);
-            }
-          )
-
-          window.location.reload();
+    
     }
+  }
 
-    toggleVisibility1(e){
-      this.marked1= e.target.checked;
-    }
-    toggleVisibility2(e){
-      this.marked2= e.target.checked;
-    }
-    toggleVisibility3(e){
-      this.marked3= e.target.checked;
-    }
-    toggleVisibility4(e){
-      this.marked4= e.target.checked;
-    }
+  CancleUpdateSkills() {
+    this.devPro.cancleEditSkills(true);
+  }
 
-
-    CancleEditSkill(){
-      this.devpro.cancleEditSkill(true,false)
-    }
 
 
 }

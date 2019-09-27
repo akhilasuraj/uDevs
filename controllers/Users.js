@@ -1,7 +1,10 @@
 const User = require("../models/User") 
 const Skill = require("../models/Skill")
-const Image = require("../models/Image")
+const Techno = require("../models/Technology")
 const jwt = require("jsonwebtoken")
+const nodemailer = require("nodemailer");
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
 
 process.env.SECRET_KEY = 'secret'
 
@@ -11,17 +14,95 @@ const ImageData = {
 }
 
 
-exports.dev_register = (req,res)=>{
+var smtpTransport = nodemailer.createTransport({
+
+	host: "smtp.gmail.com",
+	auth: {
+		type: "login", // default
+		user: "thushanlakshitha67@gmail.com",
+		pass: "Thushan@1997"
+	}
+});
+
+var rand, mailOptions, host, link;
+
+exports.send_email = (req,res)=>{
+
+    //rand = Math.floor((Math.random() * 100) + 54);
+
+    var token = cryptr.encrypt(req.body.email)
+
+    User.update({
+        verify_key : token 
+    },{
+        where:{
+            email : req.body.email
+        }
+
+    })
+	link = "http://localhost:4200/verify?verifyKey=" + token;
+	mailOptions = {
+		to: req.body.email,
+		subject: "Please confirm your Email account",
+		html: "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
+	}
+	console.log(mailOptions);
+	smtpTransport.sendMail(mailOptions, function (error, response) {
+		if (error) {
+			console.log(error);
+			res.send("error");
+		} else {
+			console.log("Message sent: " + response.message);
+			res.send("sent");
+		}
+	});
+}
+
+
+exports.verify_email = (req,res)=>{
+
+    User.findOne({
+        where:{
+            verify_key: req.body.verify_key,
+        }
+    })
+    .then(user=>{
+        if(user){
+            User.update({
+                isActivated : true
+            },{
+                where:{
+                    email: cryptr.decrypt(req.body.verify_key)
+                }
+            
+            })
+
+            let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
+                expiresIn:1440
+            })
+            res.json({token:token})
+            
+        }else{
+
+        }
+    })
+}
+
+
+
+exports.cli_register=(req,res)=>{
 
     const userData = {
         first_name : req.body.first_name,
         last_name :req.body.last_name,
-        user_type : req.body.user_type,
+        user_type : "Client",
         email : req.body.email,
-        password : req.body.password,
+        password : cryptr.encrypt(req.body.password),
         gender : req.body.gender,
         contact_no : req.body.contact_no,
-        isActivated : req.body.isActivated
+        profile_img: "default.png",
+        isActivated : 0,
+        verify_no : 0
     }
     User.findOne({
         where: {
@@ -32,23 +113,14 @@ exports.dev_register = (req,res)=>{
         if(!user){
             User.create(userData)
             .then(user =>{
-
-                ImageData.user_ID= user.id
-                ImageData.image_name= "default.png"
-
-                Image.create(ImageData)
-
                 let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
                     expiresIn:1440
                 })
                 res.json({token:token})
-
-                
             })
             .catch(err =>{
                 res.send('error:'+err)
             })
-
         }else{
             res.send('User already exists')
         }
@@ -59,17 +131,20 @@ exports.dev_register = (req,res)=>{
 }
 
 
-exports.cli_register=(req,res)=>{
+
+exports.dev_register=(req,res)=>{
 
     const userData = {
         first_name : req.body.first_name,
         last_name :req.body.last_name,
-        user_type : req.body.user_type,
+        user_type : "Developer",
         email : req.body.email,
-        password : req.body.password,
+        password : cryptr.encrypt(req.body.password),
         gender : req.body.gender,
         contact_no : req.body.contact_no,
-        isActivated : req.body.isActivated
+        profile_img: "default.png",
+        isActivated : 0,
+        verify_no : 0
     }
     User.findOne({
         where: {
@@ -80,12 +155,6 @@ exports.cli_register=(req,res)=>{
         if(!user){
             User.create(userData)
             .then(user =>{
-
-                ImageData.user_ID= user.id
-                ImageData.image_name= "default.png"
-
-                Image.create(ImageData)
-
                 let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
                     expiresIn:1440
                 })
@@ -111,25 +180,20 @@ exports.login=(req,res)=>{
         }
     })
     .then(user =>{
-        User.findOne({
-            where:{
-                email: user.email,
-                password: req.body.password
-            }
-        })
-        .then(user =>{
+        if(cryptr.decrypt(user.password)== req.body.password){
+        
             if(user.isActivated == true){
                 let token = jwt.sign(user.dataValues, process.env.SECRET_KEY,{
-                    expiresIn: 1440
+                    expiresIn: 14400
                 })
                 res.json({ token: token})
             }else{
-                res.send('You have banned temporarly or permanently')
+                res.send('You have been banned or you have not verify your email address')
             }
-        })
-        .catch(err =>{
-            res.send('Password is incorrect')
-        })
+        }else{
+            res.send('Password incorrect')
+        }
+    
     })
     .catch(err =>{
         res.send('You have to register before login')
@@ -163,7 +227,7 @@ exports.profile=(req,res)=>{
 exports.skill = (req,res)=>{
     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 
-    Skill.findOne({
+    Skill.findAll({
         where : {
             user_ID: decoded.id
         }
@@ -173,6 +237,26 @@ exports.skill = (req,res)=>{
             res.json(skill)
         }else{
             res.send('Skill does not exist')
+        }
+    })
+    .catch(err =>{
+        res.send('error:'+err)
+    })
+}
+
+exports.technology = (req,res)=>{
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+
+    Techno.findAll({
+        where : {
+            user_ID: decoded.id
+        }
+    })
+    .then(techno =>{
+        if(techno){
+            res.json(techno)
+        }else{
+            res.send('Technology does not exist')
         }
     })
     .catch(err =>{

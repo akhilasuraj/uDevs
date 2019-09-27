@@ -1,66 +1,89 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService, clientID } from '../authentication.service';
-import { interval } from 'rxjs';
 import { Router } from '@angular/router';
-import { count } from 'rxjs/operators';
+import * as socketIo from 'socket.io-client';
+
+import { Subscription, timer, pipe } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+
+
 
 @Component({
   selector: 'app-cli-appbar',
   templateUrl: './cli-appbar.component.html',
   styleUrls: ['./cli-appbar.component.css'],
-  
+
 })
+
+
+
 export class CliAppbarComponent implements OnInit {
 
   constructor(private auth: AuthenticationService, private router: Router) { }
 
-client_data:clientID={
-  client_ID: 0
-}
+  client_data: clientID = {
+    client_ID: this.auth.getUserDetails().id
+  }
 
-countRequest:number=null
-countBid:number=null
-countAccept:number = null
+  countRequest: number = null
+  countBid: number = null
+  countAccept: number = null
+  subscription1: Subscription;
+  subscription2: Subscription;
+  subscription3: Subscription;
 
   ngOnInit() {
 
-    this.client_data.client_ID=this.auth.getUserDetails().id
-      
-    this.auth.countRequest(this.client_data).subscribe(
-      request=>{
-        this.countRequest = request
-      },
-      err=>{
-        console.log(err)
-      }
-    )
+    // this.subscription1 = timer(0, 10000).pipe(
+    //   switchMap(() =>this.auth.countRequest(this.client_data))
+    //   ).subscribe(
+    //   request => {
+    //     this.countRequest = request
+    //   },
+    //   err => {
+    //     console.log(err)
+    //   }
+    // )
 
 
-    this.auth.countBid(this.client_data).subscribe(
-      request=>{
-        this.countBid = request
-      },
-      err=>{
-        console.log(err)
-      }
-    )
-
-    this.auth.countAccept(this.client_data).subscribe(
-      request=>{
-        this.countAccept = request
-      },
-      err=>{
-        console.log(err)
-      }
-    )
+    // this.subscription2 = timer(0, 10000).pipe(
+    //   switchMap(() =>this.auth.countBid(this.client_data))
+    //   ).subscribe(
+    //   request => {
+    //     this.countBid = request
+    //   },
+    //   err => {
+    //     console.log(err)
+    //   }
+    // )
 
 
+    // this.subscription3 = timer(0, 10000).pipe(
+    //   switchMap(() =>this.auth.countAccept(this.client_data))
+    //   ).subscribe(
+    //     request => {
+    //       this.countAccept = request
+    //     },
+    //     err => {
+    //       console.log(err)
+    //     }
+    // )
+    
 
+   
+ }
+
+  
+ ngOnDestroy() {
+  this.subscription1.unsubscribe()
+  this.subscription2.unsubscribe()
+  this.subscription3.unsubscribe()
+}
+
+  logout() {
+    this.auth.logout()
   }
 
 
-  logout(){
-    this.auth.logout()
-    }
-    
 }

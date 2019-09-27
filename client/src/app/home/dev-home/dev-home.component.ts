@@ -18,6 +18,21 @@ export class DevHomeComponent implements OnInit {
   dataProject: ProjectDetails
   otherProject: ProjectDetails
 
+
+  HEROES = [
+    {id: 1, name:'Superman'},
+    {id: 2, name:'Batman'},
+    {id: 5, name:'BatGirl'},
+    {id: 3, name:'Robin'},
+    {id: 4, name:'Flash'},
+    {id: 6, name:'Flash'},
+    {id: 7, name:'Flash'},
+    {id: 2, name:'Batman'},
+    {id: 5, name:'BatGirl'},
+    {id: 3, name:'Robin'},
+    {id: 4, name:'Flash'}
+  ]
+
   ngOnInit() {
       this.authHome.webProject().subscribe(
         project=>{

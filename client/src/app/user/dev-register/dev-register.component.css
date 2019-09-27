@@ -1,5 +1,5 @@
 
-.background {
+/* .background {
     
     background-size:cover;
     background-attachment:fixed;
@@ -19,7 +19,7 @@
     *{
       margin: 0px;
       padding: 0px;
-    }
+    } */
     .form-contro{
       background:transparent;
       border-radius: 5px;
@@ -82,6 +82,7 @@
     }
      
     .alert_msg{
+      margin-top: -2%;
       margin-left: 20px;
     }
     .form-control{

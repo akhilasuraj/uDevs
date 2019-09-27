@@ -1,43 +1,117 @@
 const Skill = require("../models/Skill")
+const Technology = require("../models/Technology")
 
-exports.add_skill = (req,res)=>{
 
-    const skillData={
-        user_ID: req.body.user_ID,
-        user_email: req.body.user_email,
-        web_skill: req.body.web_skill,
-        design_skill: req.body.design_skill,
-        writing_skill: req.body.writing_skill,
-        data_skill: req.body.data_skill,
-        other_skill: req.body.other_skill,
+exports.add_skill = (req, res) => {
+
+    for (i = 0; i < req.body.data.length; i++) {
+
+        skill = {
+            user_ID: req.body.user_ID,
+            skill: req.body.data[i]
+        }
+
+        Skill.create(skill)
 
     }
 
-    Skill.create(skillData)
-    .then(skill=>{
-        res.json(skill)
-        })
-    .catch(err =>{
-        res.send('error:'+err)
-    })
+    if (req.body.other_skills != '') {
+        skill = {
+            user_ID: req.body.user_ID,
+            skill: req.body.other_skills
+        }
+
+        Skill.create(skill)
+    }
+    res.send({ message: "Successfull" })
+
 }
 
 
-exports.update_skill = (req,res)=>{
+exports.add_technology = (req, res) => {
 
-    Skill.update({
-        user_ID: req.body.user_ID,
-        user_email: req.body.user_email,
-        web_skill: req.body.web_skill,
-        design_skill: req.body.design_skill,
-        writing_skill: req.body.writing_skill,
-        data_skill: req.body.data_skill,
-        other_skill: req.body.other_skill,
+    for (i = 0; i < req.body.data.length; i++) {
 
-    },{
-        where:{
-            user_ID:req.body.user_ID
+        technology = {
+            user_ID: req.body.user_ID,
+            technology: req.body.data[i]
+        }
+
+        Technology.create(technology)
+
+    }
+
+    if (req.body.other_technologies != '') {
+        technology = {
+            user_ID: req.body.user_ID,
+            technology: req.body.other_technologies
+        }
+
+        Technology.create(technology)
+    }
+
+    res.send({ message: "Successfull" })
+
+}
+
+
+exports.update_skill = (req, res) => {
+    Skill.destroy({
+        where: {
+            user_ID: req.body.user_ID
         }
     })
+        .then(result => {
+            for (i = 0; i < req.body.data.length; i++) {
+
+                skill = {
+                    user_ID: req.body.user_ID,
+                    skill: req.body.data[i]
+                }
+
+                Skill.create(skill)
+
+            }
+
+            skill = {
+                user_ID: req.body.user_ID,
+                skill: req.body.other_skills
+            }
+
+            Skill.create(skill)
+
+            res.send({ message: "Successfull" })
+        })
+
+}
+
+
+exports.update_technology = (req, res) => {
+    Technology.destroy({
+        where: {
+            user_ID: req.body.user_ID
+        }
+    })
+        .then(result => {
+            for (i = 0; i < req.body.data.length; i++) {
+
+                technology = {
+                    user_ID: req.body.user_ID,
+                    technology: req.body.data[i]
+                }
+
+                Technology.create(technology)
+
+            }
+
+            technology = {
+                user_ID: req.body.user_ID,
+                technology: req.body.other_technologies
+            }
+
+            Technology.create(technology)
+
+            res.send({ message: "Successfull" })
+        })
 
 }

@@ -7,22 +7,7 @@ module.exports = db.sequelize.define(
         user_ID:{
             type:Sequelize.INTEGER
         },
-        user_email:{
-            type:Sequelize.STRING
-        },
-        web_skill:{
-            type:Sequelize.STRING
-        },
-        design_skill:{
-            type:Sequelize.STRING
-        },
-        writing_skill:{
-            type:Sequelize.STRING
-        },
-        data_skill:{
-            type:Sequelize.STRING
-        },
-        other_skill:{
+        skill:{
             type:Sequelize.STRING
         }
 

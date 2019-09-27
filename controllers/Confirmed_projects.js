@@ -1,14 +1,14 @@
 const Confirmed_project = require("../models/Confirmed_project")
 const Request_project = require("../models/Request_project")
 const Bid_response = require("../models/Bid_response")
+const Project = require("../models/Project")
 
 exports.accept_project = (req,res) =>{
 
     const confirm_details = {
         developer_ID : req.body.developer_ID,
-        client_ID : req.body.client_ID,
         project_ID: req.body.project_ID,
-        category : req.body.category,
+        category: req.body.category,
         isCompleted: false
     }
 
@@ -39,6 +39,12 @@ exports.accept_project = (req,res) =>{
         })
     }
 
-    
+    Project.update({
+        isShowed: false
+    },{
+        where:{
+            id: req.body.project_ID
+        }
+    })
 
 }

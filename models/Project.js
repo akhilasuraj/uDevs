@@ -16,6 +16,9 @@ module.exports = db.sequelize.define(
         project_description:{
             type:Sequelize.STRING
         },
+        attachment:{
+            type:Sequelize.STRING
+        },
         payment:{
             type:Sequelize.STRING
         },

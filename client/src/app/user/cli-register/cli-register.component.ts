@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class CliRegisterComponent implements OnInit {
   ngOnInit() {}
 
+  marked = true
+
   credentials: TokenPayload = {
     id: 0,
     first_name: '',
@@ -19,24 +21,40 @@ export class CliRegisterComponent implements OnInit {
     password: '',
     gender: '',
     contact_no:'',
-    isActivated: true
+    profile_img: '',
+    isActivated: false
   };
 
-  userData:userID={
-    user_ID:0
-  }
+  confirm_password:string = ''
 
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   register() {
           this.auth.cli_register(this.credentials).subscribe(
             () => {
-              this.router.navigateByUrl("/");
+              this.marked = false
+              this.auth.sendEmail(this.credentials).subscribe(
+                msg =>{
+                  console.log(msg)
+                }
+              )  
             },
             err => {
               console.error(err);
             }
           );
+
+          
   }
+
+  checkMatch(){
+    if(this.credentials.password!=this.confirm_password){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
 
 }
