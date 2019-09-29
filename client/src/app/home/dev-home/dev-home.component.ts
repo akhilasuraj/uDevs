@@ -18,6 +18,7 @@ export class DevHomeComponent implements OnInit {
   dataProject: ProjectDetails
   otherProject: ProjectDetails
 
+  marked = true
 
   HEROES = [
     {id: 1, name:'Superman'},
@@ -33,9 +34,12 @@ export class DevHomeComponent implements OnInit {
     {id: 4, name:'Flash'}
   ]
 
+  project_ID
+
   ngOnInit() {
       this.authHome.webProject().subscribe(
         project=>{
+          console.log(project)
             this.webProject = project
         },
         err => {
@@ -82,8 +86,9 @@ export class DevHomeComponent implements OnInit {
   }
 
 
-  viewProject(projectID:number,clientID:number){
-    this.router.navigate(['/dev_home/viewProject'], { queryParams: { pro_id: projectID,cli_id: clientID } })
+  viewProject(projectID){
+    this.project_ID = projectID
+    this.marked = false
   }
 
 }

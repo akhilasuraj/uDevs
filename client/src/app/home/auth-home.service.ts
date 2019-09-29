@@ -72,7 +72,7 @@ export class AuthHomeService {
     }
 
 
-    public dev_getProject(details: ViewProjectObject): Observable<any> {
+    public dev_getProject(details): Observable<any> {
         return this.http.post(`/users/dev_home/dev_getProject`,details)
     }
 

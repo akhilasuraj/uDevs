@@ -1,4 +1,4 @@
-
+<div *ngIf="marked">
 
 <div class="container">Web development</div>
 
@@ -12,24 +12,23 @@
                         <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
                           alt="Card image cap">
                         <div class="card-body">
-                          <h4 class="card-title">Card title</h4>
+                          <h4 class="card-title">Web Development</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                             card's content.</p>
-                          <a class="btn btn-primary">Button</a>
+                          <a class="btn btn-primary">View project</a>
                         </div>
                       </div>
                 </div>
 
                 
-                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of HEROES">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of webProject">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+                        <img class="card-img-top" src="http://localhost:3000/{{ item?.user.profile_img }}"
                           alt="Card image cap">
                         <div class="card-body">
-                          <h4 class="card-title">Card title</h4>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                          <a class="btn btn-primary">Button</a>
+                          <h4 class="card-title">{{item?.project_name}}</h4>
+                          <p class="card-text">{{item?.user.first_name}} {{item?.user.last_name}}</p>
+                          <a class="btn btn-primary" (click)="viewProject(item.id)">View project</a>
                         </div>
                       </div>
                 </div>
@@ -144,4 +143,7 @@
     </div>
 </div>
 
+</div>
 
+
+<div *ngIf="!marked"><app-dev-view-project></app-dev-view-project></div>

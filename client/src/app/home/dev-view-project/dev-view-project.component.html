@@ -1,14 +1,4 @@
 
-<ul>
-    <li><img src="assets/img/logo.png" width="20%"  ></li>
-</ul>
-
-   <ul>
-      <li><a routerLink="/dev_home">&lt;&lt;&lt;</a></li>
-      <li  style="float:right"><a class="active" (click)="logout()">Log Out</a></li>
-  </ul>
-
-
 
   <table class="table col-md-6 mx-left">
       <th>{{ project?.project_name }}</th>
@@ -40,7 +30,7 @@
     
           <th>Bid details</th>
           <tr>
-            <td>{{ bid?.maximum_value }}</td>
+            <td>{{ project?.bid.maximum_value }}</td>
         </tr>
         <tr>
             <td>{{ diff }} Days left</td>
@@ -73,29 +63,28 @@
   </table>
 
 
-  <img src="http://localhost:3000/{{ client?.image.image_name }}"
-      alt="http://localhost:3000/{{ client?.image.image_name }}" width="10%" heigt="10%">
+  <img src="http://localhost:3000/{{ project?.user.profile_img }}" width="10%" heigt="10%">
 
   <table class="table col-md-6 mx-left">
       <th>About the client</th>
       <tr>
         <td>Fist Name</td>
-        <td>{{ client?.first_name }}</td>
+        <td>{{ project?.user.first_name }}</td>
       </tr>
       <tr>
         <td>Last Name</td>
-        <td>{{ client?.last_name }}</td>
+        <td>{{ project?.user.last_name }}</td>
       </tr>
       <tr>
         <td>Email</td>
-        <td>{{ client?.email }}</td>
+        <td>{{ project?.user.email }}</td>
       </tr>
       <tr>
         <td>Gender</td>
-        <td>{{ client?.gender }}</td>
+        <td>{{ project?.user.gender }}</td>
       </tr>
       <tr>
         <td>contact number</td>
-        <td>{{ client?.contact_no }}</td>
+        <td>{{ project?.user.contact_no }}</td>
       </tr>
     </table>

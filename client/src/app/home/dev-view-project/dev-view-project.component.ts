@@ -3,6 +3,7 @@ import { AuthenticationService, UserDetails } from '../../user/authentication.se
 import { ProjectDetails,BidDetails } from '../../project/auth-project.service';
 import { AuthHomeService, ViewProjectObject, bidResponseDetails, requestDetails } from '../auth-home.service'
 import { ActivatedRoute } from '@angular/router';
+import { DevHomeComponent } from '../../home/dev-home/dev-home.component'
 
 
 @Component({
@@ -23,12 +24,20 @@ export class DevViewProjectComponent implements OnInit {
   diff:number
   
 
-  constructor(private auth: AuthenticationService,private route: ActivatedRoute, private authHome: AuthHomeService) { }
+  constructor(
+    private auth: AuthenticationService,
+    private route: ActivatedRoute,
+     private authHome: AuthHomeService,
+     private devHome: DevHomeComponent) { }
 
   viewdetails: ViewProjectObject={
     project_ID: 0,
     client_ID : 0,
     developer_ID:0
+  }
+
+  details={
+    project_ID: 0 
   }
 
 
@@ -58,13 +67,13 @@ export class DevViewProjectComponent implements OnInit {
   ngOnInit() {
 
     this.route.queryParams.subscribe(params => {
-      this.viewdetails.project_ID = params['pro_id'];
-      this.viewdetails.client_ID = params['cli_id'];
 
-      this.viewdetails.developer_ID=this.auth.getUserDetails().id
+      this.details.project_ID = this.devHome.project_ID
 
-      this.authHome.dev_getProject(this.viewdetails).subscribe(
+      this.authHome.dev_getProject(this.details).subscribe(
         project=>{
+
+          console.log(project)
           this.project = project
           if(this.project.payment == ''){
             this.view1 = false
@@ -87,14 +96,14 @@ export class DevViewProjectComponent implements OnInit {
         }
       )
 
-      this.authHome.dev_getClient(this.viewdetails).subscribe(
-        user=>{
-          this.client=user
-        },
-        err => {
-          console.error(err)
-        }
-      )
+      // this.authHome.dev_getClient(this.viewdetails).subscribe(
+      //   user=>{
+      //     this.client=user
+      //   },
+      //   err => {
+      //     console.error(err)
+      //   }
+      // )
       
     })
 

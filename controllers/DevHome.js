@@ -8,17 +8,14 @@ exports.web_pro = (req,res)=>{
     User.hasMany(Project,{foreignKey: 'client_ID'})
     Project.belongsTo(User,{foreignKey: 'client_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Project.hasOne(Bid,{foreignKey: 'project_ID'})
     Bid.belongsTo(Project,{foreignKey: 'project_ID'})
 
     Project.findAll({
         where: {
-            project_category: 'Web development,IT & Software Skills',
+            project_category: 'Web development',
             isShowed: true
-        }, include:[{model:User, include:[Image]},{model:Bid}]
+        }, include:[{model:User},{model:Bid}]
     })
     .then(project=>{
         if(project){
@@ -156,10 +153,16 @@ exports.other_pro = (req,res)=>{
 
 
 exports.get_pro = (req,res)=>{
+    User.hasMany(Project,{foreignKey: 'client_ID'})
+    Project.belongsTo(User,{foreignKey: 'client_ID'})
+
+    Project.hasOne(Bid,{foreignKey: 'project_ID'})
+    Bid.belongsTo(Project,{foreignKey: 'project_ID'})
+
     Project.findOne({
         where: {
-            id: req.body.project_ID
-        }
+            id: req.body.project_ID,
+        }, include:[{model:User},{model:Bid}]
     })
     .then(project=>{
         if(project){
