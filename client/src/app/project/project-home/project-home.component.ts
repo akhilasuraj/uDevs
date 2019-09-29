@@ -28,7 +28,7 @@ export class ProjectHomeComponent implements OnInit {
     if(window.localStorage.getItem('usertoken')){
     this.authPro.viewAllCurrentProject().subscribe(
       project => {
-        if(project[0].id > 0){
+        if(project != ""){
           this.projects = project
           this.marked1 = false
         }else{
