@@ -1,82 +1,217 @@
 var express = require("express")
 var cors = require("cors")
 var bodyParser = require("body-parser")
-var http = require("http")
-var socketIo = require('socket.io');
-
 var app = express()
 var port = process.env.PORT || 3000
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
+const chat = require("./models/chat");
+const chatList = require("./models/chat_list");
+var usernames = {};
+
 
 app.use(bodyParser.json())
 app.use(cors())
 app.use(
-    bodyParser.urlencoded({ extended: false})
+    bodyParser.urlencoded({ extended: false })
 )
 
 var path = require("path")
-app.use(express.static(path.join(__dirname,'uploads')))
+app.use(express.static(path.join(__dirname, 'uploads')))
 
 var Users = require("./routes/users")
-app.use("/users",Users)
+app.use("/users", Users)
 
 var Admin = require("./routes/admin")
-app.use("/users",Admin)
+app.use("/users", Admin)
+
+var Chat = require("./routes/Chat")
+app.use("/users", Chat)
+
+var ChatList = require("./routes/chat_list")
+app.use("/users", ChatList)
 
 var Skills = require("./routes/skills")
-app.use("/users",Skills)
+app.use("/users", Skills)
 
 var Projects = require("./routes/projects")
-app.use("/users",Projects)
+app.use("/users", Projects)
 
 var Bids = require("./routes/bids")
-app.use("/users",Bids)
+app.use("/users", Bids)
 
 var DevHome = require("./routes/DevHome")
-app.use("/users",DevHome)
+app.use("/users", DevHome)
 
 var CliHome = require("./routes/CliHome")
-app.use("/users",CliHome)
+app.use("/users", CliHome)
 
-var Bid_response= require("./routes/Bid_responses")
-app.use("/users",Bid_response)
+var Bid_response = require("./routes/Bid_responses")
+app.use("/users", Bid_response)
 
-var Request_developers= require("./routes/Request_developers")
-app.use("/users",Request_developers)
+var Request_developers = require("./routes/Request_developers")
+app.use("/users", Request_developers)
 
-var Request_projects= require("./routes/Request_projects")
-app.use("/users",Request_projects)
+var Request_projects = require("./routes/Request_projects")
+app.use("/users", Request_projects)
 
 var Image = require("./routes/Images")
-app.use("/users",Image)
+app.use("/users", Image)
 
 var Conf_pro = require("./routes/Confirmed_projects")
-app.use("/users",Conf_pro)
+app.use("/users", Conf_pro)
 
 var Competition = require("./routes/Competition")
-app.use("/users",Competition)
+app.use("/users", Competition)
 
-const server = http.Server(app)
+//setting up with socket for chat
 
-server.listen(port, function(){
-    console.log("Server is running on port"+port)
-})
+const checked_user = {
+    st: '',
+    key: '',
+    email: ''
+}
+const nMsg = {
+    from: '',
+    to: '',
+    message: '',
+    isViewed: Boolean,
+    to_id : Number,
+    from_id : Number
+}
 
-const io = socketIo(server)
+function show_users() {
+
+    for (var i in usernames) {
+        console.log('email :' + i + ' key: ' + usernames[i])
+    }
+
+}
+
+function check_user(email) {
+
+    for (var i in usernames) {
+        if (i == email) {
+            checked_user.st = 1;
+            checked_user.key = usernames[i];
+            checked_user.email = i;
+            console.log('found user ' + i);
+            break;
 
 
-const req_pro_cont = require("./controllers/Request_projects")
+        } else {
+            checked_user.st = 0;
+            checked_user.key = '';
+            checked_user.email = '';
+            console.log('found user ' + i);
+        }
+    }
+    console.log('status=' + checked_user.st + ' key ' + checked_user.key + ':' + checked_user.email);
+    return checked_user;
 
-io.on('connection', (socket)=>{
-    socket.emit('hello', {
-        req_pro_cont
+}
+
+io.on('connection', (socket) => {
+    console.log('Socket opened');
+
+
+    socket.on('disconnect', function () {
+        console.log('Socket closed ' + usernames[socket.email] + ' was removed');
+        delete usernames[socket.email];
+
+        console.info(usernames);
+
     })
 
-    socket.emit('hello1', {
-        greeting: 'Hello uDevs1'
+
+
+    socket.on('client_new_msg', function (data) {
+        var checkedStatus = '';
+        nMsg.from = data.sEmail;
+        nMsg.to = data.rEmail;
+        nMsg.to_id = data.rId;
+        nMsg.from_id = data.fId;
+        console.log("id:"+data.rId)
+        nMsg.message = data.msg;
+        checkedStatus = check_user(data.rEmail);
+        if(nMsg.to == undefined || nMsg.from == undefined){
+            console.log("msg not sent. Error ")
+        }else{
+        if (checkedStatus.st == 1) {
+            socket.in(checkedStatus.key).broadcast.emit('server_new_message', {
+                BErvId : data.rId,
+                BEsId : data.fId ,
+                BEname: data.sName,
+                BEmsg: data.msg,
+                BEdate: new Date()
+            })
+            nMsg.isViewed = true;
+            chat.create(nMsg);
+            console.log('msg sent online :' + 'from' + nMsg.from + ' to ' + nMsg.to);
+        } else {
+            nMsg.isViewed = false;
+            chat.create(nMsg);
+            console.log('msg sent to databse :' + 'from :' + nMsg.from + ' to :' + nMsg.to);
+
+            chat.count({
+                where :{
+                    from_id : nMsg.from_id,
+                    to_id :  nMsg.to_id,
+                    isViewed : 0
+                } 
+            }).then(result=>{
+               chatList.update({
+                count : result+1
+               },{where:{
+                 u_id :  nMsg.to_id,
+                 friend_id:  nMsg.from_id
+               }})
+            })
+            
+        }
+    }
+      
+   
+      
+
     })
+
+    socket.on('new_joinee', function (data) {
+
+        if (data.email in usernames) {
+
+        } else {
+            var email = data.email
+            socket.email = data.email;
+            usernames[email] = socket.id;
+            show_users();
+
+        }
+        console.info(usernames);
+        console.log("new joined email: " + data.email);
+    })
+
+    socket.on('checkStatus', function (data) {
+        var status = '';
+        status = check_user(data.crEmail);
+        socket.emit('user_status', {
+            BEtStatus: status.st,
+            BEtEmail : data.crEmail,
+            BEtName : data.crName,
+            BEfId : data.cuId,
+            BEtId : data.crId
+        })
+    })
+
+
 })
 
 
 
+http.listen(port, function () {
+    console.log("http server run on port:" + port);
+})
 
-
+//app.listen(port, function(){
+ //   console.log("UDEVS Server is running on port:"+port)
+//})

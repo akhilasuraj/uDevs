@@ -57,6 +57,8 @@ import { DevCatagoryComponent } from './pages/dev-catagory/dev-catagory.componen
 import { AdminCatagoryComponent } from './pages/admin-catagory/admin-catagory.component';
 import { DevProjectComponent } from './project/dev-project/dev-project.component';
 import { FooterComponent } from './user/footer/footer.component'
+import { ChatComponent } from './Chatt/chat/chat.component'
+import { ChatInterfaceComponent } from './Chatt/chat-interface/chat-interface.component'
 
 const routes: Routes = [
 
@@ -135,6 +137,8 @@ const routes: Routes = [
     DevCatagoryComponent,
     AdminCatagoryComponent,
     DevProjectComponent,
+    ChatComponent,
+    ChatInterfaceComponent,
     FooterComponent
   ],
   imports: [
