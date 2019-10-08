@@ -21,8 +21,6 @@ request_developer.post('/dev_home/viewRequestDeveloper',req_dev_cont.view_reques
 
 request_developer.post('/dev_home/notification/acceptRequest',req_dev_cont.accept_req_dev)
 
-request_developer.post('/dev_home/notification/cancleAccept',req_dev_cont.cancle_accept)
-
 request_developer.post('/cli_home/newAllAcception',req_dev_cont.new_all_acception)
 
 request_developer.post('/cli_home/oldAllAcception',req_dev_cont.old_all_acception)

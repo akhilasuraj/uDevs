@@ -97,8 +97,7 @@ exports.new_all_req = (req,res)=>{
 
     Request_project.findAll({
       where:{
-        isViewed: false,
-        isAccepted: false
+        isViewed: false
       },
       include:[{
           model:Project,
@@ -127,8 +126,7 @@ exports.old_all_req = (req,res)=>{
 
     Request_project.findAll({
       where:{
-        isViewed: true,
-        isAccepted: false
+        isViewed: true
       },
       include:[{
           model:Project,
@@ -193,6 +191,13 @@ exports.accept_project = (req,res)=>{
             id: req.notification_ID,
             developer_ID: req.body.developer_ID
         }
+    })
+    .then(result=>{
+        res.json(result)
+
+    })
+    .catch(err =>{
+        res.send('error:'+err)
     })
 }
 

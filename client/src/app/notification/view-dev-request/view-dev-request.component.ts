@@ -44,6 +44,7 @@ export class ViewDevRequestComponent implements OnInit {
 
   BackToNotification(){
     this.cliNot.view = true
+    window.location.reload()
   }
 
 }

@@ -1,4 +1,5 @@
 
+
 <div *ngIf="marked">
 
 <div class="container">Web development</div>
@@ -52,39 +53,37 @@
 <div class="top-content">
     <div class="container-fluid">
         <div id="carousel-example2" class="carousel slide" data-ride="carousel">
-          <div class="container">
+            <div class="container">
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
                         <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
                         <div class="card-body">
-                          <h4 class="card-title">Card title</h4>
+                          <h4 class="card-title">Mobile development</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                             card's content.</p>
-                          <a class="btn btn-primary">Button</a>
                         </div>
                       </div>
                 </div>
 
                 
-                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of HEROES">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of mobDeveloper">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                        <img class="card-img-top" src="http://localhost:3000/{{ item?.user.profile_img}}"
                           alt="Card image cap">
                         <div class="card-body">
-                          <h4 class="card-title">Card title</h4>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                          <a class="btn btn-primary">Button</a>
+                          <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                          <p class="card-text"></p>
+                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
                         </div>
                       </div>
                 </div>
-              </div>  
-              
+                
+            </div> 
             </div>
             <a class="carousel-control-prev" href="#carousel-example2" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#carousel-example2" role="button" data-slide="next">
@@ -95,7 +94,7 @@
     </div>
 </div>
 
-<div class="container">Software development</div>
+<div class="container">Data science development</div>
 
 <div class="top-content">
     <div class="container-fluid">
@@ -104,32 +103,30 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
                         <div class="card-body">
-                          <h4 class="card-title">Card title</h4>
+                          <h4 class="card-title">Data science</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                             card's content.</p>
-                          <a class="btn btn-primary">Button</a>
                         </div>
                       </div>
                 </div>
 
                 
-                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of HEROES">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of dataDeveloper">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+                        <img class="card-img-top" src="http://localhost:3000/{{ item?.user.profile_img}}"
                           alt="Card image cap">
                         <div class="card-body">
-                          <h4 class="card-title">Card title</h4>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                          <a class="btn btn-primary">Button</a>
+                          <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                          <p class="card-text"></p>
+                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
                         </div>
                       </div>
                 </div>
                 
-            </div>
+            </div> 
             </div>
             <a class="carousel-control-prev" href="#carousel-example3" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -143,6 +140,334 @@
     </div>
 </div>
 
+
+<div class="container">Software development</div>
+
+<div class="top-content">
+    <div class="container-fluid">
+        <div id="carousel-example4" class="carousel slide" data-ride="carousel">
+            <div class="container">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Software development</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        </div>
+                      </div>
+                </div>
+
+                
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of softDeveloper">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="http://localhost:3000/{{ item?.user.profile_img}}"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                          <p class="card-text"></p>
+                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div>
+                      </div>
+                </div>
+                
+            </div> 
+            </div>
+            <a class="carousel-control-prev" href="#carousel-example4" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example4" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">Block chain development</div>
+
+<div class="top-content">
+    <div class="container-fluid">
+        <div id="carousel-example5" class="carousel slide" data-ride="carousel">
+            <div class="container">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Block chain</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        </div>
+                      </div>
+                </div>
+
+                
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of blockDeveloper">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="http://localhost:3000/{{ item?.user.profile_img}}"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                          <p class="card-text"></p>
+                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div>
+                      </div>
+                </div>
+                
+            </div> 
+            </div>
+            <a class="carousel-control-prev" href="#carousel-example5" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example5" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">Machine learning development</div>
+
+<div class="top-content">
+    <div class="container-fluid">
+        <div id="carousel-example6" class="carousel slide" data-ride="carousel">
+            <div class="container">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Machine laerning</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        </div>
+                      </div>
+                </div>
+
+                
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of machineDeveloper">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="http://localhost:3000/{{ item?.user.profile_img}}"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                          <p class="card-text"></p>
+                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div>
+                      </div>
+                </div>
+                
+            </div> 
+            </div>
+            <a class="carousel-control-prev" href="#carousel-example6" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example6" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">Natural language processing development</div>
+
+<div class="top-content">
+    <div class="container-fluid">
+        <div id="carousel-example7" class="carousel slide" data-ride="carousel">
+            <div class="container">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Natural language processing</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        </div>
+                      </div>
+                </div>
+
+                
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of langDeveloper">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="http://localhost:3000/{{ item?.user.profile_img}}"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                          <p class="card-text"></p>
+                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div>
+                      </div>
+                </div>
+                
+            </div> 
+            </div>
+            <a class="carousel-control-prev" href="#carousel-example7" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example7" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">Digital marketing development</div>
+
+<div class="top-content">
+    <div class="container-fluid">
+        <div id="carousel-example8" class="carousel slide" data-ride="carousel">
+            <div class="container">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Digital marketing</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        </div>
+                      </div>
+                </div>
+
+                
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of digiDeveloper">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="http://localhost:3000/{{ item?.user.profile_img}}"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                          <p class="card-text"></p>
+                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div>
+                      </div>
+                </div>
+                
+            </div> 
+            </div>
+            <a class="carousel-control-prev" href="#carousel-example8" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example8" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">Multimedia designing development</div>
+
+<div class="top-content">
+    <div class="container-fluid">
+        <div id="carousel-example9" class="carousel slide" data-ride="carousel">
+            <div class="container">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Multimedia designing</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        </div>
+                      </div>
+                </div>
+
+                
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of multiDeveloper">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="http://localhost:3000/{{ item?.user.profile_img}}"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                          <p class="card-text"></p>
+                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div>
+                      </div>
+                </div>
+                
+            </div> 
+            </div>
+            <a class="carousel-control-prev" href="#carousel-example9" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example9" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">Robotics development</div>
+
+<div class="top-content">
+    <div class="container-fluid">
+        <div id="carousel-example10" class="carousel slide" data-ride="carousel">
+            <div class="container">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">Robotics</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        </div>
+                      </div>
+                </div>
+
+                
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of robotDeveloper">
+                    <div class="card mb-2">
+                        <img class="card-img-top" src="http://localhost:3000/{{ item?.user.profile_img}}"
+                          alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                          <p class="card-text"></p>
+                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div>
+                      </div>
+                </div>
+                
+            </div> 
+            </div>
+            <a class="carousel-control-prev" href="#carousel-example10" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example10" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
 
 </div>
 

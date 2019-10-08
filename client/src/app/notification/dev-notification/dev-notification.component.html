@@ -28,7 +28,7 @@
 
       <div *ngFor="let reqNot of accBidReqNew">
         <button (click)="viewAccBidReq(reqNot.id)">
-          <h4><b>Accept project request</b></h4>
+          <h4><b>Accept bid request</b></h4>
           <img src="http://localhost:3000/{{ reqNot?.project?.user?.profile_img }}"
             alt="http://localhost:3000/{{ reqNot?.project?.user?.profile_img }}" width="10%" heigt="10%"><br>
           Client Name: {{ reqNot?.project?.user?.first_name }} {{ reqNot?.project?.user?.last_name }}<br>
@@ -67,7 +67,7 @@
 
       <div *ngFor="let reqNot of accBidReqOld">
         <button (click)="viewAccBidReq(reqNot.id)">
-          <h4><b>Accept project request</b></h4>
+          <h4><b>Accept bid request</b></h4>
           <img src="http://localhost:3000/{{ reqNot?.project?.user?.profile_img }}"
             alt="http://localhost:3000/{{ reqNot?.project?.user?.profile_img }}" width="10%" heigt="10%"><br>
           Client Name: {{ reqNot?.project?.user?.first_name }} {{ reqNot?.project?.user?.last_name }}<br>

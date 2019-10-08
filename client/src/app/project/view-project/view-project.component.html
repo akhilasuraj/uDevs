@@ -42,7 +42,8 @@
       <button (click)="onClick( )">Edit project</button>
       <button (click)="deleteProject( )">Delete project</button>
 
-
+      <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
+      <div id="paypal-checkout-btn"></div>
       <br><br>
 
 
@@ -53,7 +54,8 @@
           {{ proReq?.user.first_name }} {{ proReq?.user.last_name }}
           <button *ngIf="!proReq?.isAccepted" (click)="AcceptProReq(proReq.user.id, 'fixed')">Accept</button>
           <div *ngIf="proReq?.isAccepted"><b>Accepted</b>
-            <button>Pay for the service</button></div>
+            <button>Pay for the service</button>
+          </div>
           <br>
         </div>
       </div>
@@ -67,7 +69,8 @@
           {{ bidReq?.bid_value }}
           <button *ngIf="!bidReq?.isAccepted" (click)="AcceptBidReq(bidReq.user.id, 'bid')">Accept</button>
           <div *ngIf="bidReq?.isAccepted"><b>Accepted</b>
-            <button>Pay for the service</button></div>
+            <button>Pay for the service</button>
+          </div>
           <br>
         </div>
       </div>
@@ -79,8 +82,11 @@
 
       <div *ngFor="let reqDev of requestDeveloper">
         {{ reqDev?.user.first_name }} {{ reqDev?.user.last_name }}
+        <div *ngIf="reqDev?.isAccepted"><b>Accepted</b>
+          <button>Pay for the service</button>
+        </div>
+        </div>
         <br>
-      </div>
       
     </div>
 

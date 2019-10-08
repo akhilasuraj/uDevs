@@ -10,16 +10,23 @@ import { Router } from '@angular/router';
 })
 
 export class CliHomeComponent implements OnInit {
+  webDeveloper: any;
+  mobDeveloper: any;
+  dataDeveloper: any;
+  softDeveloper: any;
+  blockDeveloper: any;
+  machineDeveloper: any;
+  langDeveloper: any;
+  digiMarkDeveloper: any;
+  multiDeveloper: any;
+  robotDeveloper: any;
 
   constructor(
     private authHome: AuthHomeService,
     private router: Router,
   ) { }
 
-  webDeveloper: skillDetails
-  designer: skillDetails
-  writer: skillDetails
-  dataEnter: skillDetails
+  
 
   marked = true
 
@@ -43,7 +50,6 @@ export class CliHomeComponent implements OnInit {
 
     this.authHome.webDeveloper().subscribe(
       user=>{
-        console.log(user)
            this.webDeveloper= user
       },
       err => {
@@ -51,18 +57,9 @@ export class CliHomeComponent implements OnInit {
       }
     )
 
-    this.authHome.designDeveloper().subscribe(
+    this.authHome.mobDeveloper().subscribe(
       user=>{
-          this.designer= user
-      },
-      err => {
-        console.error(err)
-      }
-    )
-
-    this.authHome.writingDeveloper().subscribe(
-      user=>{
-          this.writer= user
+           this.mobDeveloper= user
       },
       err => {
         console.error(err)
@@ -71,12 +68,77 @@ export class CliHomeComponent implements OnInit {
 
     this.authHome.dataDeveloper().subscribe(
       user=>{
-          this.dataEnter= user
+           this.dataDeveloper= user
       },
       err => {
         console.error(err)
       }
     )
+
+    this.authHome.softDeveloper().subscribe(
+      user=>{
+           this.softDeveloper= user
+      },
+      err => {
+        console.error(err)
+      }
+    )
+
+    this.authHome.blockDeveloper().subscribe(
+      user=>{
+           this.blockDeveloper= user
+      },
+      err => {
+        console.error(err)
+      }
+    )
+
+    this.authHome.machineDeveloper().subscribe(
+      user=>{
+           this.machineDeveloper= user
+      },
+      err => {
+        console.error(err)
+      }
+    )
+
+    this.authHome.langDeveloper().subscribe(
+      user=>{
+           this.langDeveloper= user
+      },
+      err => {
+        console.error(err)
+      }
+    )
+
+    this.authHome.digiMarkDeveloper().subscribe(
+      user=>{
+           this.digiMarkDeveloper= user
+      },
+      err => {
+        console.error(err)
+      }
+    )
+
+    this.authHome.multiDeveloper().subscribe(
+      user=>{
+           this.multiDeveloper= user
+      },
+      err => {
+        console.error(err)
+      }
+    )
+
+    this.authHome.robotDeveloper().subscribe(
+      user=>{
+           this.robotDeveloper= user
+      },
+      err => {
+        console.error(err)
+      }
+    )
+
+    
   }
 
 

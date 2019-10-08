@@ -44,6 +44,7 @@ export class ViewAccBidComponent implements OnInit {
 
   BackToNotification(){
     this.devNot.view = true
+    window.location.reload()
   }
 
 
