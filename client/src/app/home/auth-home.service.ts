@@ -43,11 +43,14 @@ export interface requestDeveloperDetails{
 }
 
 
+
+
 @Injectable()
 export class AuthHomeService {
 
     constructor(private http: HttpClient, private router: Router, private auth: AuthenticationService) {}
 
+    img_link = "http://localhost:3000/"
 
     //developer
 

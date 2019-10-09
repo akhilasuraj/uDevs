@@ -52,6 +52,11 @@ export class ViewProjectComponent implements OnInit {
   requestDeveloper;
   pdfSrc: string
 
+  acceptance = {
+    first_name:'',
+    last_name:''
+  }
+
   constructor(
     private router: Router,
     private authpro: AuthProjectService,
@@ -184,16 +189,12 @@ export class ViewProjectComponent implements OnInit {
 
     this.authpro.viewProject(this.credentials).subscribe(
       project => {
-        if (project.isShowed == true) {
           if (window.confirm('Do you want to delete the project')) {
             this.authpro.deleteProject(this.credentials).subscribe(
 
             )
             this.router.navigateByUrl('/cliCatagory/project')
           }
-        } else {
-          window.alert("You can not delete any accepted project")
-        }
       })
   }
 
@@ -277,6 +278,12 @@ export class ViewProjectComponent implements OnInit {
       scripttagElement.onload = resolve;
       document.body.appendChild(scripttagElement);
     })
+  }
+
+
+  valueAssign(first_name,last_name){
+    this.acceptance.first_name = first_name
+    this.acceptance.last_name = last_name
   }
 
 }

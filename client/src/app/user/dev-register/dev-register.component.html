@@ -35,7 +35,7 @@
   
             <div class="label control-label">Password</div>
             <div class="form-contro"><input type="password" required #pword="ngModel" [class.is-invalid]="pword.invalid && pword.touched" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password"></div>
-            <div class="alert_msg" >
+            <div class="alert_msg" >     
               <small class="text-danger" *ngIf="pword.invalid && pword.touched">Password is required</small>
             </div>
   
