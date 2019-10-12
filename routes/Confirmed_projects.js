@@ -19,4 +19,8 @@ conf_pro.get('/devPro/fix_com_pro',conf_pro_cont.fix_com_pro)
 conf_pro.get('/devPro/bid_com_pro',conf_pro_cont.bid_com_pro)
 conf_pro.get('/devPro/rec_com_pro',conf_pro_cont.rec_com_pro)
 
+conf_pro.post('/devPro/view_fix_pro',conf_pro_cont.view_fix_pro)
+conf_pro.post('/devPro/view_bid_pro',conf_pro_cont.view_bid_pro)
+conf_pro.post('/devPro/view_rec_pro',conf_pro_cont.view_rec_pro)
+
 module.exports = conf_pro

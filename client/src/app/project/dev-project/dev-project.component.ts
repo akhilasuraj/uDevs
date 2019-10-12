@@ -34,14 +34,12 @@ export class DevProjectComponent implements OnInit {
     this.authPro.fix_cur_pro().subscribe(
       project =>{
         this.fixCurPro = project
-        console.log(project)
       }
     )
 
     this.authPro.bid_cur_pro().subscribe(
       project =>{
         this.bidCurPro = project
-        console.log(project)
       }
     )
 
@@ -49,21 +47,18 @@ export class DevProjectComponent implements OnInit {
     this.authPro.rec_cur_pro().subscribe(
       project =>{
         this.recCurPro = project
-        console.log(project)
       }
     )
 
     this.authPro.fix_con_pro().subscribe(
       project =>{
         this.fixConPro = project
-        console.log(project)
       }
     )
 
     this.authPro.bid_con_pro().subscribe(
       project =>{
         this.bidConPro = project
-        console.log(project)
       }
     )
 
@@ -71,7 +66,6 @@ export class DevProjectComponent implements OnInit {
     this.authPro.rec_con_pro().subscribe(
       project =>{
         this.recConPro = project
-        console.log(project)
       }
     )
 
@@ -79,14 +73,12 @@ export class DevProjectComponent implements OnInit {
   this.authPro.fix_com_pro().subscribe(
     project =>{
       this.fixComPro = project
-      console.log(project)
     }
   )
 
   this.authPro.bid_com_pro().subscribe(
     project =>{
       this.bidComPro = project
-      console.log(project)
     }
   )
 
@@ -94,24 +86,33 @@ export class DevProjectComponent implements OnInit {
   this.authPro.rec_com_pro().subscribe(
     project =>{
       this.recComPro = project
-      console.log(project)
     }
   )
 
 }
 
+fixID
+bidID
+recID
+type
 
 
-onClockfix(reqid){
-  
+onClickfix(reqid){
+  this.fixID = reqid
+  this.type = 1
+  this.marked = false
 }
 
-onClockbid(reqid){
-  
+onClickbid(reqid){
+  this.bidID = reqid
+  this.type = 2
+  this.marked = false
 }
 
-onClockrec(reqid){
-  
+onClickrec(reqid){
+  this.recID  = reqid
+  this.type = 3
+  this.marked = false
 }
 
 }

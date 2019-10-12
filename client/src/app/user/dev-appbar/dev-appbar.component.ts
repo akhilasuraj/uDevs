@@ -77,7 +77,9 @@ export class DevAppbarComponent implements OnInit {
   }
 
   logout() {
+    if(window.confirm("Do you want to logout")){
     this.auth.logout()
+    }
   }
 
 }

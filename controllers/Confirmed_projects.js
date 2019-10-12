@@ -357,3 +357,84 @@ exports.rec_com_pro = (req,res) =>{
 
 
 }
+
+
+exports.view_fix_pro = (req,res) =>{
+
+    Project.hasMany(Request_project,{foreignKey: 'project_ID'})
+    Request_project.belongsTo(Project,{foreignKey: 'project_ID'})
+
+    User.hasMany(Project,{foreignKey: 'client_ID'})
+    Project.belongsTo(User,{foreignKey: 'client_ID'})
+
+    Request_project.findOne({
+        where:{
+           id: req.body.notID
+        },include:[{
+            model:Project,
+            include:[{model:User}]
+        }]
+    })
+    .then(result=>{
+        res.json(result)
+    })
+    .catch(err =>{
+        res.send('error:'+err)
+    })
+
+
+}
+
+
+exports.view_bid_pro = (req,res) =>{
+
+    Project.hasMany(Bid_response,{foreignKey: 'project_ID'})
+    Bid_response.belongsTo(Project,{foreignKey: 'project_ID'})
+
+    User.hasMany(Project,{foreignKey: 'client_ID'})
+    Project.belongsTo(User,{foreignKey: 'client_ID'})
+
+    Bid_response.findOne({
+        where:{
+            id: req.body.notID
+        },include:[{
+            model:Project,
+            include:[{model:User}]
+        }]
+    })
+    .then(result=>{
+        res.json(result)
+    })
+    .catch(err =>{
+        res.send('error:'+err)
+    })
+
+
+}
+
+
+exports.view_rec_pro = (req,res) =>{
+
+    Project.hasMany(Request_developer,{foreignKey: 'project_ID'})
+    Request_developer.belongsTo(Project,{foreignKey: 'project_ID'})
+
+    User.hasMany(Project,{foreignKey: 'client_ID'})
+    Project.belongsTo(User,{foreignKey: 'client_ID'})
+
+    Request_developer.findOne({
+        where:{
+            id: req.body.notID
+        },include:[{
+            model:Project,
+            include:[{model:User}]
+        }]
+    })
+    .then(result=>{
+        res.json(result)
+    })
+    .catch(err =>{
+        res.send('error:'+err)
+    })
+
+
+}

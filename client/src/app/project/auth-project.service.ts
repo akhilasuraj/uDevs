@@ -179,5 +179,17 @@ export class AuthProjectService {
     })
   }
 
+  public view_fix_pro(details): Observable<any> {
+    return this.http.post(`/users/devPro/view_fix_pro`,details)
+  }
+
+  public view_bid_pro(details): Observable<any> {
+    return this.http.post(`/users/devPro/view_bid_pro`,details)
+  }
+
+  public view_rec_pro(details): Observable<any> {
+    return this.http.post(`/users/devPro/view_rec_pro`,details)
+  }
+
 
 }
