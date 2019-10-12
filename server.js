@@ -64,6 +64,10 @@ app.use("/users", Conf_pro)
 var Competition = require("./routes/Competition")
 app.use("/users", Competition)
 
+var Rating = require("./routes/rating")
+app.use("/users",Rating)
+
+
 //setting up with socket for chat
 
 const checked_user = {

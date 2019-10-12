@@ -31,6 +31,9 @@ module.exports = db.sequelize.define(
         isActivated:{
             type:Sequelize.BOOLEAN
         },
+        rating:{
+            type:Sequelize.INTEGER
+        },
         verify_key:{
             type:Sequelize.STRING
         }
