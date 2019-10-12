@@ -41,6 +41,7 @@ export class ViewAccProComponent implements OnInit {
 
   BackToNotification(){
     this.devNot.view = true
+    window.location.reload()
   }
 
 

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router'
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+// import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 import { AppComponent } from './app.component'
@@ -58,7 +58,10 @@ import { AdminCatagoryComponent } from './pages/admin-catagory/admin-catagory.co
 import { DevProjectComponent } from './project/dev-project/dev-project.component';
 import { FooterComponent } from './user/footer/footer.component'
 import { ChatComponent } from './Chatt/chat/chat.component'
-import { ChatInterfaceComponent } from './Chatt/chat-interface/chat-interface.component'
+import { ChatInterfaceComponent } from './Chatt/chat-interface/chat-interface.component';
+import { DevViewMyProjectComponent } from './project/dev-view-my-project/dev-view-my-project.component'
+
+
 
 const routes: Routes = [
 
@@ -139,14 +142,15 @@ const routes: Routes = [
     DevProjectComponent,
     ChatComponent,
     ChatInterfaceComponent,
-    FooterComponent
+    FooterComponent,
+    DevViewMyProjectComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    PdfViewerModule
+    // PdfViewerModule
   ],
   exports: [RouterModule],
   providers: [
@@ -161,4 +165,5 @@ const routes: Routes = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

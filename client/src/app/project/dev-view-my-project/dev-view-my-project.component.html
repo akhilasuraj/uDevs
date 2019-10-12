@@ -1,0 +1,159 @@
+<button (click)="BackToProject()">&lt;&lt;&lt;Back to Projects</button>
+
+<div class="container">
+  <div *ngIf="marked1">
+    <table>
+      <th>{{ fixPro?.project?.project_name }}</th>
+      <tr>
+        <td>Project Description: </td>
+        <td>{{ fixPro?.project?.project_description }}</td>
+      </tr>
+      <tr>
+        <td>Project Category: </td>
+        <td>{{ fixPro?.project?.project_category }}</td>
+      </tr>
+      <tr>
+        <td>Payment: </td>
+        <td>{{ fixPro?.project?.payment }}</td>
+      </tr>
+    </table>
+
+    <div *ngIf="!fixPro?.isAccepted">
+        <button  (click)="cancleRequest()">Cancle request</button>
+    </div>
+
+    <img src="http://localhost:3000/{{ fixPro?.project?.user.profile_img }}" width="10%" heigt="10%">
+
+
+    <table class="table col-md-6 mx-left">
+      <th>About the client</th>
+      <tr>
+        <td>Fist Name</td>
+        <td>{{ fixPro?.project?.user.first_name }}</td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td>{{ fixPro?.project?.user.last_name }}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{ fixPro?.project?.user.email }}</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>{{ fixPro?.project?.user.gender }}</td>
+      </tr>
+      <tr>
+        <td>Contact number</td>
+        <td>{{ fixPro?.project?.user.contact_no }}</td>
+      </tr>
+    </table>
+
+
+
+  </div>
+
+  <div *ngIf="marked2">
+
+    <table>
+      <th>{{ bidPro?.project?.project_name }}</th>
+      <tr>
+        <td>Project Description: </td>
+        <td>{{ bidPro?.project?.project_description }}</td>
+      </tr>
+      <tr>
+        <td>Project Category: </td>
+        <td>{{ bidPro?.project?.project_category }}</td>
+      </tr>
+      <tr>
+        <td>Your bid value: </td>
+        <td>{{ bidPro?.bid_value }}</td>
+      </tr>
+    </table>
+
+    <div *ngIf="!bidPro?.isAccepted">
+    <form (submit)="bidAgain()">
+        <label>Enter the bid value:</label>
+        <input type="number" name="bid_value" [(ngModel)]="credentials.bid_value">&nbsp;&nbsp;
+        <button type="submit">Bid again</button>
+        <button  (click)="deleteBid()">Delete the bid</button>
+    </form>
+  </div>
+
+    <img src="http://localhost:3000/{{ bidPro?.project?.user.profile_img }}" width="10%" heigt="10%">
+
+
+    <table class="table col-md-6 mx-left">
+      <th>About the client</th>
+      <tr>
+        <td>Fist Name</td>
+        <td>{{ bidPro?.project?.user.first_name }}</td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td>{{ bidPro?.project?.user.last_name }}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{ bidPro?.project?.user.email }}</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>{{ bidPro?.project?.user.gender }}</td>
+      </tr>
+      <tr>
+        <td>Contact number</td>
+        <td>{{ bidPro?.project?.user.contact_no }}</td>
+      </tr>
+    </table>
+
+  </div>
+
+  <div *ngIf="marked3">
+
+    <table>
+      <th>{{ recPro?.project?.project_name }}</th>
+      <tr>
+        <td>Project Description: </td>
+        <td>{{ recPro?.project?.project_description }}</td>
+      </tr>
+      <tr>
+        <td>Project Category: </td>
+        <td>{{ recPro?.project?.project_category }}</td>
+      </tr>
+      <tr>
+        <td>Payment: </td>
+        <td>{{ recPro?.project?.payment }}</td>
+      </tr>
+    </table>
+
+    <img src="http://localhost:3000/{{ recPro?.project?.user.profile_img }}" width="10%" heigt="10%">
+
+
+    <table class="table col-md-6 mx-left">
+      <th>About the client</th>
+      <tr>
+        <td>Fist Name</td>
+        <td>{{ recPro?.project?.user.first_name }}</td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td>{{ recPro?.project?.user.last_name }}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{recPro?.project?.user.email }}</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>{{ recPro?.project?.user.gender }}</td>
+      </tr>
+      <tr>
+        <td>Contact number</td>
+        <td>{{ recPro?.project?.user.contact_no }}</td>
+      </tr>
+
+    </table>
+
+  </div>
+</div>

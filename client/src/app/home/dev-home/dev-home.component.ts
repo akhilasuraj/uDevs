@@ -39,7 +39,6 @@ export class DevHomeComponent implements OnInit {
   ngOnInit() {
       this.authHome.webProject().subscribe(
         project=>{
-          console.log(project)
             this.webProject = project
         },
         err => {
@@ -47,42 +46,6 @@ export class DevHomeComponent implements OnInit {
         }
       )
 
-      this.authHome.designProject().subscribe(
-        project=>{
-            this.designProject = project
-            
-        },
-        err => {
-          console.error(err)
-        }
-      )
-
-      this.authHome.writingProject().subscribe(
-        project=>{
-            this.writingProject = project
-        },
-        err => {
-          console.error(err)
-        }
-      )
-
-      this.authHome.dataProject().subscribe(
-        project=>{
-            this.dataProject = project
-        },
-        err => {
-          console.error(err)
-        }
-      )
-
-      this.authHome.otherProject().subscribe(
-        project=>{
-            this.otherProject = project
-        },
-        err => {
-          console.error(err)
-        }
-      )
   }
 
 

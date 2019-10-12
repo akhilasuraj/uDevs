@@ -43,11 +43,14 @@ export interface requestDeveloperDetails{
 }
 
 
+
+
 @Injectable()
 export class AuthHomeService {
 
     constructor(private http: HttpClient, private router: Router, private auth: AuthenticationService) {}
 
+    img_link = "http://localhost:3000/"
 
     //developer
 
@@ -122,16 +125,40 @@ export class AuthHomeService {
         return this.http.get(`/users/cli_home/webDeveloper`)
     }
 
-    public designDeveloper(): Observable<any> {
-        return this.http.get(`/users/cli_home/designDeveloper`)
-    }
-
-    public writingDeveloper(): Observable<any> {
-        return this.http.get(`/users/cli_home/writingDeveloper`)
+    public mobDeveloper(): Observable<any> {
+        return this.http.get(`/users/cli_home/mobDeveloper`)
     }
 
     public dataDeveloper(): Observable<any> {
         return this.http.get(`/users/cli_home/dataDeveloper`)
+    }
+
+    public softDeveloper(): Observable<any> {
+        return this.http.get(`/users/cli_home/softDeveloper`)
+    }
+
+    public blockDeveloper(): Observable<any> {
+        return this.http.get(`/users/cli_home/blockDeveloper`)
+    }
+
+    public machineDeveloper(): Observable<any> {
+        return this.http.get(`/users/cli_home/machineDeveloper`)
+    }
+
+    public langDeveloper(): Observable<any> {
+        return this.http.get(`/users/cli_home/langDeveloper`)
+    }
+
+    public digiMarkDeveloper(): Observable<any> {
+        return this.http.get(`/users/cli_home/digiMarkDeveloper`)
+    }
+
+    public multiDeveloper(): Observable<any> {
+        return this.http.get(`/users/cli_home/multiDeveloper`)
+    }
+
+    public robotDeveloper(): Observable<any> {
+        return this.http.get(`/users/cli_home/robotDeveloper`)
     }
 
 

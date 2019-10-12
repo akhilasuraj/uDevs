@@ -1,5 +1,4 @@
-
- <button (click)="backToProject()">&lt;&lt;&lt;Back to projects</button>
+<button (click)="backToProject()">&lt;&lt;&lt;Back to projects</button>
 
 
 
@@ -39,21 +38,29 @@
         </table>
       </div>
 
-      <button (click)="onClick( )">Edit project</button>
-      <button (click)="deleteProject( )">Delete project</button>
-
+      <div *ngIf="projects?.isShowed"><button (click)="onClick( )">Edit project</button>
+        <button (click)="deleteProject( )">Delete project</button>
+      </div>
+      <div *ngIf="!projects?.isShowed">
+          <br><br>
+          <div style="color: blue"><b>Assigned to:</b> {{ acceptance.first_name }} {{ acceptance.last_name}}</div>
+          <small *ngIf="paypalLoad">Paypal button is loading</small>
+          <div id="paypal-checkout-btn"></div>
+          <button>Give feedback</button>
+      </div>
 
       <br><br>
-
 
       <div *ngIf="marked3">
         <b>Project Requests</b><br><br>
 
         <div *ngFor="let proReq of projectRequest">
           {{ proReq?.user.first_name }} {{ proReq?.user.last_name }}
-          <button *ngIf="!proReq?.isAccepted" (click)="AcceptProReq(proReq.user.id, 'fixed')">Accept</button>
+          <button *ngIf="!proReq?.isAccepted && projects?.isShowed"
+            (click)="AcceptProReq(proReq.user.id, 'fixed')">Accept</button>
           <div *ngIf="proReq?.isAccepted"><b>Accepted</b>
-            <button>Pay for the service</button></div>
+            <div *ngIf="valueAssign(proReq?.user.first_name,proReq?.user.last_name)"></div>
+          </div>
           <br>
         </div>
       </div>
@@ -65,9 +72,11 @@
         <div *ngFor="let bidReq of bidRequest">
           {{ bidReq?.user.first_name }} {{ bidReq?.user.last_name }}
           {{ bidReq?.bid_value }}
-          <button *ngIf="!bidReq?.isAccepted" (click)="AcceptBidReq(bidReq.user.id, 'bid')">Accept</button>
+          <button *ngIf="!bidReq?.isAccepted && projects?.isShowed"
+            (click)="AcceptBidReq(bidReq.user.id, 'bid')">Accept</button>
           <div *ngIf="bidReq?.isAccepted"><b>Accepted</b>
-            <button>Pay for the service</button></div>
+            <div *ngIf="valueAssign(bidReq?.user.first_name,bidReq?.user.last_name)"></div>
+          </div>
           <br>
         </div>
       </div>
@@ -79,14 +88,17 @@
 
       <div *ngFor="let reqDev of requestDeveloper">
         {{ reqDev?.user.first_name }} {{ reqDev?.user.last_name }}
-        <br>
+        <div *ngIf="reqDev?.isAccepted"><b>Accepted</b>
+          <div *ngIf="valueAssign(reqDev?.user.first_name,reqDev?.user.last_name)"></div>
+        </div>
       </div>
-      
+      <br>
+
     </div>
 
-    <div class="col mx-auto">
+    <!-- <div class="col mx-auto">
       <pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;"></pdf-viewer>
-    </div>
+    </div> -->
   </div>
 </div>
 
@@ -105,11 +117,16 @@
                   [(ngModel)]="credentials.project_name">
                 <label class="label control-label">Project Category</label>
                 <select class="form-control" name="project_category" [(ngModel)]="credentials.project_category">
-                  <option>Web development,IT & Software Skills</option>
-                  <option>Designing , Photo editing and Video editing</option>
-                  <option>Content writing</option>
-                  <option>Data Entry</option>
-                  <option>Other project</option>
+                  <option>Web development</option>
+                  <option>Mobile development</option>
+                  <option>Data science</option>
+                  <option>Software development</option>
+                  <option>Block chain</option>
+                  <option>Machine learning</option>
+                  <option>Natural language processing</option>
+                  <option>Digital marketing</option>
+                  <option>Multimedia designing</option>
+                  <option>Robotics</option>
                 </select>
                 <label class="label control-label">Project Description</label>
                 <textarea rows="8" cols="50" name="project_description"

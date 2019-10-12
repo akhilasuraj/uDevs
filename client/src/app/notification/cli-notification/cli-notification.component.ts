@@ -41,7 +41,6 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.newAllRequest(this.client_data).subscribe(
       request=>{
-        console.log(request)
         if(request!=''){
           this.requestNotificationNew = request
           this.marked1=true
@@ -54,7 +53,6 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.newAllBid(this.client_data).subscribe(
       request=>{
-        console.log(request)
         if(request!=''){
           this.bidNotificationNew = request
           this.marked1=true
@@ -67,7 +65,6 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.newAllAcception(this.client_data).subscribe(
       request=>{
-        console.log(request)
         if(request!=''){
           this.developerAcceptNew = request
           this.marked1=true
@@ -81,7 +78,6 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.oldAllRequest(this.client_data).subscribe(
       request=>{
-        console.log(request)
         if(request!=''){
           this.requestNotificationOld = request
           this.marked2=true
@@ -95,7 +91,6 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.oldAllBid(this.client_data).subscribe(
       request=>{
-        console.log(request)
         if(request!=''){
           this.bidNotificationOld = request
           this.marked2=true
@@ -108,7 +103,6 @@ export class CliNotificationComponent implements OnInit {
 
     this.authNot.oldAllAcception(this.client_data).subscribe(
       request=>{
-        console.log(request)
         if(request!=''){
           this.developerAcceptOld = request
           this.marked2=true

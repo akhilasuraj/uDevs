@@ -269,7 +269,10 @@ exports.old_all_acc_bid_req = (req,res)=>{
             isViewedAccept: true
         },
         include:{
-            model:Project
+            model:Project,
+            include:{
+                model:User
+            }
         }
     })
     .then(result=>{

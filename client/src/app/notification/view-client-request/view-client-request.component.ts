@@ -58,23 +58,23 @@ export class ViewClientRequestComponent implements OnInit {
     this.request_data.notification_ID = this.devNot.cliNot_ID
 
 
-    this.authNot.acceptRequestDeveloper(this.request_data).subscribe()
-
-    window.location.reload()
+    this.authNot.acceptRequestDeveloper(this.request_data).subscribe(
+      result=>{
+        window.alert("You have accepted request!")
+        this.ngOnInit()
+      },
+      err=>{
+        console.log(err)
+      }
+    )
 
     
   }
 
-  cancleAccept(){
-    this.request_data.developer_ID = this.auth.getUserDetails().id
 
-    this.request_data.notification_ID = this.devNot.cliNot_ID
-
-    this.authNot.cancleAccept(this.request_data).subscribe()
-
+  BackToNotification(){
+    this.devNot.view = true
     window.location.reload()
   }
-
-
 
 }

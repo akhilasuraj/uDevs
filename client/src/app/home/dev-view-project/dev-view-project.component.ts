@@ -88,6 +88,9 @@ export class DevViewProjectComponent implements OnInit {
     this.userName = this.auth.getUserDetails().first_name
     this.userId = this.auth.getUserDetails().id
 
+    this.viewdetails.developer_ID = this.auth.getUserDetails().id
+    this.viewdetails.project_ID = this.devHome.project_ID
+
 
     this.route.queryParams.subscribe(params => {
 
@@ -95,8 +98,8 @@ export class DevViewProjectComponent implements OnInit {
 
       this.authHome.dev_getProject(this.details).subscribe(
         project=>{
-
-          console.log(project)
+         
+          this.viewdetails.client_ID = project.user.id
           this.project = project
 
           if(this.project.payment == ''){
@@ -107,7 +110,7 @@ export class DevViewProjectComponent implements OnInit {
               bid=>{
                 this.bid = bid
                 this.newDate = new Date(this.bid.start_date);
-                this.diff =14 - Math.ceil((this.currentDate.valueOf() - this.newDate.valueOf())/(1000 * 3600 * 24));
+                this.diff = Math.ceil((this.currentDate.valueOf() - this.newDate.valueOf())/(1000 * 3600 * 24));
               },
               err => {
                 console.error(err)
@@ -119,15 +122,6 @@ export class DevViewProjectComponent implements OnInit {
           console.error(err)
         }
       )
-
-      // this.authHome.dev_getClient(this.viewdetails).subscribe(
-      //   user=>{
-      //     this.client=user
-      //   },
-      //   err => {
-      //     console.error(err)
-      //   }
-      // )
       
     })
 
@@ -200,9 +194,7 @@ export class DevViewProjectComponent implements OnInit {
 
     this.requestProject.developer_ID=this.auth.getUserDetails().id
 
-    this.route.queryParams.subscribe(params => {
-      this.requestProject.project_ID = params['pro_id'];
-    })
+      this.requestProject.project_ID = this.devHome.project_ID
 
     this.authHome.sendRequest(this.requestProject).subscribe(
         request=>{
@@ -220,9 +212,7 @@ export class DevViewProjectComponent implements OnInit {
   cancleRequest(){
     this.requestProject.developer_ID=this.auth.getUserDetails().id
 
-    this.route.queryParams.subscribe(params => {
-      this.requestProject.project_ID = params['pro_id'];
-    })
+      this.requestProject.project_ID = this.devHome.project_ID
 
     this.authHome.cancleRequest(this.requestProject).subscribe(
         request=>{
@@ -242,13 +232,11 @@ export class DevViewProjectComponent implements OnInit {
   sendBid(){
     this.credentials.developer_ID=this.auth.getUserDetails().id
  
-    this.route.queryParams.subscribe(params => {
-      this.credentials.project_ID = params['pro_id'];
-    })
+      this.credentials.project_ID = this.devHome.project_ID
 
     this.authHome.sendBid(this.credentials).subscribe(
       bid=>{
-        window.location.reload();
+        this.ngOnInit()
         
       },
       err=>{
@@ -260,10 +248,8 @@ export class DevViewProjectComponent implements OnInit {
 
   bidAgain(){
     this.credentials.developer_ID=this.auth.getUserDetails().id
- 
-    this.route.queryParams.subscribe(params => {
-      this.credentials.project_ID = params['pro_id'];
-    })
+
+    this.credentials.project_ID = this.devHome.project_ID
 
     this.authHome.editBid(this.credentials).subscribe(
       ()=>{
@@ -274,7 +260,7 @@ export class DevViewProjectComponent implements OnInit {
       }
     )
 
-    window.location.reload();
+    this.ngOnInit()
   }
 
 

@@ -1,3 +1,167 @@
-<p>
-  dev-project works!
-</p>
+<div *ngIf="marked">
+
+<div class="container">
+
+  <div class="row">
+    <div class="col mx-auto">
+      <h2 class="text-center">Fixed projects</h2>
+      <br><br>
+      <h4>Current projects </h4>
+
+      <div *ngFor="let pro of fixCurPro">
+
+        <table>
+          <tr>
+            <td>{{ pro?.project?.project_name }}</td>
+            <td><button (click)="onClickfix( pro?.id )">
+                View more
+              </button></td>
+          </tr>
+        </table>
+
+      </div>
+
+      <h4>Confirmed projects </h4>
+
+      <div *ngFor="let pro of fixConPro">
+        <div *ngIf="pro?.project.confirmed_project.isCompleted == 0">
+          <table>
+            <tr>
+              <td>{{ pro?.project?.project_name }}</td>
+              <td><button (click)="onClickfix( pro?.id )">
+                  View more
+                </button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <h4>Completed projects </h4>
+
+      <div *ngFor="let pro of fixComPro">
+        <div *ngIf="pro?.project.confirmed_project.isCompleted != 0">
+          <table>
+            <tr>
+              <td>{{ pro?.project?.project_name }}</td>
+              <td><button (click)="onClickfix( pro?.id )">
+                  View more
+                </button></td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="col mx-auto">
+      <h2 class="text-center">Bid projects</h2>
+      <br><br>
+      <h4>Current projects </h4>
+
+      <div *ngFor="let pro of bidCurPro">
+
+        <table>
+          <tr>
+            <td>{{ pro?.project?.project_name }}</td>
+            <td><button (click)="onClickbid( pro?.id )">
+                View more
+              </button></td>
+          </tr>
+        </table>
+
+      </div>
+
+      <h4>Confirmed projects </h4>
+
+      <div *ngFor="let pro of bidConPro">
+        <div *ngIf="pro?.project.confirmed_project.isCompleted == 0">
+          <table>
+            <tr>
+              <td>{{ pro?.project?.project_name }}</td>
+              <td><button (click)="onClickbid( pro?.id )">
+                  View more
+                </button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <h4>Completed projects </h4>
+
+      <div *ngFor="let pro of bidComPro">
+        <div *ngIf="pro?.project.confirmed_project.isCompleted != 0">
+          <table>
+            <tr>
+              <td>{{ pro?.project?.project_name }}</td>
+              <td><button (click)="onClickbid( pro?.id )">
+                  View more
+                </button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col mx-auto">
+      <h2 class="text-center">Recieved projects</h2>
+      <br><br>
+      <h4>Current projects </h4>
+
+      <div *ngFor="let pro of recCurPro">
+
+        <table>
+          <tr>
+            <td>{{ pro?.project?.project_name }}</td>
+            <td><button (click)="onClickrec( pro?.id )">
+                View more
+              </button></td>
+          </tr>
+        </table>
+
+      </div>
+
+      <h4>Confirmed projects </h4>
+
+      <div *ngFor="let pro of recConPro">
+        <div *ngIf="pro?.project.confirmed_project.isCompleted == 0">
+          <table>
+            <tr>
+              <td>{{ pro?.project?.project_name }}</td>
+              <td><button (click)="onClickrec( pro?.id )">
+                  View more
+                </button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <h4>Completed projects </h4>
+
+      <div *ngFor="let pro of recComPro">
+        <div *ngIf="pro?.project.confirmed_project.isCompleted != 0">
+          <table>
+            <tr>
+              <td>{{ pro?.project?.project_name }}</td>
+              <td><button (click)="onClickrec( pro?.id )">
+                  View more
+                </button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<div *ngIf="!marked">
+  <app-dev-view-my-project></app-dev-view-my-project>
+</div>

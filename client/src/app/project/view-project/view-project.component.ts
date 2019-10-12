@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {  AuthProjectService, ProjectPayload, ProjectDetails, BidPayload, BidDetails, ConfirmedPro} from '../auth-project.service'
+import { AuthProjectService, ProjectPayload, ProjectDetails, BidPayload, BidDetails, ConfirmedPro } from '../auth-project.service'
 import { AuthenticationService } from '../../user/authentication.service';
-import { ProjectHomeComponent} from '../../project/project-home/project-home.component'
+import { ProjectHomeComponent } from '../../project/project-home/project-home.component'
+
+declare let paypal: any;
 
 @Component({
   selector: 'app-view-project',
@@ -15,32 +17,32 @@ export class ViewProjectComponent implements OnInit {
   projects: ProjectDetails;
   bids: BidDetails
   marked1 = true
-  marked2 =false
+  marked2 = false
   marked3 = false
   marked4 = false
 
-  credentials:ProjectPayload={
+  credentials: ProjectPayload = {
     id: 0,
     client_ID: 0,
-    project_name:'',
-    project_category: '', 
-    project_description:'',
-    payment:''
+    project_name: '',
+    project_category: '',
+    project_description: '',
+    payment: ''
   }
 
-  credential:BidPayload={
+  credential: BidPayload = {
     id: 0,
     project_ID: 0,
-    maximum_value:'',
-    start_date:''
+    maximum_value: '',
+    start_date: ''
 
   }
 
-  confirmedPro: ConfirmedPro={
+  confirmedPro: ConfirmedPro = {
     id: 0,
-    developer_ID:0,
-    client_ID:0,
-    project_ID:0,
+    developer_ID: 0,
+    client_ID: 0,
+    project_ID: 0,
     category: '',
     isCompleted: false
   }
@@ -50,41 +52,46 @@ export class ViewProjectComponent implements OnInit {
   requestDeveloper;
   pdfSrc: string
 
+  acceptance = {
+    first_name:'',
+    last_name:''
+  }
+
   constructor(
-    private router: Router, 
-    private authpro: AuthProjectService, 
-    private route: ActivatedRoute, 
+    private router: Router,
+    private authpro: AuthProjectService,
+    private route: ActivatedRoute,
     private auth: AuthenticationService,
     private proHome: ProjectHomeComponent
   ) { }
 
-  ngOnInit() { 
-    if(window.localStorage.getItem('usertoken')){
+  ngOnInit() {
+    if (window.localStorage.getItem('usertoken')) {
 
-    // this.route.queryParams.subscribe(params => {
-    //   this.pro_id = params['pro_id'];
-    //   this.credentials.id = this.pro_id
-    //   this.credential.project_ID = this.pro_id
-    // })
+      // this.route.queryParams.subscribe(params => {
+      //   this.pro_id = params['pro_id'];
+      //   this.credentials.id = this.pro_id
+      //   this.credential.project_ID = this.pro_id
+      // })
 
-    this.credentials.id = this.proHome.projectDetails.project_ID
-    this.credential.project_ID = this.proHome.projectDetails.project_ID
+      this.credentials.id = this.proHome.projectDetails.project_ID
+      this.credential.project_ID = this.proHome.projectDetails.project_ID
 
-       
+
       this.authpro.viewProject(this.credentials).subscribe(
-        project=>{
-          this.projects= project
+        project => {
+          this.projects = project
           this.credentials.project_name = this.projects.project_name
           this.credentials.project_category = this.projects.project_category
           this.credentials.project_description = this.projects.project_description
           //this.pdfSrc = "http://localhost:3000/".concat(project.attachment)
           this.pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf"
 
-          if(this.projects.payment==''){
+          if (this.projects.payment == '') {
             this.marked4 = true
             this.marked3 = false
             this.authpro.viewBid(this.credential).subscribe(
-              bid=>{
+              bid => {
                 this.bids = bid
                 this.credential.maximum_value = this.bids.maximum_value
                 this.credential.start_date = this.bids.start_date
@@ -92,32 +99,32 @@ export class ViewProjectComponent implements OnInit {
             )
 
             this.authpro.viewBidRequest(this.credentials).subscribe(
-              result=>{
+              result => {
                 this.bidRequest = result
               }
             )
 
-          }else{
+          } else {
             this.marked3 = true
             this.marked4 = false
             this.credentials.payment = this.projects.payment
 
             this.authpro.viewProjectRequest(this.credentials).subscribe(
-              result=>{
+              result => {
                 this.projectRequest = result
               }
             )
           }
 
-          
+
           this.authpro.viewRequestDeveloper(this.credentials).subscribe(
-            result=>{
+            result => {
               this.requestDeveloper = result
             }
           )
-          
 
-          
+
+
 
         },
         err => {
@@ -125,32 +132,41 @@ export class ViewProjectComponent implements OnInit {
         }
       )
 
-  }else{
-    this.router.navigateByUrl('/');
-  }
-  }
-
-  onClick(){
-    this.marked1=false
-    this.marked2=true
+    } else {
+      this.router.navigateByUrl('/');
+    }
   }
 
+  onClick() {
 
-  EditProject(){
+    this.authpro.viewProject(this.credentials).subscribe(
+      project => {
+        if (project.isShowed == true) {
+          this.marked1 = false
+          this.marked2 = true
+        } else {
+          window.alert("You can not edit any accepeted project")
+        }
+      })
+  }
+
+
+  EditProject() {
+
 
     this.authpro.editProject(this.credentials).subscribe(
       () => {
-                
+
       },
       err => {
         console.error(err);
       }
     )
 
-    if(this.credentials.payment==''){
+    if (this.credentials.payment == '') {
       this.authpro.editBid(this.credential).subscribe(
         () => {
-      
+
         },
         err => {
           console.error(err);
@@ -158,48 +174,53 @@ export class ViewProjectComponent implements OnInit {
       )
     }
 
-    window.location.reload();
+    this.ngOnInit()
+    this.marked1 = true
+    this.marked2 = false
   }
 
-  CancleEditProject(){
-    this.marked1=true
-    this.marked2=false
-  }
-
-
-  deleteProject(){
-
-      if(window.confirm('Do you want to delete the project')){
-        this.authpro.deleteProject(this.credentials).subscribe(
-          
-        )
-        this.router.navigateByUrl('/project')
-      }
+  CancleEditProject() {
+    this.marked1 = true
+    this.marked2 = false
   }
 
 
-  AcceptProReq(dev_ID:number, category: string){
+  deleteProject() {
+
+    this.authpro.viewProject(this.credentials).subscribe(
+      project => {
+          if (window.confirm('Do you want to delete the project')) {
+            this.authpro.deleteProject(this.credentials).subscribe(
+
+            )
+            this.router.navigateByUrl('/cliCatagory/project')
+          }
+      })
+  }
+
+
+  AcceptProReq(dev_ID: number, category: string) {
     this.confirmedPro.developer_ID = dev_ID
     this.confirmedPro.client_ID = this.auth.getUserDetails().id
     this.confirmedPro.project_ID = this.credentials.id
     this.confirmedPro.category = category
 
     this.authpro.ConfirmedProject(this.confirmedPro).subscribe(
-      ()=>{
+      () => {
         window.location.reload()
       }
     )
 
   }
 
-  AcceptBidReq(dev_ID:number, category: string){
+  AcceptBidReq(dev_ID: number, category: string) {
     this.confirmedPro.developer_ID = dev_ID
     this.confirmedPro.client_ID = this.auth.getUserDetails().id
     this.confirmedPro.project_ID = this.credentials.id
     this.confirmedPro.category = category
-    
+
     this.authpro.ConfirmedProject(this.confirmedPro).subscribe(
-      ()=>{
+      () => {
         window.location.reload()
       }
     )
@@ -207,9 +228,62 @@ export class ViewProjectComponent implements OnInit {
   }
 
 
-  backToProject(){
+  backToProject() {
     this.proHome.wholeMarked = true
   }
 
+
+  addScript: boolean = false;
+  paypalLoad: boolean = true;
+  
+  finalAmount: number = 1;
+ 
+  paypalConfig = {
+    env: 'sandbox',
+    client: {
+      sandbox: 'Af8Sy1dWqC2jpYFk15zomB6IXHSqwOTf5en_Q2vSJfATs_uiTIfBw6NYqAUjTnwQytHMdTzGvdoWYsrR',
+      production: '<your-production-key here>'
+    },
+    commit: true,
+    payment: (data, actions) => {
+      return actions.payment.create({
+        payment: {
+          transactions: [
+            { amount: { total: this.finalAmount, currency: 'USD' } }
+          ]
+        }
+      });
+    },
+    onAuthorize: (data, actions) => {
+      return actions.payment.execute().then((payment) => {
+        //Do something when payment is successful.
+      })
+    }
+  };
+ 
+  ngAfterViewChecked(): void {
+    if (!this.addScript) {
+      this.addPaypalScript().then(() => {
+        paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
+        this.paypalLoad = false;
+      })
+    }
+  }
+  
+  addPaypalScript() {
+    this.addScript = true;
+    return new Promise((resolve, reject) => {
+      let scripttagElement = document.createElement('script');    
+      scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
+      scripttagElement.onload = resolve;
+      document.body.appendChild(scripttagElement);
+    })
+  }
+
+
+  valueAssign(first_name,last_name){
+    this.acceptance.first_name = first_name
+    this.acceptance.last_name = last_name
+  }
 
 }

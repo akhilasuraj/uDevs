@@ -82,7 +82,9 @@ export class CliAppbarComponent implements OnInit {
 }
 
   logout() {
-    this.auth.logout()
+    if(window.confirm("Do you want to logout")){
+      this.auth.logout()
+    }
   }
 
 

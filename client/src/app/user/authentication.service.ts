@@ -231,11 +231,9 @@ export class AuthenticationService {
   }
   
   public logout(): void {
-
-    if(window.confirm("Do you want to logout")){
     this.token = ''
     window.localStorage.removeItem('usertoken')
-    }
+
   }
 
 

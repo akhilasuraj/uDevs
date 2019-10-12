@@ -200,9 +200,6 @@ exports.pro_bid_response = (req,res)=>{
     User.hasMany(Bid_response,{foreignKey: 'developer_ID'})
     Bid_response.belongsTo(User,{foreignKey: 'developer_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Bid_response.findAll({
       where:{
         project_ID:req.body.project_ID
@@ -212,7 +209,7 @@ exports.pro_bid_response = (req,res)=>{
         where:{
             client_ID:req.body.client_ID
       }
-    },{model: User, include:[Image]}
+    },{model: User}
     ]
     })
     .then(request=>{
@@ -229,16 +226,13 @@ exports.pro_dev_request = (req,res)=>{
     User.hasMany(Request_developer,{foreignKey: 'developer_ID'})
     Request_developer.belongsTo(User,{foreignKey: 'developer_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
     Request_developer.findAll({
         where:{
             project_ID:req.body.project_ID,
             client_ID: req.body.client_ID
           },
           include:[{
-              model:User,include:[Image]
+              model:User
          }
         ]
     })
@@ -256,8 +250,6 @@ exports.pro_all_acception = (req,res)=>{
     User.hasMany(Request_developer,{foreignKey: 'developer_ID'})
     Request_developer.belongsTo(User,{foreignKey: 'developer_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
 
     Request_developer.findAll({
         where:{
@@ -265,7 +257,7 @@ exports.pro_all_acception = (req,res)=>{
             client_ID: req.body.client_ID
           },
           include:[{
-              model:User,include:[Image]
+              model:User
          }
         ]
     })
@@ -287,9 +279,6 @@ exports.pro_req_pro = (req,res)=>{
     User.hasMany(Request_project,{foreignKey: 'developer_ID'})
     Request_project.belongsTo(User,{foreignKey: 'developer_ID'})
 
-    User.hasOne(Image,{foreignKey: 'user_ID'})
-    Image.belongsTo(User,{foreignKey: 'user_ID'})
-
 
     Request_project.findAll({
       where:{
@@ -300,7 +289,7 @@ exports.pro_req_pro = (req,res)=>{
         where:{
             client_ID:req.body.client_ID
         }
-     }, {model: User, include:[Image]} 
+     }, {model: User} 
     ] 
     })
     .then(request=>{

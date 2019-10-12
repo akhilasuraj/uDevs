@@ -43,7 +43,6 @@ export class ProjectHomeComponent implements OnInit {
 
     this.authPro.viewAllConfiremedProject().subscribe(
       project =>{
-        console.log(project)
         if(project != ""){        
           this.Conf_projects = project
           this.marked2 = false
@@ -58,7 +57,6 @@ export class ProjectHomeComponent implements OnInit {
     
     this.authPro.viewAllCompletedProject().subscribe(
       project =>{
-        console.log(project)
         if(project != ""){
           this.Comp_projects = project
           this.marked3 = false

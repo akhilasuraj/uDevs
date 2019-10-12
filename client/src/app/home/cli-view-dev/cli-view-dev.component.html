@@ -1,9 +1,11 @@
+<button (click)="BackToHome()">&lt;&lt;&lt;Back to Home</button>
 
+<div class="container">
 
   <div class="col-md-6 mx-left">
     <h1 class="text-center">PROFILE</h1>
   </div>
-  <img src="http://localhost:3000/{{ developer?.profile_img }}"  width="20%" heigt="20%">
+  <img src="{{authHome.img_link}}{{ developer?.profile_img }}"  width="20%" heigt="20%">
   <a (click)="gotoChat()" routerLink="/cliCatagory/chat"><img src="../../../assets/img/chat.png" width="5%" heigt="5%" style="margin-left: -5%;margin-top: 5%"></a>
 
   <table class="table col-md-6 mx-left">
@@ -31,10 +33,12 @@
 
 
     <div class="col-md-6 mx-left">
-      <h1 class="text-center">Skills</h1>
+      <h1 class="text-center">Technologies</h1>
     </div>
     <table class="table col-md-6 mx-left">
-      
+      <div *ngFor="let techno of technos">
+        <tr>{{ techno?.technology }}</tr>
+      </div>
 
     </table>
     
@@ -43,7 +47,7 @@
     <select [(ngModel)]="credentials.project_ID">
       <option *ngFor="let project of projects" [value]="project.id">
           {{ project?.project_name }}
-        </option>
+      </option>
     </select>
 
     <button (click)="requestDeveloper()">Request</button>
@@ -52,7 +56,7 @@
 
   <div *ngIf="marked2">
     <div *ngFor="let requested_developer of requested_developers">
-    <button (click)="cancleRequest(requested_developer.project.id)">Requested for {{ requested_developer?.project.project_name }}</button>
+    <b>Requested for {{ requested_developer?.project.project_name }}</b>
   </div>
     <br><br>
     <select [(ngModel)]="credentials.project_ID">
@@ -64,3 +68,4 @@
       <button (click)="requestDeveloper()">Request</button>
   </div>
 
+</div>
