@@ -32,7 +32,7 @@ exports.add_project = (req,res)=>{
     
      Project.create(projectData)
      .then(project=>{
-        res.json(project)
+        res.json({project,success:1})
     })
     .catch(err =>{
         res.send('error:'+err)

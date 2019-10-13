@@ -9,14 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./dev-home.component.css']
 })
 export class DevHomeComponent implements OnInit {
+  webProject: any
+  mobProject: any;
+  dataProject: any;
+  softProject: any;
+  blockchain: any;
+  machlearn: any;
+  natlang: any;
+  digimark: any;
+  multiDesign: any;
+  robot: any;
 
   constructor(private authHome: AuthHomeService,private router: Router,) { }
 
-  designProject: ProjectDetails
-  webProject: ProjectDetails
-  writingProject: ProjectDetails
-  dataProject: ProjectDetails
-  otherProject: ProjectDetails
+
+  
+
 
   marked = true
 
@@ -40,6 +48,92 @@ export class DevHomeComponent implements OnInit {
       this.authHome.webProject().subscribe(
         project=>{
             this.webProject = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+
+      this.authHome.mobProject().subscribe(
+        project=>{
+            this.mobProject = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+
+      this.authHome.dataProject().subscribe(
+        project=>{
+            this.dataProject = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+
+      this.authHome.softProject().subscribe(
+        project=>{
+            this.softProject = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+
+      this.authHome.blockchain().subscribe(
+        project=>{
+            this.blockchain = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+
+
+      this.authHome.machlearn().subscribe(
+        project=>{
+            this.machlearn = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+
+
+      this.authHome.natlang().subscribe(
+        project=>{
+            this.natlang = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+
+
+      this.authHome.digimark().subscribe(
+        project=>{
+            this.digimark = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+
+
+      this.authHome.multiDesign().subscribe(
+        project=>{
+            this.multiDesign = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+
+
+      this.authHome.robot().subscribe(
+        project=>{
+            this.robot = project
         },
         err => {
           console.error(err)

@@ -116,7 +116,7 @@ exports.cli_register=(req,res)=>{
                 let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
                     expiresIn:1440
                 })
-                res.json({token:token})
+                res.json({token:token,success:1})
             })
             .catch(err =>{
                 res.send('error:'+err)
@@ -158,7 +158,7 @@ exports.dev_register=(req,res)=>{
                 let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
                     expiresIn:1440
                 })
-                res.json({token:token})
+                res.json({token:token,success:1})
             })
             .catch(err =>{
                 res.send('error:'+err)
@@ -186,11 +186,12 @@ exports.login=(req,res)=>{
                 let token = jwt.sign(user.dataValues, process.env.SECRET_KEY,{
                     expiresIn: 14400
                 })
-                res.json({ token: token})
+                res.json({ token: token,success:1,user})
             }else{
                 res.send('You have been banned or you have not verify your email address')
             }
         }else{
+            res.json({success: 0})
             res.send('Password incorrect')
         }
     
