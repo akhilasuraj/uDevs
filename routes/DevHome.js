@@ -5,20 +5,19 @@ dev_home.use(cors())
 
 const dev_home_cont = require("../controllers/DevHome")
 
-//dev home get webProject
+//dev home Project
 dev_home.get('/dev_home/webProject', dev_home_cont.web_pro)
+dev_home.get('/dev_home/mobProject', dev_home_cont.mob_pro)
+dev_home.get('/dev_home/dataProject', dev_home_cont.data_sci)
+dev_home.get('/dev_home/softProject', dev_home_cont.sof_dev)
+dev_home.get('/dev_home/blockchain', dev_home_cont.block_chain)
+dev_home.get('/dev_home/machlearn', dev_home_cont.mach_learn)
+dev_home.get('/dev_home/natlang', dev_home_cont.nat_lang)
+dev_home.get('/dev_home/digimark', dev_home_cont.dig_mark)
+dev_home.get('/dev_home/multiDesign', dev_home_cont.mul_des)
+dev_home.get('/dev_home/robot', dev_home_cont.robot)
 
-//dev home get designProject
-dev_home.get('/dev_home/designProject', dev_home_cont.design_pro)
 
-//dev home get writingProject
-dev_home.get('/dev_home/writingProject', dev_home_cont.writing_pro)
-
-//dev home get dataProject
-dev_home.get('/dev_home/dataProject', dev_home_cont.data_pro )
-
-//dev home get otherProject
-dev_home.get('/dev_home/otherProject', dev_home_cont.other_pro)
 
 //dev home get project
 dev_home.post('/dev_home/dev_getProject', dev_home_cont.get_pro)

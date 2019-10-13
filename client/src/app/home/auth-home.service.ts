@@ -58,21 +58,42 @@ export class AuthHomeService {
         return this.http.get(`/users/dev_home/webProject`)
     }
 
-    public designProject(): Observable<any> {
-        return this.http.get(`/users/dev_home/designProject`)
-    }
-
-    public writingProject(): Observable<any> {
-        return this.http.get(`/users/dev_home/writingProject`)
+    public mobProject(): Observable<any> {
+        return this.http.get(`/users/dev_home/mobProject`)
     }
 
     public dataProject(): Observable<any> {
         return this.http.get(`/users/dev_home/dataProject`)
     }
 
-    public otherProject(): Observable<any> {
-        return this.http.get(`/users/dev_home/otherProject`)
+    public softProject(): Observable<any> {
+        return this.http.get(`/users/dev_home/softProject`)
     }
+
+    public blockchain(): Observable<any> {
+        return this.http.get(`/users/dev_home/blockchain`)
+    }
+
+    public machlearn(): Observable<any> {
+        return this.http.get(`/users/dev_home/machlearn`)
+    }
+
+    public natlang(): Observable<any> {
+        return this.http.get(`/users/dev_home/natlang`)
+    }
+
+    public digimark(): Observable<any> {
+        return this.http.get(`/users/dev_home/digimark`)
+    }
+
+    public multiDesign(): Observable<any> {
+        return this.http.get(`/users/dev_home/multiDesign`)
+    }
+
+    public robot(): Observable<any> {
+        return this.http.get(`/users/dev_home/robot`)
+    }
+    
 
 
     public dev_getProject(details): Observable<any> {

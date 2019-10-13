@@ -68,19 +68,17 @@
                 </div>
 
                 
-                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of HEROES">
-                    <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                          alt="Card image cap">
-                        <div class="card-body">
-                          <h4 class="card-title">Card title</h4>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                          <a class="btn btn-primary">Button</a>
-                        </div>
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of mobProject">
+                  <div class="card mb-2">
+                      <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img }}"
+                        alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title">{{item?.project_name}}</h4>
+                        <p class="card-text">{{item?.user.first_name}} {{item?.user.last_name}}</p>
+                        <a class="btn btn-primary" (click)="viewProject(item.id)">View project</a>
                       </div>
-                </div>
-              </div>  
+                    </div>
+              </div>
               
             </div>
             <a class="carousel-control-prev" href="#carousel-example2" role="button" data-slide="prev">
@@ -95,7 +93,17 @@
     </div>
 </div>
 
-<div class="container">Software development</div>
+<div class="container">Data science</div>
+
+<div class="top-content">
+    <div class="container-fluid">
+        <div id="carousel-example3" class="carousel slide" data-ride="carousel">
+            <div class="container">   
+
+</div>
+
+
+<div class="container">Data science</div>
 
 <div class="top-content">
     <div class="container-fluid">
@@ -116,18 +124,17 @@
                 </div>
 
                 
-                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of HEROES">
-                    <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-                          alt="Card image cap">
-                        <div class="card-body">
-                          <h4 class="card-title">Card title</h4>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                          <a class="btn btn-primary">Button</a>
-                        </div>
+                <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of dataProject">
+                  <div class="card mb-2">
+                      <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img }}"
+                        alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title">{{item?.project_name}}</h4>
+                        <p class="card-text">{{item?.user.first_name}} {{item?.user.last_name}}</p>
+                        <a class="btn btn-primary" (click)="viewProject(item.id)">View project</a>
                       </div>
-                </div>
+                    </div>
+              </div>
                 
             </div>
             </div>
@@ -144,6 +151,7 @@
 </div>
 
 </div>
+
 
 
 <div *ngIf="!marked"><app-dev-view-project></app-dev-view-project></div>
