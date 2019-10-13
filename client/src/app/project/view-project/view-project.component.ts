@@ -21,6 +21,9 @@ export class ViewProjectComponent implements OnInit {
   marked3 = false
   marked4 = false
 
+  rateSelect = false
+  rateValue = 0
+
   credentials: ProjectPayload = {
     id: 0,
     client_ID: 0,
@@ -52,9 +55,15 @@ export class ViewProjectComponent implements OnInit {
   requestDeveloper;
   pdfSrc: string
 
+    
   acceptance = {
+    id:0,
     first_name:'',
     last_name:''
+  }
+  rateDetails = {
+    dev_Id: 0,
+    rating :0
   }
 
   constructor(
@@ -279,9 +288,22 @@ export class ViewProjectComponent implements OnInit {
       document.body.appendChild(scripttagElement);
     })
   }
+  
 
+  rate(val){
+    this.rateValue=val;
+  }
+  sendRate(){
+    console.log('rate:'+this.rateValue)
+    this.rateDetails.dev_Id=this.acceptance.id
+    this.rateDetails.rating = this.rateValue
+    this.authpro.send_rate(this.rateDetails).subscribe((res)=>{
+      console.log('rate respond:'+res);
+   })
+  }
 
-  valueAssign(first_name,last_name){
+  valueAssign(id,first_name,last_name){
+    this.acceptance.id=id
     this.acceptance.first_name = first_name
     this.acceptance.last_name = last_name
   }
