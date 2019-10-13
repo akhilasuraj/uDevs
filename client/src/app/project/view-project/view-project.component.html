@@ -46,7 +46,82 @@
           <div style="color: blue"><b>Assigned to:</b> {{ acceptance.first_name }} {{ acceptance.last_name}}</div>
           <small *ngIf="paypalLoad">Paypal button is loading</small>
           <div id="paypal-checkout-btn"></div>
-          <button>Give feedback</button>
+          <button type="button" class="btn btn-primary">Give feedback</button><br><br>
+          
+          
+         
+          
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Rate Client
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" *ngIf="rateValue === 0" id="exampleModalLongTitle" style="color:red">Please rate me</h5>
+                  <h5 class="modal-title" *ngIf="rateValue !== 0" id="exampleModalLongTitle" style="color:green">Thanks for rating me!</h5>
+                  
+                   
+                </div>
+                <div class="modal-body">
+                  <p *ngIf="rateValue===0" class="card-text">
+                    <span (click)="rate(1)" class="fa fa-star "></span>
+                    <span (click)="rate(2)" class="fa fa-star"></span>
+                    <span (click)="rate(3)" class="fa fa-star "></span>
+                    <span (click)="rate(4)"  class="fa fa-star "></span>
+                    <span (click)="rate(5)" class="fa fa-star"></span>
+                  </p>
+                  <p *ngIf="rateValue===1" class="card-text">
+                    <span (click)="rate(1)" class="fa fa-star checked "></span>
+                    <span (click)="rate(2)" class="fa fa-star"></span>
+                    <span (click)="rate(3)" class="fa fa-star "></span>
+                    <span (click)="rate(4)" class="fa fa-star "></span>
+                    <span (click)="rate(5)" class="fa fa-star"></span>
+                  </p>
+                  <p *ngIf="rateValue===2" class="card-text">
+                    <span (click)="rate(1)" class="fa fa-star checked "></span>
+                    <span (click)="rate(2)" class="fa fa-star checked "></span>
+                    <span (click)="rate(3)" class="fa fa-star "></span>
+                    <span (click)="rate(4)" class="fa fa-star "></span>
+                    <span (click)="rate(5)" class="fa fa-star"></span>
+                  </p>
+                  <p *ngIf="rateValue===3" class="card-text">
+                    <span (click)="rate(1)" class="fa fa-star checked "></span>
+                    <span (click)="rate(2)" class="fa fa-star checked "></span>
+                    <span (click)="rate(3)" class="fa fa-star checked"></span>
+                    <span (click)="rate(4)" class="fa fa-star "></span>
+                    <span (click)="rate(5)" class="fa fa-star"></span>
+                  </p>
+                  <p *ngIf="rateValue===4" class="card-text">
+                    <span (click)="rate(1)" class="fa fa-star checked "></span>
+                    <span (click)="rate(2)" class="fa fa-star checked "></span>
+                    <span (click)="rate(3)" class="fa fa-star checked"></span>
+                    <span (click)="rate(4)" class="fa fa-star checked"></span>
+                    <span (click)="rate(5)" class="fa fa-star"></span>
+                  </p>
+                  <p *ngIf="rateValue===5" class="card-text">
+                    <span (click)="rate(1)" class="fa fa-star checked "></span>
+                    <span (click)="rate(2)" class="fa fa-star checked "></span>
+                    <span (click)="rate(3)" class="fa fa-star checked"></span>
+                    <span (click)="rate(4)" class="fa fa-star checked"></span>
+                    <span (click)="rate(5)" class="fa fa-star checked"></span>
+                  </p>
+                  
+                </div>
+                <div class="modal-footer">
+                  <button (click)="sendRate()" type="button" class="btn btn-primary" data-dismiss="modal">Rate</button>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
       </div>
 
       <br><br>
@@ -59,7 +134,7 @@
           <button *ngIf="!proReq?.isAccepted && projects?.isShowed"
             (click)="AcceptProReq(proReq.user.id, 'fixed')">Accept</button>
           <div *ngIf="proReq?.isAccepted"><b>Accepted</b>
-            <div *ngIf="valueAssign(proReq?.user.first_name,proReq?.user.last_name)"></div>
+            <div *ngIf="valueAssign(proReq?.user.id,proReq?.user.first_name,proReq?.user.last_name)"></div>
           </div>
           <br>
         </div>
@@ -75,7 +150,7 @@
           <button *ngIf="!bidReq?.isAccepted && projects?.isShowed"
             (click)="AcceptBidReq(bidReq.user.id, 'bid')">Accept</button>
           <div *ngIf="bidReq?.isAccepted"><b>Accepted</b>
-            <div *ngIf="valueAssign(bidReq?.user.first_name,bidReq?.user.last_name)"></div>
+            <div *ngIf="valueAssign(bidReq?.user.id,bidReq?.user.first_name,bidReq?.user.last_name)"></div>
           </div>
           <br>
         </div>
@@ -89,7 +164,7 @@
       <div *ngFor="let reqDev of requestDeveloper">
         {{ reqDev?.user.first_name }} {{ reqDev?.user.last_name }}
         <div *ngIf="reqDev?.isAccepted"><b>Accepted</b>
-          <div *ngIf="valueAssign(reqDev?.user.first_name,reqDev?.user.last_name)"></div>
+          <div *ngIf="valueAssign(reqDev?.user.id,reqDev?.user.first_name,reqDev?.user.last_name)"></div>
         </div>
       </div>
       <br>

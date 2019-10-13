@@ -190,6 +190,8 @@ export class AuthProjectService {
   public view_rec_pro(details): Observable<any> {
     return this.http.post(`/users/devPro/view_rec_pro`,details)
   }
-
+  public send_rate(rateDetails){
+    return this.http.post(`/users/rating/rateUser`,rateDetails)
+  }
 
 }

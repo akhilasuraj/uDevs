@@ -1,0 +1,10 @@
+.card-text{
+    margin-top: 5%;
+}
+.fa-star{
+    font-size: 200%;
+    margin-right: 5%;
+}
+.checked {
+    color: orange;
+  }
