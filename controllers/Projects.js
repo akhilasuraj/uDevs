@@ -27,7 +27,8 @@ exports.add_project = (req,res)=>{
         project_description:req.body.project_description,
         attachment: this.attachFile,
         payment:req.body.payment,
-        isShowed: true
+        isShowed: true,
+        isCompleted: false
     }
     
      Project.create(projectData)

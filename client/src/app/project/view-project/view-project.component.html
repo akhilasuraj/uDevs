@@ -1,76 +1,76 @@
-<button (click)="backToProject()">&lt;&lt;&lt;Back to projects</button>
+<div class="container">
 
+  <button (click)="backToProject()">&lt;&lt;&lt;Back to projects</button>
 
+  <div *ngIf="marked1">
+    <div class="row">
+      <div class="col mx-auto">
 
-
-<div *ngIf="marked1">
-  <div class="row">
-    <div class="col mx-auto">
-
-      <th>{{ projects?.project_name }}</th>
-      <tr>
-        <td>Project Description</td>
-        <td>{{ projects?.project_description }}</td>
-      </tr>
-      <tr>
-        <td>Project Category</td>
-        <td>{{ projects?.project_category }}</td>
-      </tr>
-      <div *ngIf="marked3">
+        <th>{{ projects?.project_name }}</th>
         <tr>
-          <td>Payment</td>
-          <td>{{ projects?.payment }}</td>
+          <td>Project Description</td>
+          <td>{{ projects?.project_description }}</td>
         </tr>
-      </div>
-
-
-      <div *ngIf="marked4">
-        <table>
-          <th>Bid details</th>
+        <tr>
+          <td>Project Category</td>
+          <td>{{ projects?.project_category }}</td>
+        </tr>
+        <div *ngIf="marked3">
           <tr>
-            <td>Maximum bid value</td>
-            <td>{{ bids?.maximum_value }}</td>
+            <td>Payment</td>
+            <td>{{ projects?.payment }}</td>
           </tr>
-          <tr>
-            <td>Bid Start date</td>
-            <td>{{ bids?.start_date }}</td>
-          </tr>
-        </table>
-      </div>
+        </div>
 
-      <div *ngIf="projects?.isShowed"><button (click)="onClick( )">Edit project</button>
-        <button (click)="deleteProject( )">Delete project</button>
-      </div>
-      <div *ngIf="!projects?.isShowed">
+
+        <div *ngIf="marked4">
+          <table>
+            <th>Bid details</th>
+            <tr>
+              <td>Maximum bid value</td>
+              <td>{{ bids?.maximum_value }}</td>
+            </tr>
+            <tr>
+              <td>Bid Start date</td>
+              <td>{{ bids?.start_date }}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div *ngIf="projects?.isShowed"><button (click)="onClick( )">Edit project</button>
+          <button (click)="deleteProject( )">Delete project</button>
+        </div>
+        <div *ngIf="!projects?.isShowed && !projects?.isCompleted">
           <br><br>
           <div style="color: blue"><b>Assigned to:</b> {{ acceptance.first_name }} {{ acceptance.last_name}}</div>
           <small *ngIf="paypalLoad">Paypal button is loading</small>
           <div id="paypal-checkout-btn"></div>
           <button type="button" class="btn btn-primary">Give feedback</button><br><br>
-          
-          
-         
-          
+
+
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
             Rate Client
           </button>
-          
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" *ngIf="rateValue === 0" id="exampleModalLongTitle" style="color:red">Please rate me</h5>
-                  <h5 class="modal-title" *ngIf="rateValue !== 0" id="exampleModalLongTitle" style="color:green">Thanks for rating me!</h5>
-                  
-                   
+                  <h5 class="modal-title" *ngIf="rateValue === 0" id="exampleModalLongTitle" style="color:red">Please
+                    rate me</h5>
+                  <h5 class="modal-title" *ngIf="rateValue !== 0" id="exampleModalLongTitle" style="color:green">Thanks
+                    for rating me!</h5>
+
+
                 </div>
                 <div class="modal-body">
                   <p *ngIf="rateValue===0" class="card-text">
                     <span (click)="rate(1)" class="fa fa-star "></span>
                     <span (click)="rate(2)" class="fa fa-star"></span>
                     <span (click)="rate(3)" class="fa fa-star "></span>
-                    <span (click)="rate(4)"  class="fa fa-star "></span>
+                    <span (click)="rate(4)" class="fa fa-star "></span>
                     <span (click)="rate(5)" class="fa fa-star"></span>
                   </p>
                   <p *ngIf="rateValue===1" class="card-text">
@@ -108,11 +108,11 @@
                     <span (click)="rate(4)" class="fa fa-star checked"></span>
                     <span (click)="rate(5)" class="fa fa-star checked"></span>
                   </p>
-                  
+
                 </div>
                 <div class="modal-footer">
                   <button (click)="sendRate()" type="button" class="btn btn-primary" data-dismiss="modal">Rate</button>
-                
+
                 </div>
               </div>
             </div>
@@ -120,104 +120,109 @@
 
 
 
+        </div>
+        <div *ngIf="!projects?.isShowed && projects?.isCompleted">
+            <div style="color: blue"><b>Completed by:</b> {{ acceptance.first_name }} {{ acceptance.last_name}}</div>
+        </div>
 
+        <br><br>
 
-      </div>
+        <div *ngIf="marked3">
+          <b>Project Requests</b><br><br>
 
-      <br><br>
-
-      <div *ngIf="marked3">
-        <b>Project Requests</b><br><br>
-
-        <div *ngFor="let proReq of projectRequest">
-          {{ proReq?.user.first_name }} {{ proReq?.user.last_name }}
-          <button *ngIf="!proReq?.isAccepted && projects?.isShowed"
-            (click)="AcceptProReq(proReq.user.id, 'fixed')">Accept</button>
-          <div *ngIf="proReq?.isAccepted"><b>Accepted</b>
-            <div *ngIf="valueAssign(proReq?.user.id,proReq?.user.first_name,proReq?.user.last_name)"></div>
+          <div *ngFor="let proReq of projectRequest">
+            {{ proReq?.user.first_name }} {{ proReq?.user.last_name }}
+            <button *ngIf="!proReq?.isAccepted && projects?.isShowed"
+              (click)="AcceptProReq(proReq.user.id, 'fixed')">Accept</button>
+            <div *ngIf="proReq?.isAccepted"><b>Accepted</b>
+              <div *ngIf="valueAssign(proReq?.user.id,proReq?.user.first_name,proReq?.user.last_name)"></div>
+            </div>
+            <br>
           </div>
-          <br>
         </div>
-      </div>
 
 
-      <div *ngIf="marked4">
-        <b>Bid Responses</b><br><br>
+        <div *ngIf="marked4">
+          <b>Bid Responses</b><br><br>
 
-        <div *ngFor="let bidReq of bidRequest">
-          {{ bidReq?.user.first_name }} {{ bidReq?.user.last_name }}
-          {{ bidReq?.bid_value }}
-          <button *ngIf="!bidReq?.isAccepted && projects?.isShowed"
-            (click)="AcceptBidReq(bidReq.user.id, 'bid')">Accept</button>
-          <div *ngIf="bidReq?.isAccepted"><b>Accepted</b>
-            <div *ngIf="valueAssign(bidReq?.user.id,bidReq?.user.first_name,bidReq?.user.last_name)"></div>
+          <div *ngFor="let bidReq of bidRequest">
+            {{ bidReq?.user.first_name }} {{ bidReq?.user.last_name }}
+            {{ bidReq?.bid_value }}
+            <button *ngIf="!bidReq?.isAccepted && projects?.isShowed"
+              (click)="AcceptBidReq(bidReq.user.id, 'bid')">Accept</button>
+            <div *ngIf="bidReq?.isAccepted"><b>Accepted</b>
+              <div *ngIf="valueAssign(bidReq?.user.id,bidReq?.user.first_name,bidReq?.user.last_name)"></div>
+            </div>
+            <br>
           </div>
-          <br>
         </div>
+
+
+
+        <br><br>
+        <b>Request Developers</b><br><br>
+
+        <div *ngFor="let reqDev of requestDeveloper">
+          {{ reqDev?.user.first_name }} {{ reqDev?.user.last_name }}
+          <div *ngIf="reqDev?.isAccepted"><b>Accepted</b>
+            <div *ngIf="valueAssign(reqDev?.user.id,reqDev?.user.first_name,reqDev?.user.last_name)"></div>
+          </div>
+        </div>
+        <br>
+
       </div>
 
-
-
-      <br><br>
-      <b>Request Developers</b><br><br>
-
-      <div *ngFor="let reqDev of requestDeveloper">
-        {{ reqDev?.user.first_name }} {{ reqDev?.user.last_name }}
-        <div *ngIf="reqDev?.isAccepted"><b>Accepted</b>
-          <div *ngIf="valueAssign(reqDev?.user.id,reqDev?.user.first_name,reqDev?.user.last_name)"></div>
-        </div>
-      </div>
-      <br>
-
-    </div>
-
-    <!-- <div class="col mx-auto">
+      <!-- <div class="col mx-auto">
       <pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;"></pdf-viewer>
     </div> -->
+
+    </div>
   </div>
-</div>
 
 
-<div *ngIf="marked2">
-  <div class="background">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-5">
-          <div class="row" style="margin-top: 100px;box-shadow: -1px 1px 25px 10px rgb(77, 47, 47);">
-            <div class="col-md-12">
-              <form>
-                <label class="label control-label">Project Name</label>
-                <input type="text" class="form-control" name="project_name" placeholder="Enter suitable project name"
-                  [(ngModel)]="credentials.project_name">
-                <label class="label control-label">Project Category</label>
-                <select class="form-control" name="project_category" [(ngModel)]="credentials.project_category">
-                  <option>Web development</option>
-                  <option>Mobile development</option>
-                  <option>Data science</option>
-                  <option>Software development</option>
-                  <option>Block chain</option>
-                  <option>Machine learning</option>
-                  <option>Natural language processing</option>
-                  <option>Digital marketing</option>
-                  <option>Multimedia designing</option>
-                  <option>Robotics</option>
-                </select>
-                <label class="label control-label">Project Description</label>
-                <textarea rows="8" cols="50" name="project_description"
-                  [(ngModel)]="credentials.project_description"></textarea>
+  <div *ngIf="marked2">
+    <div class="background">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-5">
+            <div class="row" style="margin-top: 100px;box-shadow: -1px 1px 25px 10px rgb(77, 47, 47);">
+              <div class="col-md-12">
+                <form>
+                  <label class="label control-label">Project Name</label>
+                  <input type="text" class="form-control" name="project_name" placeholder="Enter suitable project name"
+                    [(ngModel)]="credentials.project_name">
+                  <label class="label control-label">Project Category</label>
+                  <select class="form-control" name="project_category" [(ngModel)]="credentials.project_category">
+                    <option>Web development</option>
+                    <option>Mobile development</option>
+                    <option>Data science</option>
+                    <option>Software development</option>
+                    <option>Block chain</option>
+                    <option>Machine learning</option>
+                    <option>Natural language processing</option>
+                    <option>Digital marketing</option>
+                    <option>Multimedia designing</option>
+                    <option>Robotics</option>
+                  </select>
+                  <label class="label control-label">Project Description</label>
+                  <textarea rows="8" cols="50" name="project_description"
+                    [(ngModel)]="credentials.project_description"></textarea>
 
-                <button (click)="EditProject()" class="btn btn-info">Confirm</button>
-                <button (click)="CancleEditProject()" class="btn btn-info">Cancle</button>
+                  <button (click)="EditProject()" class="btn btn-info">Confirm</button>
+                  <button (click)="CancleEditProject()" class="btn btn-info">Cancle</button>
 
-                <br><br>
-              </form>
+                  <br><br>
+                </form>
+              </div>
+              <div class="col-md-6"></div>
             </div>
-            <div class="col-md-6"></div>
           </div>
+          <div class="col-md-2"></div>
         </div>
-        <div class="col-md-2"></div>
       </div>
     </div>
   </div>
+
+
 </div>

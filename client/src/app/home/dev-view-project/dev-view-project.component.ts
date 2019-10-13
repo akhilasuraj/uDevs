@@ -285,5 +285,10 @@ export class DevViewProjectComponent implements OnInit {
   }
 
 
+  backToHome(){
+    this.devHome.marked = true
+  }
+
+
 
 }

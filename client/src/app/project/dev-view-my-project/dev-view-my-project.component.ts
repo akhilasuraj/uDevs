@@ -72,7 +72,6 @@ export class DevViewMyProjectComponent implements OnInit {
         project =>{
           this.fixPro = project
           this.requestProject.project_ID = project.project.id
-          console.log(this.fixPro)
         }
       )
 
@@ -92,7 +91,6 @@ export class DevViewMyProjectComponent implements OnInit {
           this.viewdetails.client_ID = project.project.user.id
           this.viewdetails.project_ID = project.project.id
           this.viewdetails.developer_ID = this.auth.getUserDetails().id
-          console.log(project)
         }
       )
 
@@ -107,7 +105,6 @@ export class DevViewMyProjectComponent implements OnInit {
       this.authPro.view_rec_pro(this.view_details).subscribe(
         project =>{
           this.recPro = project
-          console.log(project)
         }
       )
     }

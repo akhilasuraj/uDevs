@@ -242,6 +242,13 @@ export class ViewProjectComponent implements OnInit {
   }
 
 
+  valueAssign(id,first_name,last_name){
+    this.acceptance.id=id
+    this.acceptance.first_name = first_name
+    this.acceptance.last_name = last_name
+  }
+
+
   addScript: boolean = false;
   paypalLoad: boolean = true;
   
@@ -300,12 +307,6 @@ export class ViewProjectComponent implements OnInit {
     this.authpro.send_rate(this.rateDetails).subscribe((res)=>{
       console.log('rate respond:'+res);
    })
-  }
-
-  valueAssign(id,first_name,last_name){
-    this.acceptance.id=id
-    this.acceptance.first_name = first_name
-    this.acceptance.last_name = last_name
   }
 
 }

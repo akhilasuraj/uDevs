@@ -25,6 +25,9 @@ module.exports = db.sequelize.define(
         isShowed:{
             type:Sequelize.BOOLEAN
         },
+        isCompleted:{
+            type:Sequelize.BOOLEAN
+        },
 
     },
     {
