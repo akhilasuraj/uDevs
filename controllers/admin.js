@@ -57,6 +57,8 @@ exports.countOfCli=(req,res)=>{
          }
         
      })
+
+     res.json({success:1})
  }
 
  exports.activateUser=(req,res)=>{
@@ -64,9 +66,11 @@ exports.countOfCli=(req,res)=>{
          isActivated:true
      },{
          where:{
-             email:req.body.activateEmail
+             email:req.body.banedEmail
          }
      })
+
+     res.json({success:1})
  }
 
 

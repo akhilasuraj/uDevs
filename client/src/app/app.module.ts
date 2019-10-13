@@ -69,7 +69,7 @@ const routes: Routes = [
   {path: 'home/:type' , component: StartPageComponent},
   {path: 'cliCatagory/:type' , component: CliCatagoryComponent},
   {path: 'devCatagory/:type' , component: DevCatagoryComponent},
-  {path: 'adminCatagory/:type' , component: DevCatagoryComponent},
+  {path: 'adminCatagory/:type' , component: AdminCatagoryComponent},
   {path: 'verify', component: VerifyEmailComponent },
   // { path: 'dev_profile', component: DevProfileComponent, canActivate: [AuthGuardService]},
   // { path: 'cli_profile', component: CliProfileComponent, canActivate: [AuthGuardService]},
