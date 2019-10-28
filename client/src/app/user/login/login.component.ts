@@ -22,6 +22,10 @@ export class LoginComponent implements OnInit {
     isActivated: true
   }
 
+  marked1 = false
+  marked2 = false
+  marked3 = true
+
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit() {
@@ -47,5 +51,13 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+
+
+  close(){
+    this.marked3 = true
+    this.marked1 = false
+    this.marked2 = false
+  }
+
 
 }

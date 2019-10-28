@@ -70,7 +70,7 @@ export class AddProjectComponent implements OnInit {
             project => {
               this.project_details = project
 
-              if (this.project_details.payment == "") {
+              if (this.project_details.payment == '') {
 
                 this.credential.project_ID = this.project_details.id
                 console.log(this.credential)
@@ -97,7 +97,7 @@ export class AddProjectComponent implements OnInit {
         project => {
           this.project_details = project
 
-          if (this.project_details.payment == "") {
+          if (this.project_details.payment == '') {
 
             this.credential.project_ID = this.project_details.id
             console.log(this.credential)

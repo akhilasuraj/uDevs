@@ -1,5 +1,6 @@
 const rating = require('../models/rating')
 const user = require('../models/User')
+const cliFeedback = require('../models/cli_feedback')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op;
 //newRating
@@ -35,4 +36,23 @@ exports.rateUser = (req,res)=>{
     })
 
 
+}
+
+
+exports.sendFeedback = (req,res)=>{
+
+    feedbackData = {
+        project_ID: req.body.project_ID,
+        client_ID: req.body.client_ID,
+        developer_ID: req.body.developer_ID,
+        feedback: req.body.editorData
+    }
+
+    cliFeedback.create(feedbackData)
+    .then(feedback=>{
+        res.json({success:1})
+    })
+    .catch(err =>{
+        res.send('error:'+err)
+    })
 }

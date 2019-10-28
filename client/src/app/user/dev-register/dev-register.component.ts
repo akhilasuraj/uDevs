@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService, TokenPayload } from '../authentication.service';
 import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component'
 
 @Component({
   selector: 'app-dev-register',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class DevRegisterComponent implements OnInit {
   marked = true
+  precontact_no = '';
+  postcontact_no = '';
 
   credentials: TokenPayload = {
     id: 0,
@@ -25,18 +28,21 @@ export class DevRegisterComponent implements OnInit {
 
   confirm_password:string = ''
 
-  constructor(private auth: AuthenticationService, private router: Router) {}
+  constructor(private auth: AuthenticationService, private router: Router,
+    private log: LoginComponent) {}
 
   ngOnInit(){}
   
 
   register() {
+
+    this.credentials.contact_no = this.precontact_no+"-"+this.postcontact_no
           this.auth.dev_register(this.credentials).subscribe(
             () => {
               this.marked = false
               this.auth.sendEmail(this.credentials).subscribe(
                 msg =>{
-                  console.log(msg)
+                  this.router.navigateByUrl('/pleaseVerify')
                 }
               )  
             },

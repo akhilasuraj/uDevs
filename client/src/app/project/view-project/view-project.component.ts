@@ -66,6 +66,15 @@ export class ViewProjectComponent implements OnInit {
     rating :0
   }
 
+  public model = {
+    editorData: '',
+    client_ID: 0,
+    project_ID: 0,
+    developer_ID: 0
+  }
+
+  set1 = true
+
   constructor(
     private router: Router,
     private authpro: AuthProjectService,
@@ -202,7 +211,7 @@ export class ViewProjectComponent implements OnInit {
             this.authpro.deleteProject(this.credentials).subscribe(
 
             )
-            this.router.navigateByUrl('/cliCatagory/project')
+           window.location.reload()
           }
       })
   }
@@ -300,13 +309,33 @@ export class ViewProjectComponent implements OnInit {
   rate(val){
     this.rateValue=val;
   }
+
   sendRate(){
     console.log('rate:'+this.rateValue)
     this.rateDetails.dev_Id=this.acceptance.id
     this.rateDetails.rating = this.rateValue
     this.authpro.send_rate(this.rateDetails).subscribe((res)=>{
       console.log('rate respond:'+res);
+      this.set1 = false
    })
+  }
+
+
+  sendFeedback(){
+
+    this.model.developer_ID = this.acceptance.id
+    this.model.client_ID = this.auth.getUserDetails().id
+    this.model.project_ID =this.proHome.projectDetails.project_ID
+
+    this.authpro.send_feedback(this.model).subscribe(
+      (res) => {
+
+      },
+      err => {
+        console.error(err);
+      }
+    )
+    
   }
 
 }
