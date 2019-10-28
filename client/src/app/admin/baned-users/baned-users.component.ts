@@ -45,14 +45,29 @@ export class BanedUsersComponent implements OnInit {
 
 
 }
+
+
 banedUser(banedEmail:string){
   this.banedDetails.banedEmail=banedEmail
   
   this.authAdm.banedUser(this.banedDetails).subscribe(
-    () => {
-       
-    },
+    result => {
+      this.ngOnInit();
+    }
   )
+ 
+}
+
+activateUser(banedEmail:string){
+  this.banedDetails.banedEmail=banedEmail
+  
+  this.authAdm.activateUser(this.banedDetails).subscribe(
+    result => {
+      this.ngOnInit();
+    }
+  )
+
+  
  
 }
 

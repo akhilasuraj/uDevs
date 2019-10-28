@@ -1,6 +1,10 @@
-<button (click)="BackToNotification()">&lt;&lt;&lt;Back to Notifications</button>
+
 
 <div class="container">
+
+    <button (click)="BackToNotification()">&lt;&lt;&lt;Back to Notifications</button>
+
+    <div>
   <img src="http://localhost:3000/{{ Not_details?.project?.user?.profile_img }}"
     alt="http://localhost:3000/{{ Not_details?.project?.user?.profile_img }}"><br>
 
@@ -9,4 +13,5 @@
   {{ Not_details?.project?.user?.last_name }}<br>
 
   {{ Not_details?.project?.project_name }}
+</div>
 </div>

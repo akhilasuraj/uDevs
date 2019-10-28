@@ -1,8 +1,11 @@
 
 
-<button (click)="BackToNotification()">&lt;&lt;&lt;Back to Notifications</button>
+
 
 <div class="container">
+<button (click)="BackToNotification()">&lt;&lt;&lt;Back to Notifications</button>
+
+<div>
 <img src="http://localhost:3000/{{ Not_details?.user?.profile_img  }}"
 alt="http://localhost:3000/{{ Not_details?.user?.profile_img  }}">
 
@@ -15,5 +18,7 @@ alt="http://localhost:3000/{{ Not_details?.user?.profile_img  }}">
 
 <div *ngIf="marked1"><button (click)="acceptRequest()">Accept the request</button></div>
 <div *ngIf="marked2"><button>Accepted</button></div>
+
+</div>
 
 </div>

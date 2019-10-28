@@ -31,4 +31,8 @@ export class AuthAdminService {
   public banedUser(banedEmail){
     return this.http.post(`/users/admin/banedUser`,banedEmail)
   }
+
+  public activateUser(banedEmail){
+    return this.http.post(`/users/admin/activateUser`,banedEmail)
+  }
 }
