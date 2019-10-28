@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router'
+import { CKEditorModule } from 'ckeditor4-angular';
 // import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
@@ -59,7 +60,8 @@ import { DevProjectComponent } from './project/dev-project/dev-project.component
 import { FooterComponent } from './user/footer/footer.component'
 import { ChatComponent } from './Chatt/chat/chat.component'
 import { ChatInterfaceComponent } from './Chatt/chat-interface/chat-interface.component';
-import { DevViewMyProjectComponent } from './project/dev-view-my-project/dev-view-my-project.component'
+import { DevViewMyProjectComponent } from './project/dev-view-my-project/dev-view-my-project.component';
+import { VerifyMsgComponent } from './user/verify-msg/verify-msg.component'
 
 
 
@@ -71,6 +73,7 @@ const routes: Routes = [
   {path: 'devCatagory/:type' , component: DevCatagoryComponent},
   {path: 'adminCatagory/:type' , component: AdminCatagoryComponent},
   {path: 'verify', component: VerifyEmailComponent },
+  {path: 'pleaseVerify', component: VerifyMsgComponent },
   // { path: 'dev_profile', component: DevProfileComponent, canActivate: [AuthGuardService]},
   // { path: 'cli_profile', component: CliProfileComponent, canActivate: [AuthGuardService]},
   // { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService]},
@@ -143,13 +146,15 @@ const routes: Routes = [
     ChatComponent,
     ChatInterfaceComponent,
     FooterComponent,
-    DevViewMyProjectComponent
+    DevViewMyProjectComponent,
+    VerifyMsgComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    CKEditorModule
     // PdfViewerModule
   ],
   exports: [RouterModule],

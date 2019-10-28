@@ -45,9 +45,8 @@
           <div style="color: blue"><b>Assigned to:</b> {{ acceptance.first_name }} {{ acceptance.last_name}}</div>
           <small *ngIf="paypalLoad">Paypal button is loading</small>
           <div id="paypal-checkout-btn"></div>
-          <button type="button" class="btn btn-primary">Give feedback</button><br><br>
 
-
+          <br><br>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
             Rate Client
           </button>
@@ -58,61 +57,83 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" *ngIf="rateValue === 0" id="exampleModalLongTitle" style="color:red">Please
-                    rate me</h5>
-                  <h5 class="modal-title" *ngIf="rateValue !== 0" id="exampleModalLongTitle" style="color:green">Thanks
-                    for rating me!</h5>
+
+                  <div *ngIf="set1">
+                    <h5 class="modal-title" *ngIf="rateValue === 0" id="exampleModalLongTitle" style="color:red">Please
+                      rate me</h5>
+                    <h5 class="modal-title" *ngIf="rateValue !== 0" id="exampleModalLongTitle" style="color:green">
+                      Thanks
+                      for rating me!</h5>
+                  </div>
+
+                  <div *ngIf="!set1">
+                    <b style="color: red"> Give your comment here:</b>
+                  </div>
 
 
                 </div>
                 <div class="modal-body">
-                  <p *ngIf="rateValue===0" class="card-text">
-                    <span (click)="rate(1)" class="fa fa-star "></span>
-                    <span (click)="rate(2)" class="fa fa-star"></span>
-                    <span (click)="rate(3)" class="fa fa-star "></span>
-                    <span (click)="rate(4)" class="fa fa-star "></span>
-                    <span (click)="rate(5)" class="fa fa-star"></span>
-                  </p>
-                  <p *ngIf="rateValue===1" class="card-text">
-                    <span (click)="rate(1)" class="fa fa-star checked "></span>
-                    <span (click)="rate(2)" class="fa fa-star"></span>
-                    <span (click)="rate(3)" class="fa fa-star "></span>
-                    <span (click)="rate(4)" class="fa fa-star "></span>
-                    <span (click)="rate(5)" class="fa fa-star"></span>
-                  </p>
-                  <p *ngIf="rateValue===2" class="card-text">
-                    <span (click)="rate(1)" class="fa fa-star checked "></span>
-                    <span (click)="rate(2)" class="fa fa-star checked "></span>
-                    <span (click)="rate(3)" class="fa fa-star "></span>
-                    <span (click)="rate(4)" class="fa fa-star "></span>
-                    <span (click)="rate(5)" class="fa fa-star"></span>
-                  </p>
-                  <p *ngIf="rateValue===3" class="card-text">
-                    <span (click)="rate(1)" class="fa fa-star checked "></span>
-                    <span (click)="rate(2)" class="fa fa-star checked "></span>
-                    <span (click)="rate(3)" class="fa fa-star checked"></span>
-                    <span (click)="rate(4)" class="fa fa-star "></span>
-                    <span (click)="rate(5)" class="fa fa-star"></span>
-                  </p>
-                  <p *ngIf="rateValue===4" class="card-text">
-                    <span (click)="rate(1)" class="fa fa-star checked "></span>
-                    <span (click)="rate(2)" class="fa fa-star checked "></span>
-                    <span (click)="rate(3)" class="fa fa-star checked"></span>
-                    <span (click)="rate(4)" class="fa fa-star checked"></span>
-                    <span (click)="rate(5)" class="fa fa-star"></span>
-                  </p>
-                  <p *ngIf="rateValue===5" class="card-text">
-                    <span (click)="rate(1)" class="fa fa-star checked "></span>
-                    <span (click)="rate(2)" class="fa fa-star checked "></span>
-                    <span (click)="rate(3)" class="fa fa-star checked"></span>
-                    <span (click)="rate(4)" class="fa fa-star checked"></span>
-                    <span (click)="rate(5)" class="fa fa-star checked"></span>
-                  </p>
+                  <div *ngIf="set1">
+                    <p *ngIf="rateValue===0" class="card-text">
+                      <span (click)="rate(1)" class="fa fa-star "></span>
+                      <span (click)="rate(2)" class="fa fa-star"></span>
+                      <span (click)="rate(3)" class="fa fa-star "></span>
+                      <span (click)="rate(4)" class="fa fa-star "></span>
+                      <span (click)="rate(5)" class="fa fa-star"></span>
+                    </p>
+                    <p *ngIf="rateValue===1" class="card-text">
+                      <span (click)="rate(1)" class="fa fa-star checked "></span>
+                      <span (click)="rate(2)" class="fa fa-star"></span>
+                      <span (click)="rate(3)" class="fa fa-star "></span>
+                      <span (click)="rate(4)" class="fa fa-star "></span>
+                      <span (click)="rate(5)" class="fa fa-star"></span>
+                    </p>
+                    <p *ngIf="rateValue===2" class="card-text">
+                      <span (click)="rate(1)" class="fa fa-star checked "></span>
+                      <span (click)="rate(2)" class="fa fa-star checked "></span>
+                      <span (click)="rate(3)" class="fa fa-star "></span>
+                      <span (click)="rate(4)" class="fa fa-star "></span>
+                      <span (click)="rate(5)" class="fa fa-star"></span>
+                    </p>
+                    <p *ngIf="rateValue===3" class="card-text">
+                      <span (click)="rate(1)" class="fa fa-star checked "></span>
+                      <span (click)="rate(2)" class="fa fa-star checked "></span>
+                      <span (click)="rate(3)" class="fa fa-star checked"></span>
+                      <span (click)="rate(4)" class="fa fa-star "></span>
+                      <span (click)="rate(5)" class="fa fa-star"></span>
+                    </p>
+                    <p *ngIf="rateValue===4" class="card-text">
+                      <span (click)="rate(1)" class="fa fa-star checked "></span>
+                      <span (click)="rate(2)" class="fa fa-star checked "></span>
+                      <span (click)="rate(3)" class="fa fa-star checked"></span>
+                      <span (click)="rate(4)" class="fa fa-star checked"></span>
+                      <span (click)="rate(5)" class="fa fa-star"></span>
+                    </p>
+                    <p *ngIf="rateValue===5" class="card-text">
+                      <span (click)="rate(1)" class="fa fa-star checked "></span>
+                      <span (click)="rate(2)" class="fa fa-star checked "></span>
+                      <span (click)="rate(3)" class="fa fa-star checked"></span>
+                      <span (click)="rate(4)" class="fa fa-star checked"></span>
+                      <span (click)="rate(5)" class="fa fa-star checked"></span>
+                    </p>
+
+                  </div>
+
+                  <div *ngIf="!set1">
+                    <!-- <ckeditor [(ngModel)]="model.editorData"></ckeditor> -->
+                    <textarea rows="8" cols="60" [(ngModel)]="model.editorData"></textarea>
+                  </div>
 
                 </div>
                 <div class="modal-footer">
-                  <button (click)="sendRate()" type="button" class="btn btn-primary" data-dismiss="modal">Rate</button>
-
+                  <div *ngIf="set1">
+                    <button (click)="sendRate()" type="button" class="btn btn-primary"
+                    >Rate</button>
+                  </div>
+                  <div *ngIf="!set1">
+                      <button (click)="sendFeedback()" type="button" class="btn btn-primary"
+                      data-dismiss="modal">Give feedback</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -122,7 +143,7 @@
 
         </div>
         <div *ngIf="!projects?.isShowed && projects?.isCompleted">
-            <div style="color: blue"><b>Completed by:</b> {{ acceptance.first_name }} {{ acceptance.last_name}}</div>
+          <div style="color: blue"><b>Completed by:</b> {{ acceptance.first_name }} {{ acceptance.last_name}}</div>
         </div>
 
         <br><br>

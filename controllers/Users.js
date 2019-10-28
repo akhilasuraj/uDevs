@@ -50,10 +50,10 @@ exports.send_email = (req,res)=>{
 	smtpTransport.sendMail(mailOptions, function (error, response) {
 		if (error) {
 			console.log(error);
-			res.send("error");
+			res.json({success:0});
 		} else {
 			console.log("Message sent: " + response.message);
-			res.send("sent");
+			res.json({success:1});
 		}
 	});
 }

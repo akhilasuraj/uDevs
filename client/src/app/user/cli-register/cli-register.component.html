@@ -1,4 +1,4 @@
-<div *ngIf='marked'>
+<!-- <div *ngIf='marked'>
   <div class="background">
              
     <div class="container">
@@ -75,4 +75,121 @@
     <div *ngIf="!marked">
       You have to verify your email
     </div>
-    
+     -->
+
+     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+<div class="container">
+
+<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+	<h4 class="card-title mt-3 text-center">Create Account</h4>
+	<p class="text-center">Get started with your free account</p>
+	<p>
+		<a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+		<a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+	</p>
+	<p class="divider-text">
+        <span class="bg-light">OR</span>
+    </p>
+	<form #userForm="ngForm" name="userForm" (submit)="register()">
+
+	<div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+		 </div>
+        <input name="first_name" class="form-control" placeholder="First name" type="text" required #fname="ngModel" [class.is-invalid]="fname.invalid && fname.touched" [(ngModel)]="credentials.first_name">
+    </div> <!-- form-group// -->
+    <div class="alert_msg" >
+        <small class="text-danger" *ngIf="fname.invalid && fname.touched">Frist name is required</small>
+      </div>
+
+    <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+         </div>
+            <input name="last_name" class="form-control" placeholder="Last name" type="text" required #lname="ngModel" [class.is-invalid]="lname.invalid && lname.touched" [(ngModel)]="credentials.last_name">
+        </div> <!-- form-group// -->
+        <div class="alert_msg" >
+            <small class="text-danger" *ngIf="lname.invalid && lname.touched">Last name is required</small>
+          </div>
+
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+		 </div>
+        <input name="email" class="form-control" placeholder="Email address" type="email" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched" [(ngModel)]="credentials.email">
+    </div> <!-- form-group// -->
+    <div class="alert_msg" >
+        <small class="text-danger" *ngIf="email.invalid && email.touched">E-mail is required</small>
+      </div>
+
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+		</div>
+		<select name="precontact_no" class="custom-select" style="max-width: 120px;" [(ngModel)]="precontact_no">
+        <option selected="true" value="070">070</option>
+        <option value="071">071</option>
+		    <option value="072">072</option>
+		    <option value="075">075</option>
+        <option value="076">076</option>
+        <option value="077">077</option>
+        <option value="078">078</option>
+		</select>
+    	<input class="form-control" placeholder="Phone number" required #pnum="ngModel" pattern="^\d{7}$" type="text" placeholder="#######" [class.is-invalid]="pnum.invalid && pnum.touched"  name="postcontact_no" [(ngModel)]="postcontact_no">
+    </div> <!-- form-group// -->
+    <div *ngIf="pnum.errors && (pnum.invalid && pnum.touched)">
+        <div class="alert_msg" >
+       <small *ngIf="pnum.errors.required" class="text-danger">Contact number is required</small>
+       <small *ngIf="pnum.errors.pattern" class="text-danger">contact number must be 10 digits</small>
+        </div>
+    </div>
+
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+		</div>
+		<select class="form-control" name="gender" [(ngModel)]="credentials.gender">
+			<option value="Male">Male</option>
+			<option value="Female">Female</option>
+		</select>
+  </div> <!-- form-group end.// -->
+  
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        <input name="password" class="form-control" placeholder="Create password" type="password" required #pword="ngModel" [class.is-invalid]="pword.invalid && pword.touched" [(ngModel)]="credentials.password">
+    </div> <!-- form-group// -->
+    <div class="alert_msg" >
+        <small class="text-danger" *ngIf="pword.invalid && pword.touched">Password is required</small>
+      </div>
+
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        <input class="form-control" name="cpassword" placeholder="Repeat password" type="password" required  [(ngModel)]="confirm_password">
+    </div> <!-- form-group// -->
+    <div class="alert_msg" >
+        <small class="text-danger" *ngIf="checkMatch()">Passwords are not match</small>
+      </div>  
+
+    <div class="form-group">
+        <button *ngIf="!userForm.form.invalid" type="submit" [disabled]="userForm.form.invalid" class="btn btn-primary btn-block">Create account</button>
+          <button *ngIf="userForm.form.invalid" type="submit" [disabled]="userForm.form.invalid" class="btn btn-primary btn-block">Create account</button>
+    </div> <!-- form-group// -->      
+    <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
+</form>
+</article>
+</div> <!-- card.// -->
+
+</div> 
+<!--container end.//-->

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginComponent } from '../login/login.component'
 
 @Component({
   selector: 'app-user-type',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserTypeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private log : LoginComponent) { }
 
   ngOnInit() {
+  }
+
+
+  devReg(){
+    this.log.marked1 = true
+    this.log.marked3 = false
+  }
+
+  cliReg(){
+    this.log.marked2 = true
+    this.log.marked3 = false
   }
 
 }

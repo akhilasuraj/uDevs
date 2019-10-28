@@ -194,4 +194,9 @@ export class AuthProjectService {
     return this.http.post(`/users/rating/rateUser`,rateDetails)
   }
 
+  public send_feedback(feedbackDetails){
+    return this.http.post(`/users/rating/giveFeedback`,feedbackDetails)
+  }
+  
+
 }

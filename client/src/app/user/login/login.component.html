@@ -1,30 +1,116 @@
-<div class="background">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-5">
-          <div class="row" style="margin-top: 100px;box-shadow: -1px 1px 25px 10px rgb(77, 47, 47);">
-            <div class="col-md-12">
-              <ul>
-                <a routerLink="/home/login" style="border-bottom: 4px solid #f44c89;padding :10px;">Sign in</a>
-                <a routerLink="/home/userType" >/ Sign up</a>
-              </ul>
-              <form (submit)="login()">
-              <label class="label control-label">E-mail</label>
-              <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
-              <label class="label control-label">Password</label>
-              <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
-              <button type="submit" class="btn btn-info">SIGN IN</button>
-            
-            </form>
-            </div>
-            <div class="col-md-6"></div>
-          </div>
-        </div>
-        <div class="col-md-2"></div>
+<!-- <div class="row">
+
+  <div class="col"></div>
+
+  <div class="col">
+
+    <br><br><br><br><br><br>
+
+    <div class="background">
+      <div class="container">
+        <form (submit)="login()">
+          <label class="label control-label">E-mail</label>
+          <input type="email" class="form-control" name="email" placeholder="Enter email"
+            [(ngModel)]="credentials.email">
+          <label class="label control-label">Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Password"
+            [(ngModel)]="credentials.password">
+          <button type="submit" class="btn btn-info">SIGN IN</button>
+          <button routerLink="/home/userType">Create a new account</button>
+          <br><br><br><br><br>
+        </form>
       </div>
     </div>
+  </div>
+
+</div> -->
+
+
+
+
+<body>
+  <div class="container">
+    <br><br><br><br><br><br>
+    <div class="row">
+      <div class="col">
+
+
+      </div>
+
+      <div class="col">
+        <div class="card card-signin my-2">
+          <div class="card-body">
+            <img class="footer-logo" src="./assets/img/logo.png"
+              style="width:30%; height: 70px; margin-left: 37%; margin-bottom: 15px;">
+            <form class="form-signin" (submit)="login()">
+              <div class="form-label-group">
+                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address"
+                  [(ngModel)]="credentials.email" required autofocus>
+                <label for="inputEmail">Email address</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password"
+                  [(ngModel)]="credentials.password" required>
+                <label for="inputPassword">Password</label>
+              </div>
+
+              <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Remember password</label>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+              <hr class="my-4">
+              <button class="btn btn-lg btn-google btn-block text-uppercase show-modal" type="button" data-toggle="modal"
+                data-target="#exampleModalCenter1">Create a new
+                account</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+            <div *ngIf="marked3">
+              What is your carrier?
+            </div>
+            <div *ngIf="marked1">
+                Register as a Developer
+              </div>
+              <div *ngIf="marked2">
+                  Register as a Client
+                </div>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="marked3">
+          <app-user-type></app-user-type>
+        </div>
+        <div *ngIf="marked1">
+            <app-dev-register></app-dev-register>
+          </div>
+          <div *ngIf="marked2">
+              <app-cli-register></app-cli-register>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
 
     
-  
-  
+
+
+
+

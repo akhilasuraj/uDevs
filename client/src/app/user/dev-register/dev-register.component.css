@@ -1,25 +1,4 @@
-
-/* .background {
-    
-    background-size:cover;
-    background-attachment:fixed;
-    color: white;
-    animation: animate 25s  infinite;  
-     }
-     @keyframes animate{
-        0%{background-image:url('/assets/img/c.jpg');}
-        25%{background-image:url('/assets/img/c.jpg');}
-        25.1%{background-image:url('/assets/img/c.jpg');}
-        50%{background-image:url('/assets/img/c.jpg');}
-        50.1%{background-image:url('/assets/img/c.jpg');}
-        75%{background-image:url('/assets/img/c.jpg');}
-        75.1%{background-image:url('/assets/img/c.jpg');}
-        100%{background-image:url('/assets/img/c.jpg');}
-     }
-    *{
-      margin: 0px;
-      padding: 0px;
-    } */
+/* 
     .form-contro{
       background:transparent;
       border-radius: 5px;
@@ -132,4 +111,36 @@
       }
    .picMargin{
        margin-left: 10%;
-   }
+   } */
+
+
+   .divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+  }
+  .divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+  }
+  
+  .btn-facebook {
+    background-color: #405D9D;
+    color: #fff;
+  }
+  .btn-twitter {
+    background-color: #42AEEC;
+    color: #fff;
+  }
