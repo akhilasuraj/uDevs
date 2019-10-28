@@ -3,7 +3,8 @@
 
 <div *ngIf="marked">
 
-<div class="container">Web development</div>
+<div class="container"><div class="title"><b>Web development</b></div></div>
+
 
 <div class="top-content">
     <div class="container-fluid">
@@ -11,24 +12,64 @@
             <div class="container">
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
-                    <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                    <div class="box4">
+                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
-                        <div class="card-body">
-                          <h4 class="card-title">Web development</h4>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
+                        <div class="box-content">
+                          <h4 class="title">Web development</h4>
+                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star"></span>
+                          </p>
+                          <p *ngIf="item?.user.rating > 0.5 && item?.user.rating  <= 1.5" class="card-text">
+                            <span class="fa fa-star checked "></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star"></span>
+                          </p>
+                          <p *ngIf="item?.user.rating > 1.5 && item?.user.rating <=2.5" class="card-text">
+                            <span class="fa fa-star checked "></span>
+                            <span class="fa fa-star checked "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star"></span>
+                          </p>
+                          <p *ngIf="item?.user.rating > 2.5 && item?.user.rating <= 3.5" class="card-text">
+                            <span class="fa fa-star checked "></span>
+                            <span class="fa fa-star checked "></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star"></span>
+                          </p>
+                          <p *ngIf="item?.user.rating > 3.5 && item?.user.rating <= 4.5" class="card-text">
+                            <span class="fa fa-star checked "></span>
+                            <span class="fa fa-star checked "></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                          </p>
+                          <p *ngIf="item?.user.rating > 4.5 && item?.user.rating <= 5" class="card-text">
+                            <span class="fa fa-star checked "></span>
+                            <span class="fa fa-star checked "></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                          </p>
                         </div>
                       </div>
                 </div>
 
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of webDeveloper">
-                    <div class="card mb-2">
-                        <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                    <div class="box4">
+                        <img style="height:200px; width: 300px;" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
                           alt="Card image cap">
-                        <div class="card-body">
-                          <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                        
+                          <h4 >{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
                             <span class="fa fa-star "></span>
                             <span class="fa fa-star"></span>
@@ -71,6 +112,8 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                           </p>
+                          <div class="box-content">
+                            <h4 class="title">Web developer</h4>
                           <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
                         </div>
                       </div>
@@ -88,9 +131,9 @@
             </a>
         </div>
     </div>
-</div>
 
-<div class="container">Mobile development</div>
+    <hr>
+<div class="container"><div class="title"><b>Mobile development</b></div></div>
 
 <div class="top-content">
     <div class="container-fluid">
@@ -99,7 +142,7 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">Mobile development</h4>
@@ -112,7 +155,7 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of mobDeveloper">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
@@ -176,8 +219,8 @@
         </div>
     </div>
 </div>
-
-<div class="container">Data science development</div>
+<hr>
+<div class="container"><div class="title"><b>Data science development</b></div></div>
 
 <div class="top-content">
     <div class="container-fluid">
@@ -186,7 +229,7 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">Data science</h4>
@@ -199,7 +242,7 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of dataDeveloper">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
@@ -264,8 +307,8 @@
     </div>
 </div>
 
-
-<div class="container">Software development</div>
+<hr>
+<div class="container"><div class="title"><b>Software development</b></div></div>
 
 <div class="top-content">
     <div class="container-fluid">
@@ -274,7 +317,7 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">Software development</h4>
@@ -287,7 +330,7 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of softDeveloper">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
@@ -352,8 +395,8 @@
     </div>
 </div>
 
-
-<div class="container">Block chain</div>
+<hr>
+<div class="container"><div class="title"><b>Block chain development</b></div></div>
 
 <div class="top-content">
     <div class="container-fluid">
@@ -362,7 +405,7 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">Block chain</h4>
@@ -375,7 +418,7 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of blockDeveloper">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
@@ -440,8 +483,8 @@
     </div>
 </div>
 
-
-<div class="container">Machine learning</div>
+<hr>
+<div class="container"><div class="title"><b>Machine learning development</b></div></div>
 
 <div class="top-content">
     <div class="container-fluid">
@@ -450,7 +493,7 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">Machine laerning</h4>
@@ -463,7 +506,7 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of machineDeveloper">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
@@ -528,8 +571,8 @@
     </div>
 </div>
 
-
-<div class="container">Natural language processing</div>
+<hr>
+<div class="container"><div class="title"><b>Natural language processing development</b></div></div>
 
 <div class="top-content">
     <div class="container-fluid">
@@ -538,7 +581,7 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">Natural language processing</h4>
@@ -551,7 +594,7 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of langDeveloper">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
@@ -616,8 +659,8 @@
     </div>
 </div>
 
-
-<div class="container">Digital marketing development</div>
+<hr>
+<div class="container"><div class="title"><b>Digital marketing development</b></div></div>
 
 <div class="top-content">
     <div class="container-fluid">
@@ -626,7 +669,7 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">Digital marketing</h4>
@@ -639,7 +682,7 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of digiDeveloper">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
@@ -704,8 +747,8 @@
     </div>
 </div>
 
-
-<div class="container">Multimedia designing</div>
+<hr>
+<div class="container"><div class="title"><b>Multimedia designing development</b></div></div>
 
 <div class="top-content">
     <div class="container-fluid">
@@ -714,7 +757,7 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">Multimedia designing</h4>
@@ -727,7 +770,7 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of multiDeveloper">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
@@ -792,8 +835,8 @@
     </div>
 </div>
 
-
-<div class="container">Robotics</div>
+<hr>
+<div class="container"><div class="title"><b>Robotics development</b></div></div>
 
 <div class="top-content">
     <div class="container-fluid">
@@ -802,7 +845,7 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">Robotics</h4>
@@ -815,7 +858,7 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of robotDeveloper">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
                           alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>

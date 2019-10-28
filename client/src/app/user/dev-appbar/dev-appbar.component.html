@@ -1,17 +1,15 @@
 
-<ul class="down">
-     <li><img src="assets/img/logo.png" height="51px" width="100px"></li>
+<ul style="box-shadow: 0px 1px 5px 2px rgb(167, 166, 166);" class="down">
+     <li style="margin:-1.5% -10% -0.5% 2%;"><img src="assets/img/logo.png" height="1%" width="20%" ></li>
      <li><a routerLink="/devCatagory/home">Home</a></li>
     <li><a  routerLink="/devCatagory/profile">Profile</a></li>
      <li><a routerLink="/devCatagory/competition">Competitions</a></li>
      <li><a routerLink="/devCatagory/project">My Projects</a></li>
-     <li  style="float:right"><a href="/home/login" class="active" (click)="logout()">Log Out</a></li>
+     <li  style="float:right"><a href="/home/login" (click)="logout()"><div style="color: blue;"><b>Log Out</b></div></a></li>
      <li style="float:right"><a routerLink="/devCatagory/notification" class="notification">
-               <span><img src="assets/img/bell.png" height="20px" width="20px"></span>
+               <span><img src="assets/img/notification.png" height="45px" width="45px"></span>
                <span class="badge">{{ countRequestDeveloper + countAccProReq + countAccBidReq }}</span>
              </a>
      </li>
-     <li  style="float:right"><a routerLink="/devCatagory/chat">Chat</a></li>
+     <li  style="float:right; margin-right: -6%;"><a routerLink="/devCatagory/chat"><img style=" width: 18%;"  src="../../../assets/img/cc.png"></a></li>
 </ul>
-
-
