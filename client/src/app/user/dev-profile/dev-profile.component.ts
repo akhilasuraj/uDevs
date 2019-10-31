@@ -16,7 +16,6 @@ export class DevProfileComponent implements OnInit {
   marked1 = true
   marked2 = false
   show = false
-  showSkill = true
 
   profileImage: File = null
   id: number
@@ -84,14 +83,6 @@ export class DevProfileComponent implements OnInit {
     } else {
       this.router.navigateByUrl("/home/login");
     }
-  }
-
-  updateSkills(){
-    this.showSkill = false
-  }
-
-  cancleEditSkills(marked){
-    this.showSkill = marked
   }
 
 
