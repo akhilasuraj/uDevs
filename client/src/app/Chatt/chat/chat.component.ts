@@ -124,9 +124,9 @@ export class ChatComponent implements OnInit {
 
     }
 
-    else {
+    {
       this.router.navigateByUrl('/')
-    }
+   }
   }
 
   

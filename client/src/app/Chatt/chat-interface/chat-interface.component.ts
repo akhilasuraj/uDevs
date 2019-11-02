@@ -58,7 +58,7 @@ export class ChatInterfaceComponent implements OnInit {
 
 
 
-    } else {
+   } else {
       this.router.navigateByUrl('/')
     }
   }

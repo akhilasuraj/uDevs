@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit {
   constructor(private auth: AuthenticationService, private router: Router,private http: HttpClient,private authAdm: AuthAdminService) { }
 
   ngOnInit() {
-    if(localStorage.getItem('usertoken'))
+  if(localStorage.getItem('usertoken'))
   {
     this.authAdm.countOfDev().subscribe(
       dev=>{
@@ -30,8 +30,8 @@ export class AdminComponent implements OnInit {
     )
   }
   else{
-    this.router.navigateByUrl('/')
-  }
+   this.router.navigateByUrl('/')
+ }
   }
 
 }

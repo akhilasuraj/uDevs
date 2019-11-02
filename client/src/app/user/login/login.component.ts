@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
+   
     this.auth.login(this.credentials).subscribe(
      user => {
         if(this.auth.getUserDetails().user_type == 'Developer')
@@ -44,12 +44,12 @@ export class LoginComponent implements OnInit {
         else  if(this.auth.getUserDetails().user_type == 'Admin')
           this.router.navigateByUrl('/adminCatagory/home')
         else
-          window.alert(user.error.text)
+         window.alert(user.error.text)
     },
       err => {
         window.alert(err.error.text)
       }
-    )
+    ) 
   }
 
 
