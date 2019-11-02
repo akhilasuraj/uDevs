@@ -3,6 +3,8 @@
             $('#exampleModalCenter').modal('show');
         });
 
+        
+
         $(document).ready(function(){
             $(".show-modal").click(function(){
                 $("#exampleModalCenter1").modal({

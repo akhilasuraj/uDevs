@@ -30,6 +30,7 @@
     "jquery": "^3.4.1",
     "ng2-opd-popup": "^1.1.21",
     "ng2-pdf-viewer": "^5.3.4",
+    "ngx-spinner": "^8.0.3",
     "rxjs": "6.0.0",
     "socket.io": "^2.2.0",
     "update": "^0.7.4",

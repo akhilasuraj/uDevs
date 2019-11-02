@@ -19,52 +19,52 @@ export class DevCompetitionComponent implements OnInit {
   ngOnInit() {
   }
 
-  addScript: boolean = false;
-  paypalLoad: boolean = true;
+  // addScript: boolean = false;
+  // paypalLoad: boolean = true;
   
-  finalAmount: number = 1;
+  // finalAmount: number = 1;
  
-  paypalConfig = {
-    env: 'sandbox',
-    client: {
-      sandbox: 'Af8Sy1dWqC2jpYFk15zomB6IXHSqwOTf5en_Q2vSJfATs_uiTIfBw6NYqAUjTnwQytHMdTzGvdoWYsrR',
-      production: '<your-production-key here>'
-    },
-    commit: true,
-    payment: (data, actions) => {
-      return actions.payment.create({
-        payment: {
-          transactions: [
-            { amount: { total: this.finalAmount, currency: 'USD' } }
-          ]
-        }
-      });
-    },
-    onAuthorize: (data, actions) => {
-      return actions.payment.execute().then((payment) => {
-        //Do something when payment is successful.
-      })
-    }
-  };
+  // paypalConfig = {
+  //   env: 'sandbox',
+  //   client: {
+  //     sandbox: 'Af8Sy1dWqC2jpYFk15zomB6IXHSqwOTf5en_Q2vSJfATs_uiTIfBw6NYqAUjTnwQytHMdTzGvdoWYsrR',
+  //     production: '<your-production-key here>'
+  //   },
+  //   commit: true,
+  //   payment: (data, actions) => {
+  //     return actions.payment.create({
+  //       payment: {
+  //         transactions: [
+  //           { amount: { total: this.finalAmount, currency: 'USD' } }
+  //         ]
+  //       }
+  //     });
+  //   },
+  //   onAuthorize: (data, actions) => {
+  //     return actions.payment.execute().then((payment) => {
+  //       //Do something when payment is successful.
+  //     })
+  //   }
+  // };
  
-  ngAfterViewChecked(): void {
-    if (!this.addScript) {
-      this.addPaypalScript().then(() => {
-        paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
-        this.paypalLoad = false;
-      })
-    }
-  }
+  // ngAfterViewChecked(): void {
+  //   if (!this.addScript) {
+  //     this.addPaypalScript().then(() => {
+  //       paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
+  //       this.paypalLoad = false;
+  //     })
+  //   }
+  // }
   
-  addPaypalScript() {
-    this.addScript = true;
-    return new Promise((resolve, reject) => {
-      let scripttagElement = document.createElement('script');    
-      scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
-      scripttagElement.onload = resolve;
-      document.body.appendChild(scripttagElement);
-    })
-  }
+  // addPaypalScript() {
+  //   this.addScript = true;
+  //   return new Promise((resolve, reject) => {
+  //     let scripttagElement = document.createElement('script');    
+  //     scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
+  //     scripttagElement.onload = resolve;
+  //     document.body.appendChild(scripttagElement);
+  //   })
+  // }
 
 }
 

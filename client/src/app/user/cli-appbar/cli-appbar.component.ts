@@ -32,43 +32,47 @@ export class CliAppbarComponent implements OnInit {
   subscription1: Subscription;
   subscription2: Subscription;
   subscription3: Subscription;
+  totalCount:number = 0
 
   ngOnInit() {
 
-    // this.subscription1 = timer(0, 10000).pipe(
-    //   switchMap(() =>this.auth.countRequest(this.client_data))
-    //   ).subscribe(
-    //   request => {
-    //     this.countRequest = request
-    //   },
-    //   err => {
-    //     console.log(err)
-    //   }
-    // )
+    this.subscription1 = timer(0, 10000).pipe(
+      switchMap(() =>this.auth.countRequest(this.client_data))
+      ).subscribe(
+      request => {
+        this.countRequest = request
+        this.totalCount = this.totalCount + request
+      },
+      err => {
+        console.log(err)
+      }
+    )
 
 
-    // this.subscription2 = timer(0, 10000).pipe(
-    //   switchMap(() =>this.auth.countBid(this.client_data))
-    //   ).subscribe(
-    //   request => {
-    //     this.countBid = request
-    //   },
-    //   err => {
-    //     console.log(err)
-    //   }
-    // )
+    this.subscription2 = timer(0, 10000).pipe(
+      switchMap(() =>this.auth.countBid(this.client_data))
+      ).subscribe(
+      request => {
+        this.countBid = request
+        this.totalCount = this.totalCount + request
+      },
+      err => {
+        console.log(err)
+      }
+    )
 
 
-    // this.subscription3 = timer(0, 10000).pipe(
-    //   switchMap(() =>this.auth.countAccept(this.client_data))
-    //   ).subscribe(
-    //     request => {
-    //       this.countAccept = request
-    //     },
-    //     err => {
-    //       console.log(err)
-    //     }
-    // )
+    this.subscription3 = timer(0, 10000).pipe(
+      switchMap(() =>this.auth.countAccept(this.client_data))
+      ).subscribe(
+        request => {
+          this.countAccept = request
+          this.totalCount = this.totalCount + request
+        },
+        err => {
+          console.log(err)
+        }
+    )
     
 
    

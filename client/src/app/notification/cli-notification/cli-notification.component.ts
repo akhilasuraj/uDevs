@@ -26,9 +26,12 @@ export class CliNotificationComponent implements OnInit {
   developerAcceptOld: requestDeveloperDetails
 
 
-
   marked1:boolean = false
   marked2:boolean = false
+  marked3:boolean = false
+  marked4:boolean = false
+  marked5:boolean = false
+  marked6:boolean = false
   view:boolean = true
   view1:boolean = false
   view2:boolean = false
@@ -55,7 +58,7 @@ export class CliNotificationComponent implements OnInit {
       request=>{
         if(request!=''){
           this.bidNotificationNew = request
-          this.marked1=true
+          this.marked2=true
         }
       },
       err=>{
@@ -67,7 +70,7 @@ export class CliNotificationComponent implements OnInit {
       request=>{
         if(request!=''){
           this.developerAcceptNew = request
-          this.marked1=true
+          this.marked3=true
         }
       },
       err=>{
@@ -80,7 +83,7 @@ export class CliNotificationComponent implements OnInit {
       request=>{
         if(request!=''){
           this.requestNotificationOld = request
-          this.marked2=true
+          this.marked4=true
         }
       },
       err=>{
@@ -93,7 +96,7 @@ export class CliNotificationComponent implements OnInit {
       request=>{
         if(request!=''){
           this.bidNotificationOld = request
-          this.marked2=true
+          this.marked5=true
         }
       },
       err=>{
@@ -105,7 +108,7 @@ export class CliNotificationComponent implements OnInit {
       request=>{
         if(request!=''){
           this.developerAcceptOld = request
-          this.marked2=true
+          this.marked6=true
         }
       },
       err=>{

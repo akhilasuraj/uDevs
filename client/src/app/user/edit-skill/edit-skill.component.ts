@@ -203,8 +203,8 @@ export class EditSkillComponent implements OnInit {
     }
   }
 
-  CancleUpdateSkills() {
-    this.devPro.cancleEditSkills(true);
+  cancleSkill(){
+    this.devPro.showSkill = false
   }
 
 
