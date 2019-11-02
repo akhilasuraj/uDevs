@@ -36,6 +36,9 @@ export class ChatInterfaceComponent implements OnInit {
   choosenListId
   backEndId
   isInList
+MobChatList = true
+MobChatHis = false
+
 
   ngOnInit() {
     if (localStorage.getItem('usertoken')) {
@@ -71,6 +74,25 @@ export class ChatInterfaceComponent implements OnInit {
     console.log("chosed email:"+this.chat.rEmail+' user name:'+this.chat.uName+' uId:'+this.chat.uId+' rid:'+this.chat.rId);
     this.socketCommService.checkStatus(this.chat);
   }
+
+  loadMessagesMob(ChEmail,ChId){
+    this.MobChatList=false;
+    this.MobChatHis=true;
+    this.choosenListId=ChId;
+    this.chat.rEmail = ChEmail;
+    this.chat.rId = ChId;
+    this.chat.uName = this.auth.getUserDetails().first_name;
+    this.chat.uId = this.auth.getUserDetails().id;
+    console.log("chosed email:"+this.chat.rEmail+' user name:'+this.chat.uName+' uId:'+this.chat.uId+' rid:'+this.chat.rId);
+    this.socketCommService.checkStatus(this.chat);
+  }
+
+back(){
+  this.MobChatList=true;
+  this.MobChatHis=false;
+}
+
+
    
   ngOnDestroy() {
     this.sub.unsubscribe()
