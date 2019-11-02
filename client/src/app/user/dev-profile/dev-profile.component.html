@@ -42,7 +42,7 @@
     </div>
 
     <div class="col mx-auto">
-
+      <div *ngIf="!showSkill">
         <h3>Skills</h3><br>
         <div *ngFor="let skill of skills">
           <h6>{{skill?.skill}}</h6>
@@ -54,19 +54,18 @@
           <h6>{{techno?.technology}}</h6>
         </div>
 
-        <button class="btn btn-lg btn-primary show-modal" type="button" data-toggle="modal"
-          data-target="#exampleModalCenter1">Update skills and technologies</button>
-      <!-- Button trigger modal -->
-      <!-- <button type="button" class="btn btn-primary  example-1" data-toggle="modal" data-target="#exampleModalCenter">
-      Add Skills and Technologies
-    </button> -->
+        <!-- <button class="btn btn-lg btn-primary show-modal" type="button" data-toggle="modal"
+          data-target="#exampleModalCenter1">Update skills and technologies</button> -->
 
-      <!-- <div *ngIf="!showSkill">
+          <button class="btn btn-lg btn-primary show-modal" (click)="editSkill()">Update skills and technologies</button>
+      </div>
+      
+      <div *ngIf="showSkill">
         <app-edit-skill></app-edit-skill>
-      </div> -->
+      </div>
 
-      <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <!-- <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="show">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
 
@@ -81,7 +80,7 @@
 
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>

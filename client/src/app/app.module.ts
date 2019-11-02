@@ -154,7 +154,7 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    CKEditorModule
+    CKEditorModule,
     // PdfViewerModule
   ],
   exports: [RouterModule],

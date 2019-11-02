@@ -27,6 +27,10 @@ export class DevNotificationComponent implements OnInit {
 
   marked1:boolean = false
   marked2:boolean = false
+  marked3:boolean = false
+  marked4:boolean = false
+  marked5:boolean = false
+  marked6:boolean = false
   view:boolean = true
   view1:boolean = false
   view2:boolean = false
@@ -52,7 +56,7 @@ export class DevNotificationComponent implements OnInit {
       request=>{
         if(request!=''){
         this.requestNotificationOld=request
-        this.marked2=true
+        this.marked4=true
         }
       },
       err=>{
@@ -64,7 +68,7 @@ export class DevNotificationComponent implements OnInit {
       result=>{
         if(result!=''){
           this.accProReqNew=result
-          this.marked1=true
+          this.marked2=true
           }
       },
       err=>{
@@ -76,7 +80,7 @@ export class DevNotificationComponent implements OnInit {
       result=>{
         if(result!=''){
           this.accProReqOld=result
-          this.marked2=true
+          this.marked5=true
           }
       },
       err=>{
@@ -88,7 +92,7 @@ export class DevNotificationComponent implements OnInit {
       result=>{
         if(result!=''){
           this.accBidReqNew=result
-          this.marked1=true
+          this.marked3=true
           }
       },
       err=>{
@@ -101,7 +105,7 @@ export class DevNotificationComponent implements OnInit {
       result=>{
         if(result!=''){
           this.accBidReqOld=result
-          this.marked2=true
+          this.marked6=true
           }
       },
       err=>{

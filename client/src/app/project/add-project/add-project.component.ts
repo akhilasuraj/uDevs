@@ -70,10 +70,9 @@ export class AddProjectComponent implements OnInit {
             project => {
               this.project_details = project
 
-              if (this.project_details.payment == '') {
+              if (project.project.payment == '') {
 
-                this.credential.project_ID = this.project_details.id
-                console.log(this.credential)
+                this.credential.project_ID = project.project.id
                 this.authPro.addBid(this.credential).subscribe(
                   bid => {
                     this.bid_details = bid
@@ -97,10 +96,10 @@ export class AddProjectComponent implements OnInit {
         project => {
           this.project_details = project
 
-          if (this.project_details.payment == '') {
+          if (project.project.payment == '') {
 
-            this.credential.project_ID = this.project_details.id
-            console.log(this.credential)
+            this.credential.project_ID = project.project.id
+            
             this.authPro.addBid(this.credential).subscribe(
               bid => {
                 this.bid_details = bid

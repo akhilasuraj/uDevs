@@ -26,45 +26,49 @@ export class DevAppbarComponent implements OnInit {
   subscription1: Subscription;
   subscription2: Subscription;
   subscription3: Subscription;
+  totalCount:number = 0
 
 
   ngOnInit() {
 
 
-    // this.subscription1 = timer(0, 1000).pipe(
-    //   switchMap(() => this.auth.countRequestDeveloper(this.developer_data))
-    // ).subscribe(
-    //   result => {
-    //     this.countRequestDeveloper = result
-    //   },
-    //   err => {
-    //     console.log(err)
-    //   }
-    // )
+    this.subscription1 = timer(0, 1000).pipe(
+      switchMap(() => this.auth.countRequestDeveloper(this.developer_data))
+    ).subscribe(
+      result => {
+        this.countRequestDeveloper = result
+        this.totalCount = this.totalCount + result
+      },
+      err => {
+        console.log(err)
+      }
+    )
 
 
-    // this.subscription2 = timer(0, 1000).pipe(
-    //   switchMap(() => this.auth.countAcceptBidReq(this.developer_data))
-    // ).subscribe(
-    //   result => {
-    //     this.countAccBidReq = result
-    //   },
-    //   err => {
-    //     console.log(err)
-    //   }
-    // )
+    this.subscription2 = timer(0, 1000).pipe(
+      switchMap(() => this.auth.countAcceptBidReq(this.developer_data))
+    ).subscribe(
+      result => {
+        this.countAccBidReq = result
+        this.totalCount = this.totalCount + result
+      },
+      err => {
+        console.log(err)
+      }
+    )
 
 
-    // this.subscription3 = timer(0, 1000).pipe(
-    //   switchMap(() => this.auth.countAcceptProReq(this.developer_data))
-    // ).subscribe(
-    //   result => {
-    //     this.countAccProReq = result
-    //   },
-    //   err => {
-    //     console.log(err)
-    //   }
-    // )
+    this.subscription3 = timer(0, 1000).pipe(
+      switchMap(() => this.auth.countAcceptProReq(this.developer_data))
+    ).subscribe(
+      result => {
+        this.countAccProReq = result
+        this.totalCount = this.totalCount + result
+      },
+      err => {
+        console.log(err)
+      }
+    )
 
 
   }

@@ -203,6 +203,10 @@ export class EditSkillComponent implements OnInit {
     }
   }
 
+  cancleSkill(){
+    this.devPro.showSkill = false
+  }
+
 
 
 }

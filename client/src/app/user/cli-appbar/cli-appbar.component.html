@@ -6,7 +6,9 @@
   <li  style="float:right"><a href="/home/login" (click)="logout()"><div style="color: blue;"><b>Log Out</b></div></a></li>
   <li style="float:right"><a routerLink="/cliCatagory/notification" class="notification">
       <span><img src="assets/img/notification.png" height="45px" width="45px"></span>
+      <div *ngIf="totalCount > 0">
       <span class="badge">{{ countBid + countRequest + countAccept }}</span>
+    </div>
     </a>
   </li>
   <li  style="float:right; margin-right: -6%;"><a routerLink="/cliCatagory/chat"><img style=" width: 18%;"  src="../../../assets/img/cc.png"></a></li>

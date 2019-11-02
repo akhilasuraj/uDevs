@@ -16,6 +16,7 @@ export class DevProfileComponent implements OnInit {
   marked1 = true
   marked2 = false
   show = false
+  showSkill=false
 
   profileImage: File = null
   id: number
@@ -117,6 +118,11 @@ export class DevProfileComponent implements OnInit {
         window.location.reload()
       }
     )
+  }
+
+
+  editSkill(){
+    this.showSkill = true
   }
 
 
