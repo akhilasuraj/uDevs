@@ -329,7 +329,7 @@ export class ViewProjectComponent implements OnInit {
 
     this.authpro.send_feedback(this.model).subscribe(
       (res) => {
-
+        this.set1 = true
       },
       err => {
         console.error(err);

@@ -10,6 +10,6 @@
   {{ Not_details?.user?.first_name }} &nbsp;
   {{ Not_details?.user?.last_name }}<br>
 
-  {{ Not_details?.project?.project_name }}<br>
+  <button (click)="goToProject(Not_details?.project.id)">{{ Not_details?.project?.project_name }}</button>
 </div>
 </div>

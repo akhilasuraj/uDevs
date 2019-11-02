@@ -1,6 +1,7 @@
 const User = require("../models/User") 
 const Skill = require("../models/Skill")
 const Techno = require("../models/Technology")
+const Rate = require("../models/rating")
 const jwt = require("jsonwebtoken")
 const nodemailer = require("nodemailer");
 const Cryptr = require('cryptr');
@@ -113,6 +114,15 @@ exports.cli_register=(req,res)=>{
         if(!user){
             User.create(userData)
             .then(user =>{
+
+                const rateDetails={
+                    dev_Id: user.id,
+                    total_rating:0,
+                    rated_times:0
+                }
+    
+                Rate.create(rateDetails)
+
                 let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
                     expiresIn:1440
                 })
@@ -153,8 +163,18 @@ exports.dev_register=(req,res)=>{
     })
     .then(user=>{
         if(!user){
+
             User.create(userData)
             .then(user =>{
+
+                const rateDetails={
+                    dev_Id: user.id,
+                    total_rating:0,
+                    rated_times:0
+                }
+    
+                Rate.create(rateDetails)
+                
                 let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
                     expiresIn:1440
                 })

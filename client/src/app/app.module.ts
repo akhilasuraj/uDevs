@@ -167,6 +167,8 @@ const routes: Routes = [
     AuthConfProService,
     AuthCompetitonService,
     AuthAdminService,
+    ProjectHomeComponent
+
   ],
   bootstrap: [AppComponent]
 })

@@ -45,7 +45,7 @@
           <h5><b>New</b></h5><br>
 
           <div *ngFor="let bidNot of bidNotificationNew">
-            <button (click)="viewBidResponse(bidNot.id)">
+            <button (click)="viewBidResponse(bidNot.id)" class="tag">
               <img src="http://localhost:3000/{{ bidNot?.user?.profile_img }}"
                 alt="http://localhost:3000/{{ bidNot?.user?.profile_img }}" width="10%" heigt="10%"><br>
               Project Name: {{ bidNot?.project.project_name }}<br>
@@ -81,7 +81,7 @@
           <h5><b>New</b></h5><br>
 
           <div *ngFor="let devNot of developerAcceptNew">
-            <button (click)="viewDevAccept(devNot.id)">
+            <button (click)="viewDevAccept(devNot.id)" class="tag">
               <img src="http://localhost:3000/{{ devNot?.user?.profile_img }}"
                 alt="http://localhost:3000/{{ devNot?.user?.profile_img }}" width="10%" heigt="10%"><br>
               Project Name: {{ devNot?.project.project_name }}<br>
