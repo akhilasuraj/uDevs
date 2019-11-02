@@ -23,8 +23,8 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of webProject">
                     <div class="box4">
-                        <img  src="{{authHome.img_link}}{{ item?.user.profile_img }}"
-                          alt="Card image cap">
+                        <div class="imag"><img src="{{authHome.img_link}}{{ item?.user.profile_img }}"
+                          alt="Card image cap"></div>
                        
                           <h4>{{item?.project_name}}</h4>
                           <h5>Rs {{item?.payment}}.00</h5>
@@ -132,7 +132,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
-        </div>
+        
       </div>
     </div>
   </div>
@@ -318,7 +318,6 @@
     </div>
     </div>
 
-
     <div class="container">Machine learning</div>
 
     <div class="top-content">
@@ -365,7 +364,6 @@
       </div>
     </div>
     </div>
-
 
     <div class="container">Natural language processing</div>
 

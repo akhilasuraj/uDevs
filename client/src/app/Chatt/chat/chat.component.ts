@@ -123,10 +123,10 @@ export class ChatComponent implements OnInit {
 
 
     }
-
-    else {
+   else
+    {
       this.router.navigateByUrl('/')
-    }
+   }
   }
 
   

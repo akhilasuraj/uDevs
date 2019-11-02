@@ -10,6 +10,7 @@ img{ max-width:100%;}
   border: 1px solid #c4c4c4;
   clear: both;
   overflow: hidden;
+ 
 }
 .top_spac{ margin: 20px 0 0;}
 
@@ -56,7 +57,7 @@ img{ max-width:100%;}
   margin: 0;
   padding: 18px 16px 10px;
 }
-.inbox_chat { height: 550px; overflow-y: scroll;}
+.inbox_chat { height: 480px; overflow-y: scroll;}
 
 .active_chat{ background:#ebebeb;}
 
@@ -130,6 +131,7 @@ img{ max-width:100%;}
 }
 .messaging { padding: 1% 7% 10% 7%;}
 .msg_history {
-  height: 516px;
+  height: 470px;
   overflow-y: auto;
+ 
 }

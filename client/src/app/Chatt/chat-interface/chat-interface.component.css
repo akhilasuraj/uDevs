@@ -1,4 +1,4 @@
-.container{max-width:1170px; margin:auto;max-height: 300px;}
+.container{max-width:1170px; margin:auto;max-height: 1000px;}
 img{ max-width:100%;}
 .inbox_people {
   background: #f8f8f8 none repeat scroll 0 0;
@@ -6,11 +6,20 @@ img{ max-width:100%;}
   overflow: hidden;
   width: 40%; border-right:1px solid #c4c4c4;
 }
+
+.inbox_people_mob {
+  background: #f8f8f8 none repeat scroll 0 0;
+  float: left;
+  overflow: hidden;
+  width: 100%; border-right:1px solid #c4c4c4;
+}
+
+
 .inbox_msg {
   border: 1px solid #c4c4c4;
   clear: both;
   overflow: hidden;
-  
+  background-color: #fff;
 }
 .top_spac{ margin: 20px 0 0;}
 
@@ -66,7 +75,7 @@ img{ max-width:100%;}
 }
 
 .chat_list:hover{background-color:#cdcdcd}
-.inbox_chat { height: 550px; overflow-y: scroll;}
+.inbox_chat { height: 527px; overflow-y: scroll;}
 
 .active_chat{ background:#ebebeb;}
 
@@ -100,6 +109,11 @@ img{ max-width:100%;}
   float: left;
   padding: 30px 15px 0 25px;
   width: 60%;
+}
+.mesgsMob{
+  float: left;
+  padding: 30px 15px 0 25px;
+  width: 100%;
 }
 
  .sent_msg p {
@@ -140,7 +154,7 @@ img{ max-width:100%;}
 }
 .messaging { padding: 1% 7% 10% 7%;}
 .msg_history {
-  height: 516px;
+  height: 400px;
   overflow-y: scroll;
 }
 .chat_ib.badge {
@@ -151,4 +165,9 @@ img{ max-width:100%;}
   border-radius: 50%;
   background-color: red;
   color: white;
+}
+
+.mob-clist{
+  background-color: white;
+  margin: 2px 4px 2px 4px;
 }
