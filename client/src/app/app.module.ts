@@ -68,6 +68,7 @@ import { VerifyNewEmailComponent } from './user/verify-new-email/verify-new-emai
 
 
 
+
 const routes: Routes = [
 
   {path: '' ,redirectTo:'/home/login',pathMatch:'full'},
@@ -154,9 +155,13 @@ const routes: Routes = [
     FooterComponent,
     DevViewMyProjectComponent,
     VerifyMsgComponent,
+<<<<<<< HEAD
     VerifyForgotpwdComponent,
     EnterNewPasswordComponent,
     VerifyNewEmailComponent
+=======
+    VerifyForgotpwdComponent
+>>>>>>> 2beea263a2698af1cd5362e0dff34beaf74d12df
   ],
   imports: [
     BrowserModule,

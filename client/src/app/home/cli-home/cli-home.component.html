@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<div class="back">
 
 <div *ngIf="marked">
 
@@ -12,64 +12,25 @@
             <div class="container">
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
-                    <div class="box4">
-                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                          alt="Card image cap">
-                        <div class="box-content">
-                          <h4 class="title">Web development</h4>
-                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
-                            <span class="fa fa-star "></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star "></span>
-                            <span class="fa fa-star "></span>
-                            <span class="fa fa-star"></span>
-                          </p>
-                          <p *ngIf="item?.user.rating > 0.5 && item?.user.rating  <= 1.5" class="card-text">
-                            <span class="fa fa-star checked "></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star "></span>
-                            <span class="fa fa-star "></span>
-                            <span class="fa fa-star"></span>
-                          </p>
-                          <p *ngIf="item?.user.rating > 1.5 && item?.user.rating <=2.5" class="card-text">
-                            <span class="fa fa-star checked "></span>
-                            <span class="fa fa-star checked "></span>
-                            <span class="fa fa-star "></span>
-                            <span class="fa fa-star "></span>
-                            <span class="fa fa-star"></span>
-                          </p>
-                          <p *ngIf="item?.user.rating > 2.5 && item?.user.rating <= 3.5" class="card-text">
-                            <span class="fa fa-star checked "></span>
-                            <span class="fa fa-star checked "></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star "></span>
-                            <span class="fa fa-star"></span>
-                          </p>
-                          <p *ngIf="item?.user.rating > 3.5 && item?.user.rating <= 4.5" class="card-text">
-                            <span class="fa fa-star checked "></span>
-                            <span class="fa fa-star checked "></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                          </p>
-                          <p *ngIf="item?.user.rating > 4.5 && item?.user.rating <= 5" class="card-text">
-                            <span class="fa fa-star checked "></span>
-                            <span class="fa fa-star checked "></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                          </p>
+                    <div class="card mb-2">
+                       <div style="text-align: center;"> <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap"></div>
+                        <div class="card-body">
+                          <h4  class="card-title">Web development</h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                              card's content.</p>
+                          
                         </div>
                       </div>
                 </div>
 
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of webDeveloper">
-                    <div class="box4">
-                        <img style="height:200px; width: 300px;" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
-                          alt="Card image cap">
-                        
-                          <h4 >{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
+                    <div class="card mb-2">
+                        <div style="text-align: center;"> <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                          alt="Card image cap"></div>
+                          <div class="card-body">
+                          <h4  class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
                             <span class="fa fa-star "></span>
                             <span class="fa fa-star"></span>
@@ -112,10 +73,10 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                           </p>
-                          <div class="box-content">
-                            <h4 class="title">Web developer</h4>
-                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
-                        </div>
+                         
+                           
+                          <div style="text-align: center;">  <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div></div>
                       </div>
                 </div>
                 
@@ -142,8 +103,8 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                          alt="Card image cap">
+                        <div style="text-align: center;">   <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">Mobile development</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -155,8 +116,8 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of mobDeveloper">
                     <div class="card mb-2">
-                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
-                          alt="Card image cap">
+                        <div style="text-align: center;">   <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
@@ -201,8 +162,8 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                           </p>
-                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
-                        </div>
+                          <div style="text-align: center;">   <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div></div>
                       </div>
                 </div>
                 
@@ -229,8 +190,8 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                          alt="Card image cap">
+                        <div style="text-align: center;">   <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">Data science</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -242,8 +203,8 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of dataDeveloper">
                     <div class="card mb-2">
-                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
-                          alt="Card image cap">
+                        <div style="text-align: center;">   <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
@@ -288,8 +249,8 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                           </p>
-                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
-                        </div>
+                          <div style="text-align: center;">     <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div></div>
                       </div>
                 </div>
                 
@@ -317,8 +278,8 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                          alt="Card image cap">
+                        <div style="text-align: center;">    <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">Software development</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -330,8 +291,8 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of softDeveloper">
                     <div class="card mb-2">
-                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
-                          alt="Card image cap">
+                        <div style="text-align: center;">  <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
@@ -376,8 +337,8 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                           </p>
-                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
-                        </div>
+                          <div style="text-align: center;">  <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div></div>
                       </div>
                 </div>
                 
@@ -405,8 +366,8 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                          alt="Card image cap">
+                        <div style="text-align: center;">    <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">Block chain</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -418,8 +379,8 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of blockDeveloper">
                     <div class="card mb-2">
-                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
-                          alt="Card image cap">
+                        <div style="text-align: center;">  <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
@@ -464,8 +425,8 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                           </p>
-                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
-                        </div>
+                          <div style="text-align: center;">  <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div></div>
                       </div>
                 </div>
                 
@@ -493,8 +454,8 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                          alt="Card image cap">
+                        <div style="text-align: center;">  <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">Machine laerning</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -506,8 +467,8 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of machineDeveloper">
                     <div class="card mb-2">
-                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
-                          alt="Card image cap">
+                        <div style="text-align: center;">  <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
@@ -552,8 +513,8 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                           </p>
-                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
-                        </div>
+                          <div style="text-align: center;">   <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div></div>
                       </div>
                 </div>
                 
@@ -581,8 +542,8 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                          alt="Card image cap">
+                        <div style="text-align: center;">   <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">Natural language processing</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -594,8 +555,8 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of langDeveloper">
                     <div class="card mb-2">
-                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
-                          alt="Card image cap">
+                        <div style="text-align: center;">   <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
@@ -640,8 +601,8 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                           </p>
-                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
-                        </div>
+                          <div style="text-align: center;">  <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div></div>
                       </div>
                 </div>
                 
@@ -669,8 +630,8 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                          alt="Card image cap">
+                        <div style="text-align: center;">  <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">Digital marketing</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -682,8 +643,8 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of digiDeveloper">
                     <div class="card mb-2">
-                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
-                          alt="Card image cap">
+                        <div style="text-align: center;">  <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
@@ -728,8 +689,8 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                           </p>
-                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
-                        </div>
+                          <div style="text-align: center;">    <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div></div>
                       </div>
                 </div>
                 
@@ -757,8 +718,8 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                          alt="Card image cap">
+                        <div style="text-align: center;">   <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">Multimedia designing</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -770,8 +731,8 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of multiDeveloper">
                     <div class="card mb-2">
-                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
-                          alt="Card image cap">
+                        <div style="text-align: center;">  <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
@@ -816,8 +777,8 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                           </p>
-                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
-                        </div>
+                          <div style="text-align: center;">  <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div></div>
                       </div>
                 </div>
                 
@@ -845,8 +806,8 @@
             <div class="carousel-inner row w-100 mx-auto" role="listbox">
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
                     <div class="card mb-2">
-                        <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                          alt="Card image cap">
+                        <div style="text-align: center;">  <img class="imag" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">Robotics</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -858,8 +819,8 @@
                 
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of robotDeveloper">
                     <div class="card mb-2">
-                        <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
-                          alt="Card image cap">
+                        <div style="text-align: center;">   <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img}}"
+                          alt="Card image cap"></div>
                         <div class="card-body">
                           <h4 class="card-title">{{item?.user.first_name}} {{ item?.user.last_name}}</h4>
                           <p *ngIf="item?.user.rating <= 0.5" class="card-text">
@@ -904,8 +865,8 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                           </p>
-                          <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
-                        </div>
+                          <div style="text-align: center;">   <a class="btn btn-primary" (click)="viewDeveloper(item?.user.id)">View profile</a>
+                        </div></div>
                       </div>
                 </div>
                 
@@ -926,7 +887,7 @@
 </div>
 
 </div>
-
+</div>
 
 <div *ngIf="!marked">
   <app-cli-view-dev></app-cli-view-dev>
