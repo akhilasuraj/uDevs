@@ -61,7 +61,8 @@ import { FooterComponent } from './user/footer/footer.component'
 import { ChatComponent } from './Chatt/chat/chat.component'
 import { ChatInterfaceComponent } from './Chatt/chat-interface/chat-interface.component';
 import { DevViewMyProjectComponent } from './project/dev-view-my-project/dev-view-my-project.component';
-import { VerifyMsgComponent } from './user/verify-msg/verify-msg.component'
+import { VerifyMsgComponent } from './user/verify-msg/verify-msg.component';
+import { VerifyForgotpwdComponent } from './user/verify-forgotpwd/verify-forgotpwd.component'
 
 
 
@@ -147,7 +148,8 @@ const routes: Routes = [
     ChatInterfaceComponent,
     FooterComponent,
     DevViewMyProjectComponent,
-    VerifyMsgComponent
+    VerifyMsgComponent,
+    VerifyForgotpwdComponent
   ],
   imports: [
     BrowserModule,

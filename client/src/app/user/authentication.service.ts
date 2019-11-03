@@ -273,6 +273,9 @@ export class AuthenticationService {
   }
 
 
+  public forgotPassword(email):Observable<any>{
+    return this.http.post(`/users/forgotPwd`,email)
+  }
 
 }
 

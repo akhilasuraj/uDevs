@@ -27,4 +27,7 @@ users.post('/register/send',user_cont.send_email)
 users.post('/verify',user_cont.verify_email)
 
 
+//forgot password
+users.post('/forgotPwd',user_cont.forgot_pwd)
+
 module.exports = users

@@ -125,8 +125,16 @@
         visibility: visible;
     }
 }
-
-
+.mb-2{
+    box-shadow: 0px 1px 5px 2px rgb(167, 166, 166);
+    background-color:rgb(245, 237, 237) ;
+}
+.card-title{
+    margin: 0px 0px 2px 2px;
+}
+.card-text{
+    margin: 0px 0px 2px 2px;
+}
 .carousel-control-next-icon{
     background-color: grey;
     width: 10%;
@@ -149,11 +157,11 @@
 }
 .imag{
 border-radius:100%;
-margin-left: 3px;
-margin-right: 3px;
+margin-left: 24%;
+margin-right: 10%;
 margin-top: 5px;
-width: 200px;
-height: 200px;
+width: 125px;
+height: 125px;
 }
 /*test*/
 /*********************** Demo - 1 *******************/

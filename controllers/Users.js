@@ -90,6 +90,39 @@ exports.verify_email = (req,res)=>{
 }
 
 
+exports.forgot_pwd=(req,res) =>{
+
+    var token = cryptr.encrypt(req.body.email)
+
+    User.update({
+        verify_key : token 
+    },{
+        where:{
+            email : req.body.email
+        }
+
+    })
+
+	link = "http://localhost:4200/verifyPwd?verifyKey=" + token;
+	mailOptions = {
+		to: req.body.email,
+		subject: "Please confirm your Email account",
+		html: "Hello,<br> Please Click on the link to change password.<br><a href=" + link + ">Click here to verify</a>"
+	}
+	console.log(mailOptions);
+	smtpTransport.sendMail(mailOptions, function (error, response) {
+		if (error) {
+			console.log(error);
+			res.json({success:0});
+		} else {
+			console.log("Message sent: " + response.message);
+			res.json({success:1});
+		}
+	});
+
+}
+
+
 
 exports.cli_register=(req,res)=>{
 

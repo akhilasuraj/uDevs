@@ -59,5 +59,20 @@ export class LoginComponent implements OnInit {
     this.marked2 = false
   }
 
+  emailDetails={
+    email: ''
+  }
+
+  forgotPassword(){
+
+    this.emailDetails.email = this.credentials.email
+    
+    this.auth.forgotPassword(this.emailDetails).subscribe(
+      res=>{
+        
+      }
+    )
+  }
+
 
 }
