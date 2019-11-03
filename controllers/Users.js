@@ -25,7 +25,7 @@ var smtpTransport = nodemailer.createTransport({
 	}
 });
 
-var rand, mailOptions, host, link;
+var mailOptions, link;
 
 exports.send_email = (req,res)=>{
 

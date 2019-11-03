@@ -1,4 +1,3 @@
-
 <!--<ul style="box-shadow: 0px 1px 5px 2px rgb(167, 166, 166);" class="down">
   <li style="margin:-1.5% -10% -0.5% 2%;"><img src="assets/img/logo.png" height="1%" width="20%"></li>
   <li><a routerLink="/cliCatagory/home">Home</a></li>
@@ -19,43 +18,59 @@
 </ul>-->
 <div class="d-none d-sm-block">
 
-    <div class="back1">
+     <div class="back1">
 
-        <div class="a">
-             <img class="imag" src="assets/img/logo.png">
-             <a routerLink="/cliCatagory/home">Home</a>
-             <a routerLink="/cliCatagory/profile">Profile</a>
-           
-             <a routerLink="/cliCatagory/project">My Projects</a>
+          <div class="a">
+               <img class="imag" src="assets/img/logo.png">
+               <a routerLink="/cliCatagory/home">Home</a>
+               <a routerLink="/cliCatagory/profile">Profile</a>
 
-             <a href="/home/login" (click)="logout()">
-                  <div class="logout" style="text-align: center;"><b>Log Out</b></div>
-             </a>
+               <a routerLink="/cliCatagory/project">My Projects</a>
 
-             <div class="pic" style="float:right; margin-right: 5%;margin-top: 10px;">
-                  <a routerLink="/cliCatagory/notification" class="notification">
-                       <span><img src="assets/img/notification.png" style="margin: -25px 0px 0px -17px;" height="20px"
-                                 width="20px">
-                       </span>
-                       <div *ngIf="totalCount > 0">
-                            <span class="badge">{{ countBid + countRequest + countAccept }}</span>
-                       </div>
-                  </a>
-             </div>
-             <div class="pic" style="float:right; margin-right: 2%;margin-top: 10px;">
-                  <a routerLink="/cliCatagory/chat"><img style=" width: 25px;margin: 1px 0px 0px 6px;"
-                            src="../../../assets/img/cc.png">
-                  </a>
-             </div>
+               <a href="/home/login" (click)="logout()">
+                    <div class="logout" style="text-align: center;"><b>Log Out</b></div>
+               </a>
+
+               <!-- <div class="pic" style="float:right; margin-right: 5%;margin-top: 10px;">
+                    <a routerLink="/cliCatagory/notification" class="notification">
+                         <span><img src="assets/img/notification.png" style="margin: -25px 0px 0px -17px;" height="20px"
+                                   width="20px">
+                         </span>
+                         <div *ngIf="totalCount > 0">
+                              <span class="badge">{{ countBid + countRequest + countAccept }}</span>
+                         </div>
+                    </a>
+
+               </div> -->
+               <div class="pic" style="float:right; margin-right: 2%;margin-top: 10px;">
+                    <a routerLink="/cliCatagory/chat"><img style=" width: 25px;margin: 1px 0px 0px 6px;"
+                              src="../../../assets/img/cc.png">
+                    </a>
+               </div>
 
 
 
-        </div>
-   </div>
+          </div>
+     </div>
 
 
 </div>
 
 
-
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div style="background-color:#e3d5f3 ;">
+     <div class="w3-container" style="margin-left: 90%; position:sticky;">
+          <div class="w3-dropdown-hover" style="background-color: gray;">
+               <button class="w3-button w3-white notification">
+                    <span><img src="assets/img/notification.png" height="45px" width="45px"></span>
+                    <div *ngIf="totalCount > 0">
+                         <span class="badge">{{ countBid + countRequest + countAccept }}</span>
+                    </div>
+               </button>
+               <div class="w3-dropdown-content w3-bar-block w3-border" style="width: 1000px;margin-left: -900px;position:relative;">
+                    <app-cli-notification></app-cli-notification>
+               </div>
+          </div>
+     </div>
+</div>

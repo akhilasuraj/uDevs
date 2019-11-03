@@ -64,7 +64,8 @@ import { DevViewMyProjectComponent } from './project/dev-view-my-project/dev-vie
 import { VerifyMsgComponent } from './user/verify-msg/verify-msg.component';
 import { VerifyForgotpwdComponent } from './user/verify-forgotpwd/verify-forgotpwd.component';
 import { EnterNewPasswordComponent } from './user/enter-new-password/enter-new-password.component';
-import { VerifyNewEmailComponent } from './user/verify-new-email/verify-new-email.component'
+import { VerifyNewEmailComponent } from './user/verify-new-email/verify-new-email.component';
+import { CliViewNotificationComponent } from './notification/cli-view-notification/cli-view-notification.component'
 
 
 
@@ -155,13 +156,10 @@ const routes: Routes = [
     FooterComponent,
     DevViewMyProjectComponent,
     VerifyMsgComponent,
-<<<<<<< HEAD
     VerifyForgotpwdComponent,
     EnterNewPasswordComponent,
-    VerifyNewEmailComponent
-=======
-    VerifyForgotpwdComponent
->>>>>>> 2beea263a2698af1cd5362e0dff34beaf74d12df
+    VerifyNewEmailComponent,
+    CliViewNotificationComponent
   ],
   imports: [
     BrowserModule,

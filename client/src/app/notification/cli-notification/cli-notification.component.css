@@ -50,3 +50,30 @@ ul {
     75%  {background: rgb(240, 162, 61);}
     100% {background: rgb(247, 243, 5);}
   }
+
+
+
+  body {
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .scrolling-box {
+    background-color: #eaeaea;
+    display: block;
+    width: 1000px;
+    height: 500px;
+    padding: 1em;
+    overflow-y: scroll;
+    text-align: center;
+  }
+  
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
