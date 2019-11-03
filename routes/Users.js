@@ -27,4 +27,17 @@ users.post('/register/send',user_cont.send_email)
 users.post('/verify',user_cont.verify_email)
 
 
+//forgot password
+users.post('/forgotPwd',user_cont.forgot_pwd)
+users.post('/newPwd', user_cont.new_password)
+
+//change password
+users.get('/getPwd', user_cont.get_password)
+users.post('/changePwd', user_cont.change_password)
+
+//Change email
+users.post('/sendNewEmail',user_cont.send_new_email)
+users.post('/updateEmail', user_cont.update_email)
+
+
 module.exports = users

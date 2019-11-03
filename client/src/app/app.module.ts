@@ -61,7 +61,10 @@ import { FooterComponent } from './user/footer/footer.component'
 import { ChatComponent } from './Chatt/chat/chat.component'
 import { ChatInterfaceComponent } from './Chatt/chat-interface/chat-interface.component';
 import { DevViewMyProjectComponent } from './project/dev-view-my-project/dev-view-my-project.component';
-import { VerifyMsgComponent } from './user/verify-msg/verify-msg.component'
+import { VerifyMsgComponent } from './user/verify-msg/verify-msg.component';
+import { VerifyForgotpwdComponent } from './user/verify-forgotpwd/verify-forgotpwd.component';
+import { EnterNewPasswordComponent } from './user/enter-new-password/enter-new-password.component';
+import { VerifyNewEmailComponent } from './user/verify-new-email/verify-new-email.component'
 
 
 
@@ -74,6 +77,9 @@ const routes: Routes = [
   {path: 'adminCatagory/:type' , component: AdminCatagoryComponent},
   {path: 'verify', component: VerifyEmailComponent },
   {path: 'pleaseVerify', component: VerifyMsgComponent },
+  {path: 'verifyPwd', component: VerifyForgotpwdComponent },
+  {path: 'verifyNewEmail', component: VerifyNewEmailComponent },
+  // {path: 'changePwd', component: EnterNewPasswordComponent},
   // { path: 'dev_profile', component: DevProfileComponent, canActivate: [AuthGuardService]},
   // { path: 'cli_profile', component: CliProfileComponent, canActivate: [AuthGuardService]},
   // { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService]},
@@ -147,7 +153,10 @@ const routes: Routes = [
     ChatInterfaceComponent,
     FooterComponent,
     DevViewMyProjectComponent,
-    VerifyMsgComponent
+    VerifyMsgComponent,
+    VerifyForgotpwdComponent,
+    EnterNewPasswordComponent,
+    VerifyNewEmailComponent
   ],
   imports: [
     BrowserModule,

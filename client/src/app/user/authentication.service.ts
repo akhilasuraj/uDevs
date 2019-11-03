@@ -161,7 +161,7 @@ export class AuthenticationService {
     return this.http.post(`/users/techno`, techno)
   }
 
-  public sendEmail(user: TokenPayload): Observable<any>{
+  public sendEmail(user): Observable<any>{
     return this.http.post(`/users/register/send`, user)
   }
 
@@ -270,6 +270,47 @@ export class AuthenticationService {
 
   public uploadProfileImage(fd):Observable<any>{
     return this.http.post(`/users/proImage`,fd)
+  }
+
+
+  public forgotPassword(email):Observable<any>{
+    return this.http.post(`/users/forgotPwd`,email)
+  }
+
+  public newPassword(data):Observable<any>{
+    return this.http.post(`/users/newPwd`,data)
+  }
+
+
+  public getPassword(): Observable<any> {
+    return this.http.get(`/users/getPwd`, {
+      headers: { Authorization: ` ${this.getToken()}` }
+    })
+  }
+
+  public changePassword(details):Observable<any>{
+    const base= this.http.post(`/users/changePwd`,details)
+
+    const request = base.pipe(
+      map((data: TokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token)
+        }
+        return data
+      })
+    )
+
+    return request
+  }
+
+
+  public sendNewEmail(details): Observable<any>{
+    return this.http.post(`/users/sendNewEmail`, details)
+  }
+
+
+  public updateEmail(details): Observable<any>{
+    return this.http.post(`/users/updateEmail`, details)
   }
 
 

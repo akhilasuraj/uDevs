@@ -59,5 +59,26 @@ export class LoginComponent implements OnInit {
     this.marked2 = false
   }
 
+  emailDetails={
+    email: ''
+  }
+
+  forgotPassword(){
+
+    this.emailDetails.email = this.credentials.email
+
+    if(this.credentials.email == ''){
+
+      window.alert('Please enter the email first!!!')
+    }else{
+    
+    this.auth.forgotPassword(this.emailDetails).subscribe(
+      res=>{
+        window.alert('Please verify your email address')
+      }
+    )
+    }
+  }
+
 
 }

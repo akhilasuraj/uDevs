@@ -90,6 +90,164 @@ exports.verify_email = (req,res)=>{
 }
 
 
+exports.forgot_pwd=(req,res) =>{
+
+    var token = cryptr.encrypt(req.body.email)
+
+    User.update({
+        verify_key : token 
+    },{
+        where:{
+            email : req.body.email
+        }
+
+    })
+
+	link = "http://localhost:4200/verifyPwd?verifyKey=" + token+"&email="+req.body.email;
+	mailOptions = {
+		to: req.body.email,
+		subject: "Please confirm your Email account",
+		html: "Hello,<br> Please Click on the link to change password.<br><a href=" + link + ">Click here to verify</a>"
+	}
+	console.log(mailOptions);
+	smtpTransport.sendMail(mailOptions, function (error, response) {
+		if (error) {
+			console.log(error);
+			res.json({success:0});
+		} else {
+			console.log("Message sent: " + response.message);
+			res.json({success:1});
+		}
+	});
+
+}
+
+
+exports.new_password=(req,res)=>{
+
+    User.update({
+        password : cryptr.encrypt(req.body.password)
+    },{
+        where:{
+            email:req.body.email
+        }
+    })
+    
+    res.json({success: 1})
+
+}
+
+
+exports.get_password=(req,res)=>{
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+
+    User.findOne({
+        where : {
+            id: decoded.id
+        }
+    })
+    .then(user =>{
+        const password = cryptr.decrypt(user.password)
+        res.json({password})
+    })
+    .catch(err =>{
+        res.send('error:'+err)
+    })
+}
+
+
+
+exports.change_password=(req,res)=>{
+
+    User.update({
+        password : cryptr.encrypt(req.body.password)
+    },{
+        where:{
+            id:req.body.id
+        }
+    })
+    
+    User.findOne({
+        where:{
+            id: req.body.id,
+        }
+    })
+    .then(user=>{
+        let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
+            expiresIn:1440
+        })
+        console.log("Success")
+        res.json({token:token})
+    })
+    .catch(err =>{
+        res.send('error:'+err)
+    })
+
+}
+
+
+
+exports.send_new_email = (req,res)=>{
+
+    //rand = Math.floor((Math.random() * 100) + 54);
+
+    var token = cryptr.encrypt(req.body.email)
+
+    User.update({
+        verify_key : token 
+    },{
+        where:{
+           id : req.body.id
+        }
+
+    })
+    link = "http://localhost:4200/verifyNewEmail?verifyKey=" + token+"&email="+req.body.email +"&id="+req.body.id;
+	mailOptions = {
+		to: req.body.email,
+		subject: "Please confirm your Email account",
+		html: "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
+	}
+	console.log(mailOptions);
+	smtpTransport.sendMail(mailOptions, function (error, response) {
+		if (error) {
+			console.log(error);
+			res.json({success:0});
+		} else {
+			console.log("Message sent: " + response.message);
+			res.json({success:1});
+		}
+	});
+}
+
+
+exports.update_email = (req,res)=>{
+
+    User.findOne({
+        where : {
+            id: req.body.id,
+            verify_key: req.body.verify_key
+        }
+    })
+    .then(user =>{
+
+        User.update({
+            email : req.body.email 
+        },{
+            where:{
+               id : req.body.id
+            }
+    
+        })
+        
+        res.json({success:1})
+    })
+    .catch(err =>{
+        res.send('error:'+err)
+    })
+
+}
+
+
 
 exports.cli_register=(req,res)=>{
 
@@ -211,7 +369,7 @@ exports.login=(req,res)=>{
                 res.send('You have been banned or you have not verify your email address')
             }
         }else{
-            res.json({success: 0})
+            // res.json({success: 0})
             res.send('Password incorrect')
         }
     
@@ -305,8 +463,7 @@ exports.edit_profile=(req,res)=>{
 
    User.findOne({
         where:{
-            email: req.body.email,
-            password: req.body.password
+            email: req.body.email
         }
     })
     .then(user=>{
