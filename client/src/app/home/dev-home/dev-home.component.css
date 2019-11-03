@@ -169,9 +169,9 @@
 
 .imag{
     box-shadow: 0px 1px 5px 2px rgb(161, 158, 158);
-border-radius:100%;
-margin-top: 5px;
-width: 125px;
+border-radius: 10%;
+margin-top: 20px;
+width: 170px;
 height: 125px;
 }
 /*test  #e3d5f3*/
@@ -180,4 +180,19 @@ height: 125px;
 
 .back{background-color:  #e3d5f3;
 
+}
+.viewmore{
+    float:right;
+    box-shadow: 0px 1px 5px 2px rgb(161, 158, 158);
+    background-color: white;
+    margin-right: 14%;
+    border-radius: 5%;
+    margin-top: -4%;
+   
+}
+.viewmore:hover{
+    box-shadow: 1px 2px 6px 3px rgb(161, 158, 158);
+}
+a:hover{
+    text-decoration: none; 
 }
