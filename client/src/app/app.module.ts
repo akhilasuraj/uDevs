@@ -68,8 +68,9 @@ import { VerifyNewEmailComponent } from './user/verify-new-email/verify-new-emai
 import { CliViewNotificationComponent } from './notification/cli-view-notification/cli-view-notification.component'
 import { CliAllComponent } from './home/cli-all/cli-all.component';
 import { DevAllComponent } from './home/dev-all/dev-all.component';
-import { ViewAllProjectComponent } from './home/view-all-project/view-all-project.component';
+
 import { VeiwAllDevComponent } from './home/veiw-all-dev/veiw-all-dev.component'
+import { ViewMoreProjectComponent } from './home/view-more-project/view-more-project.component';
 
 
 
@@ -166,8 +167,9 @@ const routes: Routes = [
     CliViewNotificationComponent,
     CliAllComponent,
     DevAllComponent,
-    ViewAllProjectComponent,
-    VeiwAllDevComponent
+    
+    VeiwAllDevComponent,
+    ViewMoreProjectComponent,
     
   ],
   imports: [
@@ -188,8 +190,7 @@ const routes: Routes = [
     AuthConfProService,
     AuthCompetitonService,
     AuthAdminService,
-    ProjectHomeComponent,
-    DevHomeComponent
+    ProjectHomeComponent
 
 
   ],

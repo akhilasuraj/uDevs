@@ -1,17 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { DevAllComponent } from '../dev-all/dev-all.component'
 import { AuthenticationService, UserDetails } from '../../user/authentication.service';
-import { ProjectDetails,BidDetails } from '../../project/auth-project.service';
+import { ProjectDetails, BidDetails } from '../../project/auth-project.service';
 import { AuthHomeService, ViewProjectObject, bidResponseDetails, requestDetails } from '../auth-home.service'
 import { ActivatedRoute } from '@angular/router';
-import { DevAllComponent } from '../../home/dev-all/dev-all.component';
 import { SocketcommService } from '../../Chatt/chat/socketcomm.service';
 
 @Component({
-  selector: 'app-view-all-project',
-  templateUrl: './view-all-project.component.html',
-  styleUrls: ['./view-all-project.component.css']
+  selector: 'app-view-more-project',
+  templateUrl: './view-more-project.component.html',
+  styleUrls: ['./view-more-project.component.css']
 })
-export class ViewAllProjectComponent implements OnInit {
+export class ViewMoreProjectComponent implements OnInit {
+
+  constructor(
+    private all: DevAllComponent,
+    private auth: AuthenticationService,
+    private route: ActivatedRoute,
+    private authHome: AuthHomeService,
+    private chatService: SocketcommService
+  ) { }
+
+
   marked1=true
   marked2=false
   marked3=true
@@ -19,45 +29,20 @@ export class ViewAllProjectComponent implements OnInit {
   view1 = true
   view2 = false
   currentDate = new Date();
-  newDate:Date
-  diff:number
-  
+  newDate: Date
+  diff: number
 
-  public chat={
-    rEmail:'',
-    uName : '',
-    uId : 0,
-    rId : 0
-  }
-  friendDetails={
-    u_id:0,
-    friend_id:0
-  }
-  userName:string;
-  userId:number;
-
-
-
-
-  constructor(
-    private auth: AuthenticationService,
-    private route: ActivatedRoute,
-     private authHome: AuthHomeService,
-     private chatService:SocketcommService,
-     private devAll: DevAllComponent) { }
-
-  viewdetails: ViewProjectObject={
+  viewdetails: ViewProjectObject = {
     project_ID: 0,
-    client_ID : 0,
-    developer_ID:0
+    client_ID: 0,
+    developer_ID: 0
   }
 
-  details={
-    project_ID: 0 
+  details = {
+    project_ID: 0
   }
 
-
-  credentials:bidResponseDetails={
+  credentials: bidResponseDetails = {
     developer_ID: 0,
     project_ID: 0,
     bid_value: 0,
@@ -72,86 +57,97 @@ export class ViewAllProjectComponent implements OnInit {
 
   bids: bidResponseDetails
 
+
+  public chat = {
+    rEmail: '',
+    uName: '',
+    uId: 0,
+    rId: 0
+  }
+  friendDetails = {
+    u_id: 0,
+    friend_id: 0
+  }
+  userName: string;
+  userId: number;
+
+
   requestProject:requestDetails={
     developer_ID:0,
     project_ID:0,
     isViewed: false,
     isAccepted: false
   }
-  
 
   ngOnInit() {
+
     this.userName = this.auth.getUserDetails().first_name
     this.userId = this.auth.getUserDetails().id
 
     this.viewdetails.developer_ID = this.auth.getUserDetails().id
-    this.viewdetails.project_ID = this.devAll.project_ID
+    this.viewdetails.project_ID = this.all.project_ID
+    this.details.project_ID = this.all.project_ID
 
-    this.route.queryParams.subscribe(params => {
+    this.authHome.dev_getProject(this.details).subscribe(
+      project => {
 
-      this.details.project_ID = this.devAll.project_ID
+        this.viewdetails.client_ID = project.user.id
+        this.project = project
 
-      this.authHome.dev_getProject(this.details).subscribe(
-        project=>{
-         
-          this.viewdetails.client_ID = project.user.id
-          this.project = project
+        if (this.project.payment == '') {
+          this.view1 = false
+          this.view2 = true
 
-          if(this.project.payment == ''){
-            this.view1 = false
-            this.view2 = true
-            
-            this.authHome.dev_getBid(this.viewdetails).subscribe(
-              bid=>{
-                this.bid = bid
-                this.newDate = new Date(this.bid.start_date);
-                this.diff = Math.ceil((this.currentDate.valueOf() - this.newDate.valueOf())/(1000 * 3600 * 24));
-              },
-              err => {
-                console.error(err)
-              }
-            )
-          }
-        },
-        err => {
-          console.error(err)
+          this.authHome.dev_getBid(this.viewdetails).subscribe(
+            bid => {
+              this.bid = bid
+              this.newDate = new Date(this.bid.start_date);
+              this.diff = Math.ceil((this.currentDate.valueOf() - this.newDate.valueOf()) / (1000 * 3600 * 24));
+            },
+            err => {
+              console.error(err)
+            }
+          )
         }
-      )
-      
-    })
-
-    
-    this.authHome.getBid(this.viewdetails).subscribe(
-      bid=>{
-        this.bids=bid
-          this.marked1=false
-          this.marked2=true
-        
       },
-      err=>{
+      err => {
         console.error(err)
       }
-      
     )
 
-    
-    this.authHome.getRequest(this.viewdetails).subscribe(
-      request=>{
-          this.marked3=false
-          this.marked4=true
+
+    this.authHome.getBid(this.viewdetails).subscribe(
+      bid => {
+        this.bids = bid
+        this.marked1 = false
+        this.marked2 = true
+
       },
-      err=>{
+      err => {
+        console.error(err)
+      }
+
+    )
+
+
+    this.authHome.getRequest(this.viewdetails).subscribe(
+      request => {
+        this.marked3 = false
+        this.marked4 = true
+      },
+      err => {
         console.log(err)
       }
-  )
-
-
+    )
   }
+
+
+
 
   gotoChat(){
     console.log('went to chat');
 
-    this.details.project_ID = this.devAll.project_ID
+    this.details.project_ID = this.all.project_ID
 
     this.authHome.dev_getProject(this.details).subscribe(
       project=>{
@@ -180,16 +176,12 @@ export class ViewAllProjectComponent implements OnInit {
   }
 
 
-  logout(){
-    this.auth.logout()
-  }
-
 
   sendRequest(){
 
     this.requestProject.developer_ID=this.auth.getUserDetails().id
 
-      this.requestProject.project_ID = this.devAll.project_ID
+      this.requestProject.project_ID = this.all.project_ID
 
     this.authHome.sendRequest(this.requestProject).subscribe(
         request=>{
@@ -207,7 +199,7 @@ export class ViewAllProjectComponent implements OnInit {
   cancleRequest(){
     this.requestProject.developer_ID=this.auth.getUserDetails().id
 
-      this.requestProject.project_ID = this.devAll.project_ID
+      this.requestProject.project_ID = this.all.project_ID
 
     this.authHome.cancleRequest(this.requestProject).subscribe(
         request=>{
@@ -221,13 +213,14 @@ export class ViewAllProjectComponent implements OnInit {
 
   }
 
-  
-  
+
 
   sendBid(){
     this.credentials.developer_ID=this.auth.getUserDetails().id
  
-      this.credentials.project_ID = this.devAll.project_ID
+      this.credentials.project_ID = this.all.project_ID
+
+      console.log(this.credentials)
 
     this.authHome.sendBid(this.credentials).subscribe(
       bid=>{
@@ -244,7 +237,7 @@ export class ViewAllProjectComponent implements OnInit {
   bidAgain(){
     this.credentials.developer_ID=this.auth.getUserDetails().id
 
-    this.credentials.project_ID = this.devAll.project_ID
+    this.credentials.project_ID = this.all.project_ID
 
     this.authHome.editBid(this.credentials).subscribe(
       ()=>{
@@ -280,7 +273,11 @@ export class ViewAllProjectComponent implements OnInit {
   }
 
 
-  backToHome(){
-    this.devAll.marked = true
+  back(){
+    this.all.marked = true
   }
+
+  
+
+
 }
