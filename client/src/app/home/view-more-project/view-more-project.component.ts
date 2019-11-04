@@ -273,7 +273,7 @@ export class ViewMoreProjectComponent implements OnInit {
   }
 
 
-  backToHome(){
+  back(){
     this.all.marked = true
   }
 
