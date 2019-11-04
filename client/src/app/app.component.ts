@@ -2,6 +2,8 @@
 import { AuthenticationService } from './user/authentication.service'
 import {Component, ViewEncapsulation} from '@angular/core';
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

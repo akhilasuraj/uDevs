@@ -1,19 +1,37 @@
-<ul style="box-shadow: 0px 1px 5px 2px rgb(167, 166, 166);" class="down">
-     <li style="margin:-1.5% -10% -0.5% 2%;"><img src="assets/img/logo.png" height="1%" width="20%"></li>
-     <li><a routerLink="/devCatagory/home">Home</a></li>
-     <li><a routerLink="/devCatagory/profile">Profile</a></li>
-     <li><a routerLink="/devCatagory/competition">Competitions</a></li>
-     <li><a routerLink="/devCatagory/project">My Projects</a></li>
-     <li style="float:right"><a href="/home/login" (click)="logout()">
-               <div style="color: blue;"><b>Log Out</b></div>
-          </a></li>
-     <li style="float:right"><a routerLink="/devCatagory/notification" class="notification">
-               <span><img src="assets/img/notification.png" height="45px" width="45px"></span>
-               <div *ngIf="totalCount > 0">
-                    <span class="badge">{{ countRequestDeveloper + countAccProReq + countAccBidReq }}</span>
+<div class="d-none d-sm-block">
+
+     <div class="back1">
+
+          <div class="a">
+               <img class="imag" src="assets/img/logo.png">
+               <a routerLink="/devCatagory/home">Home</a>
+               <a routerLink="/devCatagory/profile">Profile</a>
+               <a routerLink="/devCatagory/competition">Competitions</a>
+               <a routerLink="/devCatagory/project">My Projects</a>
+
+               <a href="/home/login" (click)="logout()">
+                    <div class="logout" style="text-align: center;"><b>Log Out</b></div>
+               </a>
+
+               <div class="pic" style="float:right; margin-right: 5%;margin-top: 10px;">
+                    <a routerLink="/devCatagory/notification" class="notification">
+                         <span><img src="assets/img/notification.png" style="margin: -25px 0px 0px -17px;" height="20px"
+                                   width="20px">
+                         </span>
+                         <div *ngIf="totalCount > 0">
+                              <span class="badge">{{ countRequestDeveloper + countAccProReq + countAccBidReq }}</span>
+                         </div>
+                    </a>
                </div>
-          </a>
-     </li>
-     <li style="float:right; margin-right: -6%;"><a routerLink="/devCatagory/chat"><img style=" width: 18%;"
-                    src="../../../assets/img/cc.png"></a></li>
-</ul>
+               <div class="pic" style="float:right; margin-right: 2%;margin-top: 10px;">
+                    <a routerLink="/devCatagory/chat"><img style=" width: 25px;margin: 1px 0px 0px 6px;"
+                              src="../../../assets/img/cc.png">
+                    </a>
+               </div>
+
+
+
+          </div>
+     </div>
+
+</div>

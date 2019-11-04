@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthNotificationService, viewCliReq } from '../auth-notification.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/user/authentication.service';
 import { bidResponseDetails } from 'src/app/home/auth-home.service';
-import { CliNotificationComponent } from '../cli-notification/cli-notification.component';
+import { CliViewNotificationComponent } from '../cli-view-notification/cli-view-notification.component';
 
 @Component({
   selector: 'app-view-bid-request',
@@ -24,7 +24,9 @@ export class ViewBidRequestComponent implements OnInit {
     private authNot: AuthNotificationService, 
     private auth: AuthenticationService, 
     private route: ActivatedRoute,
-    private cliNot: CliNotificationComponent) { }
+    private cliNot: CliViewNotificationComponent,
+    private router: Router,
+    ) { }
 
   ngOnInit() {
 
@@ -39,13 +41,11 @@ export class ViewBidRequestComponent implements OnInit {
     )
   }
 
-  logout(){
-    this.auth.logout()
-    }
-
 
     BackToNotification(){
-      this.cliNot.view = true
-      window.location.reload()
+    }
+
+    goToProject( Pro_id){
+      this.router.navigateByUrl('/cliCatagory/project')
     }
 }

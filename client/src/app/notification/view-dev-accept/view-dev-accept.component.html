@@ -1,7 +1,7 @@
 
 
-<div class="container">
-    <button (click)="BackToNotification()">&lt;&lt;&lt;Back to Notifications</button>
+<div class="container" style="margin-bottom: 100px;">
+    <!-- <button (click)="BackToNotification()">&lt;&lt;&lt;Back to Notifications</button> -->
     <div>
   <img src="http://localhost:3000/{{ Not_details?.user?.profile_img }}"
     alt="http://localhost:3000/{{ Not_details?.user?.profile_img }}"><br>
@@ -10,6 +10,6 @@
   {{ Not_details?.user?.first_name }} &nbsp;
   {{ Not_details?.user?.last_name }}<br>
 
-  {{ Not_details?.project?.project_name }}<br>
+  <button (click)="goToProject(Not_details?.project.id)">{{ Not_details?.project?.project_name }}</button>
 </div>
 </div>

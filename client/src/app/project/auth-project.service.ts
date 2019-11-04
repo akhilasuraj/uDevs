@@ -51,8 +51,13 @@ export interface ConfirmedPro {
 }
 
 
+
+
+
 @Injectable()
 export class AuthProjectService {
+
+  
 
   constructor(private http: HttpClient, private router: Router, private auth: AuthenticationService) { }
 
@@ -197,6 +202,5 @@ export class AuthProjectService {
   public send_feedback(feedbackDetails){
     return this.http.post(`/users/rating/giveFeedback`,feedbackDetails)
   }
-  
 
 }

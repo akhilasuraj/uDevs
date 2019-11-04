@@ -5,7 +5,9 @@ import { map } from 'rxjs/operators'
 import { Router } from '@angular/router'
 import { AuthenticationService } from '../user/authentication.service';
 
-
+export interface xx{
+    no:number
+}
 export interface ViewProjectObject{
     project_ID: number,
     client_ID: number,
@@ -53,7 +55,7 @@ export class AuthHomeService {
     img_link = "http://localhost:3000/"
 
     //developer
-
+  
     public webProject(): Observable<any> {
         return this.http.get(`/users/dev_home/webProject`)
     }
@@ -203,6 +205,5 @@ export class AuthHomeService {
     public cli_getAllRequest(request:requestDeveloperDetails):Observable<any>{
         return this.http.post(`/users/cli_home/getAllRequest`,request)
     }
-
 
 }

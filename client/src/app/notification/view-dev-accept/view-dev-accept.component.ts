@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthNotificationService, viewCliReq } from '../auth-notification.service';
 import { AuthenticationService } from 'src/app/user/authentication.service';
 import { requestDeveloperDetails } from 'src/app/home/auth-home.service';
-import { ActivatedRoute } from '@angular/router';
-import { CliNotificationComponent } from 'src/app/notification/cli-notification/cli-notification.component'
+import { ActivatedRoute, Router } from '@angular/router';
+import { CliViewNotificationComponent } from 'src/app/notification/cli-view-notification/cli-view-notification.component'
 
 @Component({
   selector: 'app-view-dev-accept',
@@ -16,7 +16,8 @@ export class ViewDevAcceptComponent implements OnInit {
     private authNot: AuthNotificationService,
     private auth: AuthenticationService,
     private route: ActivatedRoute,
-    private cliNot: CliNotificationComponent
+    private cliNot: CliViewNotificationComponent,
+    private router: Router,
   ) { }
 
   request_data: viewCliReq = {
@@ -41,8 +42,11 @@ export class ViewDevAcceptComponent implements OnInit {
   }
 
   BackToNotification(){
-    this.cliNot.view = true
-    window.location.reload()
+
+  }
+
+  goToProject( Pro_id){
+    this.router.navigateByUrl('/cliCatagory/project')
   }
 
 }

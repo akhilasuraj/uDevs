@@ -1,0 +1,45 @@
+.mb-2{
+    box-shadow: 0px 1px 5px 2px rgb(167, 166, 166);
+    background-color:rgb(255, 255, 255) ;
+   
+}
+.card-title{
+    margin: 10px 0px 2px 0px;
+    text-align: center
+}
+.card-text{
+    margin: 0px 0px 2px 0px;
+    text-align: center
+}
+.imag{
+    box-shadow: 0px 1px 5px 2px rgb(161, 158, 158);
+border-radius:10%;
+margin-top: 10px;
+width: 150px;
+height: 125px;
+}
+
+.box{
+    margin:10px 5px 20px 5px;
+    width: 200px;
+    height: 320px;
+   
+    box-shadow: 0px 1px 5px 2px rgb(167, 166, 166);
+    border-radius: 2%;
+}
+.viewmore{
+
+    box-shadow: 0px 1px 5px 2px rgb(161, 158, 158);
+    background-color: white;
+    width: 80px;
+    border-radius: 5%;
+    margin-top: 1%;
+    margin-left: 2%;
+   
+}
+.viewmore:hover{
+    box-shadow: 1px 2px 6px 3px rgb(161, 158, 158);
+}
+a:hover{
+    text-decoration: none; 
+}
