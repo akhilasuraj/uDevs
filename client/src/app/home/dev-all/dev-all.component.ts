@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthHomeService } from '../auth-home.service';
-import { ProjectDetails } from '../../project/auth-project.service'
+import { ProjectDetails,AuthProjectService } from '../../project/auth-project.service'
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,9 +19,12 @@ export class DevAllComponent implements OnInit {
   digimark: any;
   multiDesign: any;
   robot: any;
-  constructor(private authHome: AuthHomeService,private router: Router) { }
-  project_ID
+
+  constructor(private authHome: AuthHomeService,private router: Router,
+    private authPro: AuthProjectService) { }
+  
   marked = true
+
   ngOnInit() {
 
     this.authHome.webProject().subscribe(
@@ -121,11 +124,15 @@ export class DevAllComponent implements OnInit {
 
 
   }
+
+
+  project_ID:number
+
   viewProject(projectID){
     this.project_ID = projectID
+    console.log(this.project_ID)
     this.marked = false
+
   }
-  back(){
-    this.marked = true
-  }
+
 }

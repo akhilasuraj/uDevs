@@ -204,5 +204,4 @@ export class AuthHomeService {
         return this.http.post(`/users/cli_home/getAllRequest`,request)
     }
 
-
 }
