@@ -1,163 +1,204 @@
 <div *ngIf="marked">
 
 <div class="container">
-
+<br>
+ <h2 class="text-left">Fixed Projects</h2>
+ <br>
   <div class="row">
-    <div class="col mx-auto">
-      <h2 class="text-center">Fixed projects</h2>
-      <br><br>
-      <h4>Current projects </h4>
+    <div class="col md-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h4 class="card-header">Current projects</h4>
 
       <div *ngFor="let pro of fixCurPro">
 
-        <table>
+        <table class="table">
           <tr>
-            <td>{{ pro?.project?.project_name }}</td>
-            <td><button (click)="onClickfix( pro?.id )">
+            <td scope="col">{{ pro?.project?.project_name }}</td>
+            <td scope="col"><button (click)="onClickfix( pro?.id )">
                 View more
               </button></td>
           </tr>
         </table>
 
       </div>
+      </div>
+      </div>
+      </div>
 
-      <h4>Confirmed projects </h4>
+      <div class="col md-4">
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h4 class="card-header">Confirmed projects </h4>
 
       <div *ngFor="let pro of fixConPro">
         <div *ngIf="pro?.project.confirmed_project.isCompleted == 0">
-          <table>
+          <table class="table">
             <tr>
-              <td>{{ pro?.project?.project_name }}</td>
-              <td><button (click)="onClickfix( pro?.id )">
+              <td scope="col">{{ pro?.project?.project_name }}</td>
+              <td scope="col"><button (click)="onClickfix( pro?.id )">
                   View more
                 </button></td>
             </tr>
           </table>
         </div>
       </div>
+      </div>
+      </div>
+      </div>
 
-      <h4>Completed projects </h4>
+      <div class="col md-4">
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h4 class="card-header">Completed projects </h4>
 
       <div *ngFor="let pro of fixComPro">
         <div *ngIf="pro?.project.confirmed_project.isCompleted != 0">
-          <table>
+          <table class="table">
             <tr>
-              <td>{{ pro?.project?.project_name }}</td>
-              <td><button (click)="onClickfix( pro?.id )">
+              <td scope="col">{{ pro?.project?.project_name }}</td>
+              <td scope="col"><button (click)="onClickfix( pro?.id )">
                   View more
                 </button></td>
             </tr>
           </table>
         </div>
-
+        </div>
       </div>
-
+      </div>
     </div>
-
-
-    <div class="col mx-auto">
-      <h2 class="text-center">Bid projects</h2>
-      <br><br>
-      <h4>Current projects </h4>
+  </div>
+  <br><br>
+  <h2 class="text-left">Bid Projects</h2>
+  <br>
+  <div class="row">
+    <div class="col md-4">
+      <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h4 class="card-header">Current projects </h4>
 
       <div *ngFor="let pro of bidCurPro">
 
-        <table>
+        <table class="table">
           <tr>
-            <td>{{ pro?.project?.project_name }}</td>
-            <td><button (click)="onClickbid( pro?.id )">
+            <td scope="col">{{ pro?.project?.project_name }}</td>
+            <td scope="col"><button (click)="onClickbid( pro?.id )">
                 View more
               </button></td>
           </tr>
         </table>
-
+        </div>
+        </div>
       </div>
+    </div>
 
-      <h4>Confirmed projects </h4>
+    <div class="col md-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h4 class="card-header">Confirmed projects </h4>
 
       <div *ngFor="let pro of bidConPro">
         <div *ngIf="pro?.project.confirmed_project.isCompleted == 0">
-          <table>
+          <table class="table">
             <tr>
-              <td>{{ pro?.project?.project_name }}</td>
-              <td><button (click)="onClickbid( pro?.id )">
+              <td scope="col">{{ pro?.project?.project_name }}</td>
+              <td scope="col"><button (click)="onClickbid( pro?.id )">
                   View more
                 </button></td>
             </tr>
           </table>
         </div>
       </div>
-
-      <h4>Completed projects </h4>
-
-      <div *ngFor="let pro of bidComPro">
-        <div *ngIf="pro?.project.confirmed_project.isCompleted != 0">
-          <table>
-            <tr>
-              <td>{{ pro?.project?.project_name }}</td>
-              <td><button (click)="onClickbid( pro?.id )">
-                  View more
-                </button></td>
-            </tr>
-          </table>
-        </div>
       </div>
-
+      </div>
     </div>
 
-
-    <div class="col mx-auto">
-      <h2 class="text-center">Recieved projects</h2>
-      <br><br>
-      <h4>Current projects </h4>
+    <div class="col md-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h4 class="card-header">Completed projects </h4>
+      <div *ngFor="let pro of bidComPro">
+        <div *ngIf="pro?.project.confirmed_project.isCompleted != 0">
+          <table class="table">
+            <tr>
+              <td scope="col">{{ pro?.project?.project_name }}</td>
+              <td scope="col"><button (click)="onClickbid( pro?.id )">
+                  View more
+                </button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <h2 class="text-left">Recieved Projects</h2>
+  <br>
+  <div class="row">
+    <div class="col md-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h4 class="card-header">Current projects </h4>
 
       <div *ngFor="let pro of recCurPro">
 
-        <table>
+        <table class="table">
           <tr>
-            <td>{{ pro?.project?.project_name }}</td>
-            <td><button (click)="onClickrec( pro?.id )">
+            <td scope="col">{{ pro?.project?.project_name }}</td>
+            <td scope="col"><button (click)="onClickrec( pro?.id )">
                 View more
               </button></td>
           </tr>
         </table>
-
+        </div>
+        </div>
+      </div>
       </div>
 
-      <h4>Confirmed projects </h4>
-
+      <div class="col md-4">
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h4 class="card-header">Confirmed projects </h4>
       <div *ngFor="let pro of recConPro">
         <div *ngIf="pro?.project.confirmed_project.isCompleted == 0">
-          <table>
+          <table class="table">
             <tr>
-              <td>{{ pro?.project?.project_name }}</td>
-              <td><button (click)="onClickrec( pro?.id )">
+              <td scope="col">{{ pro?.project?.project_name }}</td>
+              <td scope="col"><button (click)="onClickrec( pro?.id )">
                   View more
                 </button></td>
             </tr>
           </table>
         </div>
       </div>
+      </div>
+      </div>
+      </div>
 
-      <h4>Completed projects </h4>
-
+      <div class="col md-4">
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h4 class="card-header">Completed projects </h4>
       <div *ngFor="let pro of recComPro">
         <div *ngIf="pro?.project.confirmed_project.isCompleted != 0">
-          <table>
+          <table class="table">
             <tr>
-              <td>{{ pro?.project?.project_name }}</td>
-              <td><button (click)="onClickrec( pro?.id )">
+              <td scope="col">{{ pro?.project?.project_name }}</td>
+              <td scope="col"><button (click)="onClickrec( pro?.id )">
                   View more
                 </button></td>
             </tr>
           </table>
         </div>
       </div>
-
+      </div>
     </div>
 
   </div>
 
+</div>
 </div>
 
 </div>
