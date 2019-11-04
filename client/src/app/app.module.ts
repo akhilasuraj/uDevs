@@ -65,6 +65,7 @@ import { VerifyMsgComponent } from './user/verify-msg/verify-msg.component';
 import { VerifyForgotpwdComponent } from './user/verify-forgotpwd/verify-forgotpwd.component';
 import { EnterNewPasswordComponent } from './user/enter-new-password/enter-new-password.component';
 import { VerifyNewEmailComponent } from './user/verify-new-email/verify-new-email.component';
+import { CliViewNotificationComponent } from './notification/cli-view-notification/cli-view-notification.component'
 import { CliAllComponent } from './home/cli-all/cli-all.component';
 import { DevAllComponent } from './home/dev-all/dev-all.component';
 import { ViewAllProjectComponent } from './home/view-all-project/view-all-project.component'
@@ -161,6 +162,7 @@ const routes: Routes = [
     VerifyForgotpwdComponent,
     EnterNewPasswordComponent,
     VerifyNewEmailComponent,
+    CliViewNotificationComponent
     CliAllComponent,
     DevAllComponent,
     ViewAllProjectComponent

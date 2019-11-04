@@ -36,54 +36,54 @@ export class CliAppbarComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.subscription1 = timer(0, 10000).pipe(
-    //   switchMap(() =>this.auth.countRequest(this.client_data))
-    //   ).subscribe(
-    //   request => {
-    //     this.countRequest = request
-    //     this.totalCount = this.totalCount + request
-    //   },
-    //   err => {
-    //     console.log(err)
-    //   }
-    // )
+    this.subscription1 = timer(0, 10000).pipe(
+      switchMap(() =>this.auth.countRequest(this.client_data))
+      ).subscribe(
+      request => {
+        this.countRequest = request
+        this.totalCount = this.totalCount + request
+      },
+      err => {
+        console.log(err)
+      }
+    )
 
 
-    // this.subscription2 = timer(0, 10000).pipe(
-    //   switchMap(() =>this.auth.countBid(this.client_data))
-    //   ).subscribe(
-    //   request => {
-    //     this.countBid = request
-    //     this.totalCount = this.totalCount + request
-    //   },
-    //   err => {
-    //     console.log(err)
-    //   }
-    // )
+    this.subscription2 = timer(0, 10000).pipe(
+      switchMap(() =>this.auth.countBid(this.client_data))
+      ).subscribe(
+      request => {
+        this.countBid = request
+        this.totalCount = this.totalCount + request
+      },
+      err => {
+        console.log(err)
+      }
+    )
 
 
-    // this.subscription3 = timer(0, 10000).pipe(
-    //   switchMap(() =>this.auth.countAccept(this.client_data))
-    //   ).subscribe(
-    //     request => {
-    //       this.countAccept = request
-    //       this.totalCount = this.totalCount + request
-    //     },
-    //     err => {
-    //       console.log(err)
-    //     }
-    // )
+    this.subscription3 = timer(0, 10000).pipe(
+      switchMap(() =>this.auth.countAccept(this.client_data))
+      ).subscribe(
+        request => {
+          this.countAccept = request
+          this.totalCount = this.totalCount + request
+        },
+        err => {
+          console.log(err)
+        }
+    )
     
 
    
  }
 
   
-//  ngOnDestroy() {
-//   this.subscription1.unsubscribe()
-//   this.subscription2.unsubscribe()
-//   this.subscription3.unsubscribe()
-// }
+ ngOnDestroy() {
+  this.subscription1.unsubscribe()
+  this.subscription2.unsubscribe()
+  this.subscription3.unsubscribe()
+}
 
   logout() {
     if(window.confirm("Do you want to logout")){
