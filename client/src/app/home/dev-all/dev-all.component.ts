@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthHomeService } from '../auth-home.service';
-import { ProjectDetails,AuthProjectService } from '../../project/auth-project.service'
-import { Router,ActivatedRoute } from '@angular/router';
-import { DevHomeComponent } from '../dev-home/dev-home.component'
+import { ProjectDetails, AuthProjectService } from '../../project/auth-project.service'
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dev-all',
@@ -20,145 +19,122 @@ export class DevAllComponent implements OnInit {
   digimark: any;
   multiDesign: any;
   robot: any;
+
+  constructor(private authHome: AuthHomeService, private router: Router,
+    private authPro: AuthProjectService, private activateRoute: ActivatedRoute) { }
+
+  marked = true
+  no
   load
 
-
-  constructor(private authHome: AuthHomeService,private router: Router,private devHome:DevHomeComponent,private activateRoute:ActivatedRoute;private authPro: AuthProjectService) { }
-
-  
-  no
-  marked = true
-
   ngOnInit() {
-    this.activateRoute.queryParams.subscribe(params =>{
-      this.no=params['xx'];
+    this.activateRoute.queryParams.subscribe(params => {
+      this.no = params['xx'];
     })
-  console.log("type:"+this.no)
-  if( 1 == this.no){
-    this.authHome.webProject().subscribe(
-      project=>{
+    console.log("type:" + this.no)
+
+    if ('1' == this.no) {
+      this.authHome.webProject().subscribe(
+        project => {
           this.load = project
-      },
-      err => {
-        console.error(err)
-      }
-    )
-  }
-
-  if( 2 == this.no){
-    this.authHome.mobProject().subscribe(
-      project=>{
+        },
+        err => {
+          console.error(err)
+        }
+      )
+    } else if ('2' == this.no) {
+      this.authHome.mobProject().subscribe(
+        project => {
           this.load = project
-      },
-      err => {
-        console.error(err)
-      }
-    )
-    }
-    
-    if( 3 == this.no){
-    this.authHome.dataProject().subscribe(
-      project=>{
-        this.load  = project
-      },
-      err => {
-        console.error(err)
-      }
-    )
-    }
+        },
+        err => {
+          console.error(err)
+        }
+      )
+    } else if ('3' == this.no) {
+      this.authHome.dataProject().subscribe(
+        project => {
+          this.load = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+    } else if ('4' == this.no) {
+      this.authHome.softProject().subscribe(
+        project => {
+          this.load = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+    } else if ('5' == this.no) {
+      this.authHome.blockchain().subscribe(
+        project => {
+          this.load = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+    } else if ('6' == this.no) {
 
-    if( 4 == this.no){
-    this.authHome.softProject().subscribe(
-      project=>{
-        this.load  = project
-      },
-      err => {
-        console.error(err)
-      }
-    )
-    }
-
-    if( 5 == this.no){
-    this.authHome.blockchain().subscribe(
-      project=>{
-        this.load  = project
-      },
-      err => {
-        console.error(err)
-      }
-    )
-    }
-
-    if( 6 == this.no){
-
-    this.authHome.machlearn().subscribe(
-      project=>{
-        this.load  = project
-      },
-      err => {
-        console.error(err)
-      }
-    )
-    }
-
-    if( 7 == this.no){
-    this.authHome.natlang().subscribe(
-      project=>{
-        this.load  = project
-      },
-      err => {
-        console.error(err)
-      }
-    )
-    }
-
-    if( 8 == this.no){
-    this.authHome.digimark().subscribe(
-      project=>{
-        this.load = project
-      },
-      err => {
-        console.error(err)
-      }
-    )
-    }
-
-    if( 9 == this.no){
-    this.authHome.multiDesign().subscribe(
-      project=>{
-        this.load  = project
-      },
-      err => {
-        console.error(err)
-      }
-    )
-    }
-
-    if( 10 == this.no){
-    this.authHome.robot().subscribe(
-      project=>{
-        this.load = project
-      },
-      err => {
-        console.error(err)
-      }
-    )
+      this.authHome.machlearn().subscribe(
+        project => {
+          this.load = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+    } else if ('7' == this.no) {
+      this.authHome.natlang().subscribe(
+        project => {
+          this.load = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+    } else if ('8' == this.no) {
+      this.authHome.digimark().subscribe(
+        project => {
+          this.load = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+    } else if ('9' == this.no) {
+      this.authHome.multiDesign().subscribe(
+        project => {
+          this.load = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
+    } else if ('10' == this.no) {
+      this.authHome.robot().subscribe(
+        project => {
+          this.load = project
+        },
+        err => {
+          console.error(err)
+        }
+      )
     }
 
   }
 
 
-  project_ID:number
+  project_ID: number
 
-  viewProject(projectID){
+  viewProject(projectID) {
     this.project_ID = projectID
     console.log(this.project_ID)
     this.marked = false
 
-  }
-
- 
-  back(){
-    this.marked = true
   }
 }

@@ -1,12 +1,12 @@
+
 <div *ngIf="marked">
 
-  <div class="viewmore" *ngIf="marked"> <a style=" color: red; margin: 2px 4px 2px 4px ;"
-      routerLink="/devCatagory/home">
-      <-<- back</a> </div> <div class="viewmore" *ngIf="!marked"> <a style=" color: red; margin: 2px 4px 2px 4px ;"
-          (click)="back()">
-          <-<- back</a> </div> <div class="container">
+<div class="viewmore" *ngIf="marked"> <a style=" color: red; margin: 2px 4px 2px 4px ;" routerLink="/devCatagory/home">
+    <-<- back</a> </div> <div class="viewmore" *ngIf="!marked"> <a style=" color: red; margin: 2px 4px 2px 4px ;"
+        (click)="back()">
+        <-<- back</a> </div> <div class="container">
             <div class="row">
-              <div class="box" *ngFor="let item of webProject">
+              <div class="box" *ngFor="let item of load">
                 <div style="text-align: center;"> <img class="imag"
                     src="{{authHome.img_link}}{{ item?.user.profile_img }}" alt="Card image cap"></div>
                 <h4 class="card-title">{{item?.project_name}}</h4>
@@ -61,7 +61,7 @@
 
             </div>
 
-  </div>
+          </div>
 
 </div>
 <div *ngIf="!marked">
