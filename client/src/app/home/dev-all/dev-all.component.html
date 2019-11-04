@@ -4,7 +4,7 @@
 <div class="container">
     <div *ngIf="marked">
   <div class="row">
-<div class="box"  *ngFor="let item of webProject">
+<div class="box"  *ngFor="let item of load">
     <div style="text-align: center;">  <img class="imag" src="{{authHome.img_link}}{{ item?.user.profile_img }}"
       alt="Card image cap"></div>
       <h4 class="card-title">{{item?.project_name}}</h4>

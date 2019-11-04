@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthHomeService } from '../auth-home.service'
 import { ProjectDetails } from '../../project/auth-project.service'
 import { Router } from '@angular/router';
+import { DevAllComponent } from '../dev-all/dev-all.component'
 
 @Component({
   selector: 'app-dev-home',
@@ -19,6 +20,7 @@ export class DevHomeComponent implements OnInit {
   digimark: any;
   multiDesign: any;
   robot: any;
+  
 
   constructor(private authHome: AuthHomeService,private router: Router,) { }
 
@@ -43,7 +45,7 @@ export class DevHomeComponent implements OnInit {
   ]
 
   project_ID
-
+NO:0;
   ngOnInit() {
       this.authHome.webProject().subscribe(
         project=>{
@@ -147,5 +149,10 @@ export class DevHomeComponent implements OnInit {
     this.project_ID = projectID
     this.marked = false
   }
+ viewMore(no){
+  this.NO=no;
+  this.router.navigate(['/devCatagory/all'],{queryParams:{xx:this.NO}})
+  console.log("xx"+this.NO)
+ }
 
 }
