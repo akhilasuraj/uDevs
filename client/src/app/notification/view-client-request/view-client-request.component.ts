@@ -3,7 +3,7 @@ import { AuthNotificationService, viewDevReq } from '../auth-notification.servic
 import { AuthenticationService } from 'src/app/user/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { requestDeveloperDetails } from 'src/app/home/auth-home.service';
-import { DevNotificationComponent } from 'src/app/notification/dev-notification/dev-notification.component'
+import { DevViewNotificationComponent } from 'src/app/notification/dev-view-notification/dev-view-notification.component'
 
 @Component({
   selector: 'app-view-client-request',
@@ -17,7 +17,7 @@ export class ViewClientRequestComponent implements OnInit {
     private auth: AuthenticationService, 
     private route: ActivatedRoute, 
     private router: Router,
-    private devNot: DevNotificationComponent
+    private devNot: DevViewNotificationComponent
     ) { }
 
   request_data:viewDevReq={
@@ -73,8 +73,7 @@ export class ViewClientRequestComponent implements OnInit {
 
 
   BackToNotification(){
-    this.devNot.view = true
-    window.location.reload()
+
   }
 
 }

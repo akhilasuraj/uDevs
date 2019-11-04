@@ -13,7 +13,7 @@
                     <div class="logout" style="text-align: center;"><b>Log Out</b></div>
                </a>
 
-               <div class="pic" style="float:right; margin-right: 5%;margin-top: 10px;">
+               <!-- <div class="pic" style="float:right; margin-right: 5%;margin-top: 10px;">
                     <a routerLink="/devCatagory/notification" class="notification">
                          <span><img src="assets/img/notification.png" style="margin: -25px 0px 0px -17px;" height="20px"
                                    width="20px">
@@ -22,7 +22,7 @@
                               <span class="badge">{{ countRequestDeveloper + countAccProReq + countAccBidReq }}</span>
                          </div>
                     </a>
-               </div>
+               </div> -->
                <div class="pic" style="float:right; margin-right: 2%;margin-top: 10px;">
                     <a routerLink="/devCatagory/chat"><img style=" width: 25px;margin: 1px 0px 0px 6px;"
                               src="../../../assets/img/cc.png">
@@ -34,4 +34,24 @@
           </div>
      </div>
 
+</div>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div style="background-color:#e3d5f3 ;">
+     <div class="w3-container" style="margin-left: 90%; position:sticky;">
+          <div class="w3-dropdown-hover" style="background-color: gray;">
+               <button class="w3-button w3-white notification">
+                    <span><img src="assets/img/notification.png" height="45px" width="45px"></span>
+                    <div *ngIf="totalCount > 0">
+                         <span class="badge">{{ countRequestDeveloper + countAccProReq + countAccBidReq }}</span>
+                    </div>
+               </button>
+               <div class="w3-dropdown-content w3-bar-block w3-border" style="width: 1000px;margin-left: -900px;position:relative;">
+                    <app-dev-notification></app-dev-notification>
+               </div>
+          </div>
+     </div>
 </div>

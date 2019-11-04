@@ -32,6 +32,24 @@ export class DevProfileComponent implements OnInit {
   count1:number
   count2:number
 
+
+  current_password: ''
+  current_password1: ''
+  password: ''
+
+  pwdData={
+    id: 0,
+    password: ''
+  }
+
+  confirm_password:string = ''
+
+  emailData={
+    id: 0,
+    email: ''
+  }
+  
+
   constructor(private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
@@ -84,6 +102,12 @@ export class DevProfileComponent implements OnInit {
     } else {
       this.router.navigateByUrl("/home/login");
     }
+
+    this.auth.getPassword().subscribe(
+      result=>{
+        this.password = result.password
+      }
+    )
   }
 
 
@@ -123,6 +147,58 @@ export class DevProfileComponent implements OnInit {
 
   editSkill(){
     this.showSkill = true
+  }
+
+
+  CheckPassword(){
+
+    if(this.current_password == this.password){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  CheckPassword1(){
+
+    if(this.current_password1 == this.password){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  ChangePassword(){
+
+    this.pwdData.id = this.auth.getUserDetails().id
+
+    console.log(this.pwdData)
+    
+    this.auth.changePassword(this.pwdData).subscribe(
+      result=>{
+        window.location.reload()
+      }
+    )
+  }
+
+  checkMatch(){
+    if(this.pwdData.password!=this.confirm_password){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+  ChangeEmail(){
+    this.emailData.id = this.auth.getUserDetails().id
+
+    this.auth.sendNewEmail(this.emailData).subscribe(
+      msg =>{
+        this.router.navigateByUrl('/pleaseVerify')
+      }
+    )  
+
   }
 
 

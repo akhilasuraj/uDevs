@@ -1,3 +1,5 @@
+<div class="scrolling-box">
+
 <div class="container">
 
   <div *ngIf="view">
@@ -11,7 +13,7 @@
               <h5><b>New</b></h5><br>
     
               <div *ngFor="let reqNot of requestNotificationNew">
-                  <button (click)="viewClientRequest(reqNot.id)">
+                  <button (click)="viewClientRequest(reqNot.id)" class="tag">
                       <img src="http://localhost:3000/{{ reqNot?.user?.profile_img }}"
                         alt="http://localhost:3000/{{ reqNot?.user?.profile_img }}" width="10%" heigt="10%"><br>
                       Client Name: {{ reqNot?.user?.first_name }} {{ reqNot?.user?.last_name }}<br>
@@ -47,7 +49,7 @@
               <h5><b>New</b></h5><br>
     
               <div *ngFor="let reqNot of accProReqNew">
-                  <button (click)="viewAccProReq(reqNot.id)">
+                  <button (click)="viewAccProReq(reqNot.id)" class="tag">
                       <img src="http://localhost:3000/{{ reqNot?.project?.user?.profile_img }}"
                         alt="http://localhost:3000/{{ reqNot?.project?.user?.profile_img }}" width="10%" heigt="10%"><br>
                       Client Name: {{ reqNot?.project?.user?.first_name }} {{ reqNot?.project?.user?.last_name }}<br>
@@ -81,7 +83,7 @@
               <h5><b>New</b></h5><br>
     
               <div *ngFor="let reqNot of accBidReqNew">
-                  <button (click)="viewAccBidReq(reqNot.id)">
+                  <button (click)="viewAccBidReq(reqNot.id)" class="tag">
                       <img src="http://localhost:3000/{{ reqNot?.project?.user?.profile_img }}"
                         alt="http://localhost:3000/{{ reqNot?.project?.user?.profile_img }}" width="10%" heigt="10%"><br>
                       Client Name: {{ reqNot?.project?.user?.first_name }} {{ reqNot?.project?.user?.last_name }}<br>
@@ -193,8 +195,10 @@
 
   </div>
 
+</div>
 
-  <div *ngIf="!view">
+
+  <!-- <div *ngIf="!view">
 
     <div *ngIf="view1">
       <app-view-acc-pro></app-view-acc-pro>
@@ -208,4 +212,4 @@
 
   </div>
 
-</div>
+</div> -->

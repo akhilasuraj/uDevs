@@ -83,6 +83,144 @@
       </div> -->
 
     </div>
+
+
+
+    <div class="col mx-auto">
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">
+          Change password
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Change password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+  
+                <form #userForm="ngForm" name="userForm" (submit)="ChangePassword()">
+                  <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Current password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control"
+                        placeholder="Enter the current password" name="current_password" [(ngModel)]="current_password">
+                    </div>
+                  </div>
+  
+                  <div *ngIf="CheckPassword()">
+                    <div class="form-group row">
+                      <label for="inputPassword" class="col-sm-2 col-form-label">New password</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control" placeholder="Enter a new password"
+                          name="password" class="form-control" required #pwd="ngModel"
+                          [class.is-invalid]="pwd.invalid && pwd.touched" [(ngModel)]="pwdData.password">
+  
+                        <div class="alert_msg">
+                          <small class="text-danger" *ngIf="pwd.invalid && pwd.touched">Password is required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputPassword" class="col-sm-2 col-form-label">Confirm password</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control"
+                          placeholder="Enter again the new password" name="cpassword" required
+                          [(ngModel)]="confirm_password">
+  
+                          <div class="alert_msg">
+                              <small class="text-danger" *ngIf="checkMatch()">Passwords are not match</small>
+                            </div>
+                      </div>
+                    </div>
+                  
+  
+                  <button type="button" class="btn btn-primary btn-block" *ngIf="!userForm.form.invalid && !checkMatch()" type="submit"
+                  [disabled]="userForm.form.invalid">
+                  Confirm changes
+                </button>
+              </div>
+  
+                </form>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter3">
+            Change email
+          </button>
+    
+  
+          <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Change email</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+  
+                    <form #userForm1="ngForm" name="userForm1" (submit)="ChangeEmail()">
+                  
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Current password</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control"
+                            placeholder="Enter the current password" name="current_password1" [(ngModel)]="current_password1">
+                        </div>
+                      </div>
+                  
+                      <div *ngIf="CheckPassword1()">
+                          <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">New email</label>
+                            <div class="col-sm-10">
+                              <input type="email" class="form-control" placeholder="Enter new email"
+                                name="email" class="form-control" required #email="ngModel"
+                                [class.is-invalid]="email.invalid && email.touched" [(ngModel)]="emailData.email">
+        
+                              <div class="alert_msg">
+                                <small class="text-danger" *ngIf="email.invalid && email.touched">email is required</small>
+                              </div>
+                            </div>
+                      </div>
+  
+                     <button type="button" class="btn btn-primary btn-block" *ngIf="!userForm1.form.invalid" type="submit"
+                  [disabled]="userForm1.form.invalid">
+                  Confirm changes
+                </button>
+  
+              </div>
+  
+                  </form>
+  
+    
+                </div>
+              </div>
+            </div>
+          </div>
+  
+  
+  
+      </div>
+
+
+
+
+
   </div>
 </div>
 

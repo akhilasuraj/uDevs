@@ -71,6 +71,7 @@ import { DevAllComponent } from './home/dev-all/dev-all.component';
 
 import { VeiwAllDevComponent } from './home/veiw-all-dev/veiw-all-dev.component'
 import { ViewMoreProjectComponent } from './home/view-more-project/view-more-project.component';
+import { DevViewNotificationComponent } from './notification/dev-view-notification/dev-view-notification.component';
 
 
 
@@ -170,6 +171,7 @@ const routes: Routes = [
     
     VeiwAllDevComponent,
     ViewMoreProjectComponent,
+    DevViewNotificationComponent,
     
   ],
   imports: [

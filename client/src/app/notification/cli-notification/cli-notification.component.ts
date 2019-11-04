@@ -165,9 +165,9 @@ export class CliNotificationComponent implements OnInit {
   }
 
 
-  proNot_ID: number;
-  bidNot_ID: number;
-  accNot_ID: number;
+  // proNot_ID: number;
+  // bidNot_ID: number;
+  // accNot_ID: number;
 
   viewProjectRequest(not_ID:number){
     // this.proNot_ID = not_ID

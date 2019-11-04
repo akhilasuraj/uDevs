@@ -25,3 +25,55 @@ ul {
   .active {
     background-color: #4CAF50;
   }
+
+
+  .tag {
+    animation: colorchange 20s; /* animation-name followed by duration in seconds*/
+       /* you could also use milliseconds (ms) or something like 2.5s */
+    -webkit-animation: colorchange 20s; /* Chrome and Safari */
+  }
+
+  @keyframes colorchange
+  {
+    0%   {background: rgb(247, 250, 65);}
+    25%  {background: rgb(240, 162, 61);}
+    50%   {background: rgb(247, 250, 65);}
+    75%  {background: rgb(240, 162, 61);}
+    100% {background: rgb(247, 243, 5);}
+  }
+
+  @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+  {
+    0%   {background: rgb(247, 250, 65);}
+    25%  {background: rgb(240, 162, 61);}
+    50%   {background: rgb(247, 250, 65);}
+    75%  {background: rgb(240, 162, 61);}
+    100% {background: rgb(247, 243, 5);}
+  }
+
+
+
+  body {
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .scrolling-box {
+    background-color: #eaeaea;
+    display: block;
+    width: 1000px;
+    height: 500px;
+    padding: 1em;
+    overflow-y: scroll;
+    text-align: center;
+  }
+  
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
