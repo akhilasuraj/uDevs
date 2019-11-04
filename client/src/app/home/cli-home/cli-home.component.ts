@@ -45,7 +45,7 @@ export class CliHomeComponent implements OnInit {
   ]
 
   userID
-
+ NO:0
   ngOnInit() {
 
     this.authHome.webDeveloper().subscribe(
@@ -146,5 +146,11 @@ export class CliHomeComponent implements OnInit {
      this.userID = user_ID
       this.marked = false
   }
+  viewMore(no){
+    this.NO=no;
+    
+    this.router.navigate(['/cliCatagory/all'],{queryParams:{xx:this.NO}})
+    console.log("xx"+this.NO)
+   }
 
 }
